@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('otp',10);
-            $table->tinyInteger('subscribed')->default(0)->comment('1:Subscribed ,0:Un-Subscribed');
+            $table->tinyInteger('subscribed')->default(1)->comment('1:Subscribed ,0:Un-Subscribed');
             $table->tinyInteger('status')->comment('1:Active,0:In-Active')->default(1);
             $table->string('image')->default('/defaultImages/user.jpg');
             $table->string('referral_code',10)->unique()->comment('Referral Code');
@@ -47,10 +47,17 @@ class CreateUsersTable extends Migration
             ],
             [
                 'user_type' => 2,
-                'name' => 'Customer',
-                'email' => 'customer@customer.com',
+                'name' => 'Teacher Demo',
+                'email' => 'teacher@teacher.com',
                 'password' => Hash::make('secret'),
                 'referral_code' => 'AAAAAAB',
+            ],
+            [
+                'user_type' => 1,
+                'name' => 'Student Demo',
+                'email' => 'student@student.com',
+                'password' => Hash::make('secret'),
+                'referral_code' => 'AAAAAAC',
             ],
         ];
 

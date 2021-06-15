@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferralsTable extends Migration
+class CreateCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,28 @@ class CreateReferralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('referrals', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('code',20)->unique();
-            $table->bigInteger('userId');
+            $table->string('name',150);
+            $table->string('iso',10)->unique();
+            $table->string('phonecode',20);
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
         $data = [
-            ['code' => 'AAAAAAA','userId'=>1],
-            ['code' => 'AAAAAAB','userId'=>2],
-            ['code' => 'AAAAAAC','userId'=>3],
+            [
+                'name' => 'India',
+                'iso' => 'IN',
+                'phonecode' => '+91',
+            ],
+            [
+                'name' => 'Australia',
+                'iso' => 'AU',
+                'phonecode' => '+61',
+            ],
         ];
-        DB::table('referrals')->insert($data);
+        DB::table('countries')->insert($data);
     }
 
     /**
@@ -36,6 +44,6 @@ class CreateReferralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referrals');
+        Schema::dropIfExists('countries');
     }
 }
