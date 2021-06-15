@@ -15,13 +15,46 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('user_type')->default(3);
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email',150)->unique();
+            $table->string('mobile',20);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('otp',10);
+            $table->tinyInteger('subscribed')->default(0)->comment('1:Subscribed ,0:Un-Subscribed');
+            $table->tinyInteger('status')->comment('1:Active,0:In-Active')->default(1);
+            $table->string('image')->default('/defaultImages/user.jpg');
+            $table->string('referral_code',10)->unique()->comment('Referral Code');
+            $table->bigInteger('referred_by')->comment('Referred By UserId');
+            $table->string('gender',20)->comment('Male,Female,Not specified');
+            $table->date('dob');
+            $table->string('marital',20)->comment('Single,Married,Divorced');
+            $table->date('aniversary');
             $table->rememberToken();
-            $table->timestamps();
+            $table->softDeletes();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
+
+        $data = [
+            [
+                'user_type' => 1,
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('secret'),
+                'referral_code' => 'AAAAAAA',
+            ],
+            [
+                'user_type' => 2,
+                'name' => 'Customer',
+                'email' => 'customer@customer.com',
+                'password' => Hash::make('secret'),
+                'referral_code' => 'AAAAAAB',
+            ],
+        ];
+
+        DB::table('users')->insert($data);
     }
 
     /**
