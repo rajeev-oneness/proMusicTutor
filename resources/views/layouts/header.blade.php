@@ -10,12 +10,16 @@
                     <li class="nav-item">
                         <a class="nav-link search-icon" href="#"><img src="{{asset('design/img/search_icon.png')}}"></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link signup-bg" href="#">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link signup-bg login-bg bg-orange" href="#"><i class="fas fa-user mr-1"></i> Login</a>
-                    </li>
+                    @if(Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link signup-bg {{ Route::currentRouteName() == 'register' ? 'bg-orange' : '' }}" href="{{route('register')}}">Sign Up</a>
+                        </li>
+                    @endif
+                    @if(Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link signup-bg login-bg {{ Route::currentRouteName() == 'login' ? 'bg-orange' : '' }}" href="{{route('login')}}"><i class="fas fa-user mr-1"></i> Login</a>
+                        </li>
+                    @endif
                     <li class="nav-item position-relative">
                         <a class="nav-link signup-bg" href="#"><img src="{{asset('design/img/cart_icon.png')}}"></a>
                         <div class="cart-count">
