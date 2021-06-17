@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferralsTable extends Migration
+class CreateEmailSubscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateReferralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('referrals', function (Blueprint $table) {
+        Schema::create('email_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('code',20)->unique();
-            $table->bigInteger('userId');
+            $table->string('email',150)->unique();
+            $table->tinyInteger('agree')->default(1);
+            $table->string('reason_for_unsubscribe');
+            $table->tinyInteger('status')->default(1);
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
-        $data = [
-            ['code' => 'AAAAAAA','userId'=>1],
-            ['code' => 'AAAAAAB','userId'=>2],
-            ['code' => 'AAAAAAC','userId'=>3],
-        ];
-        DB::table('referrals')->insert($data);
     }
 
     /**
@@ -36,6 +32,6 @@ class CreateReferralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referrals');
+        Schema::dropIfExists('email_subscriptions');
     }
 }

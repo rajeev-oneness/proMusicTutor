@@ -27,6 +27,7 @@
 	<script type="text/javascript" src="{{asset('design/js/owl.carousel.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('design/js/aos.js')}}"></script>
 	<script type="text/javascript" src="{{asset('design/js/custom.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.loading-data').hide();

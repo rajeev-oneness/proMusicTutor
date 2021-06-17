@@ -10,15 +10,17 @@
                 </h6>
             </div>
             <div class="col-12 col-md-6">
-                <form >
+                <form method="post" action="{{route('email.subscribe')}}">
+                    @csrf
                     <div class="form-group row m-0">
                         <div class="col-8">
-                            <input type="email" class="form-control" id="inputPassword2" placeholder="Enter your email address...">
+                            <input type="email" name="email" class="form-control @error('email'){{('is-invalid')}}@enderror" id="inputPassword2" placeholder="Enter your email address..." value="{{old('email')}}">
+                            @error('email')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
                         <button type="submit" class="btn viewmore mb-2">Submit</button>
                     </div>
                     <div class="form-check ml-3">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" checked="" name="agree" value="1" id="defaultCheck1">
                         <label class="form-check-label" for="defaultCheck1">
                           I agree to receive email updates
                         </label>

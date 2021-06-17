@@ -158,37 +158,31 @@
         </div>
     </section>
 
-    <section class="pt-5 pb-5 bg-light-blue faqs">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center title-inner">
-                    <h1 class="mb-5 text-white">Frequently Asked Questions</h1>
+    <!-- Frequently Asked Questions -->
+    @if(count($data->faq) > 0)
+        <section class="pt-5 pb-5 bg-light-blue faqs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center title-inner">
+                        <h1 class="mb-5 text-white">Frequently Asked Questions</h1>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div id="accordion" class="accordion">
-                    <div class="card mb-0 border-0 bg-transparent">
-                        <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
-                            <a class="card-title text-white"> What is PRO Music Tutor? </a>
-                        </div>
-                        <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
-                            <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                        </div>
-                        <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            <a class="card-title text-white"> How much does Netflix cost?</a>
-                        </div>
-                        <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
-                            <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                        </div>
-                        <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            <a class="card-title text-white"> Where can I watch?</a>
-                        </div>
-                        <div id="collapseThree" class="card-body collapse" data-parent="#accordion">
-                            <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                <div>
+                    <div id="accordion" class="accordion">
+                        <div class="card mb-0 border-0 bg-transparent">
+                            @foreach($data->faq as $key => $faq)
+                                <div class="card-header collapsed" data-toggle="collapse" href="#collapseFaq{{$key}}">
+                                    <a class="card-title text-white"> {{$faq->title}} </a>
+                                </div>
+                                <div id="collapseFaq{{$key}}" class="card-body collapse" data-parent="#accordion">
+                                    <p class="text-white"> {!! $faq->description !!} </p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+    <!-- Frequently Asked Questions End -->
 @endsection

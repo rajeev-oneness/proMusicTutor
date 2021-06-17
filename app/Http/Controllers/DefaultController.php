@@ -3,26 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Faq;
 
 class DefaultController extends Controller
 {
+    public function welcome(Request $req)
+    {
+        $data = (object)[];
+        $data->faq = Faq::get();
+        return view('welcome',compact('data'));
+    }
+
     public function aboutus(Request $req)
     {
-        return view('front.about-us');
+        $data = (object)[];
+        return view('front.about-us',compact('data'));
     }
 
     public function browserGuitar(Request $req)
     {
-        return view('front.guitar.series');
+        $data = (object)[];
+        return view('front.guitar.series',compact('data'));
     }
 
     public function browserGuitarDetails(Request $req,$seriesId)
     {
-        return view('front.guitar.seriesDetails');
+        $data = (object)[];
+        return view('front.guitar.seriesDetails',compact('data'));
     }
 
     public function subscription(Request $req)
     {
-        return view('front.subscription');
+        $data = (object)[];
+        return view('front.subscription',compact('data'));
+    }
+
+    public function subscribeEmail(Request $req)
+    {
+        dd('here');
+        $req->validate([
+            'email' => 'required|email|string|max:150',
+        ]);
+        $email = EmailSubscribe::where('email',$req->email)->first();
+        if(!$email){
+            $email = new EmailSubscribe();
+                $email->email = $req->email;
+            $email->save();
+        }
+        return successResponse('Email Subscribed Success');
+    }
+
+    public function unSubscribeEmail(Request $req)
+    {
+        $req->validate([
+            'email' => 'required|email|string|max:150',
+        ]);
+        $email = EmailSubscribe::where('email',$req->email)->first();
+        if($email){
+            $email->delete();
+        }
+        return successResponse('Email Un-Subscribed Success');
     }
 }

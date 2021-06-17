@@ -1,7 +1,7 @@
 <header class="bg-dark-blue">
     <div class="container p-0">
         <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center pt-0 pb-0">
-            <a href="#" class="navbar-brand d-flex w-25 mr-auto"><img src="{{asset('design/img/logo.png')}}"></a>
+            <a href="javascript:void(0)" class="navbar-brand d-flex w-25 mr-auto"><img src="{{asset('design/img/logo.png')}}"></a>
             <div class="navbar-collapse w-100">
                 <p class="navbar-nav w-75 justify-content-center d-md-block d-none text-center nav-text">
                     All downloads available in <span>FULL HD </span>or <span>stream</span>
@@ -20,12 +20,12 @@
                             <a class="nav-link signup-bg login-bg {{ Route::currentRouteName() == 'login' ? 'bg-orange' : '' }}" href="{{route('login')}}"><i class="fas fa-user mr-1"></i> Login</a>
                         </li>
                     @endif
+                    @auth
                     <li class="nav-item position-relative">
                         <a class="nav-link signup-bg" href="#"><img src="{{asset('design/img/cart_icon.png')}}"></a>
-                        <div class="cart-count">
-                            2
-                        </div>
+                        <div class="cart-count">2</div>
                     </li>
+                    @endauth
                     <li class="nav-item">
                         <a class="nav-link search-icon" id="slide" href="#"><img src="{{asset('design/img/menu_icon.png')}}"> <span class="pl-2">Menu</span></a>
                         <div class="hidden">

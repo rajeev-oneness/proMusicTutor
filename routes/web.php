@@ -15,14 +15,13 @@ use Illuminate\Support\Facades\Route;use Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/',[DefaultController::class,'welcome']);
 Route::get('about-us',[DefaultController::class,'aboutus']);
 Route::get('browse/guitar',[DefaultController::class,'browserGuitar']);
 Route::get('browse/guitar/{seriesId}/details',[DefaultController::class,'browserGuitarDetails']);
 Route::get('subscription',[DefaultController::class,'subscription']);
+Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
+Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');
 
 Auth::routes();
 
@@ -45,6 +44,10 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	require 'custom/admin.php';
 });
 
+Route::group(['prefix'=>'tutor','middleware'=>'tutor'],function(){
+	require 'custom/tutor.php';
+});
+
 Route::group(['prefix'=>'user','middleware'=>'customer'],function(){
-	require 'custom/customer.php';
+	require 'custom/user.php';
 });
