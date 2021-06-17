@@ -62,68 +62,39 @@
         </div>
     </section>
 
-    <section class="pt-5 pb-5 my_teams">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1 class="mb-5">Meet The Tutor's</h1>
+    @if(count($data->tutor) > 0)
+        <section class="pt-5 pb-5 my_teams">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="mb-5">Meet The Tutor's</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-10 columns">
-                    <div class="owl-carousel teams">
-                        <div class="item">
-                            <div class="card text-center">
-                                <img src="{{asset('design/img/team-1.jpg')}}" class="card-img-top" alt="...">
-                                <div class="card-body pb-1">
-                                    <div class="img_border"></div>
-                                    <h5 class="card-title">Andy Sheppard</h5>
-                                    <p class="card-text">Andy Sheppard is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.</p>
-                                    <a href="#" class="float-right"><i class="fas fa-long-arrow-alt-right"></i></a>
+                <div class="row justify-content-center">
+                    <div class="col-10 columns">
+                        <div class="owl-carousel teams">
+                            @foreach($data->tutor as $index => $tutor)
+                                <div class="item">
+                                    <div class="card text-center">
+                                        <img src="{{asset($tutor->image)}}" class="card-img-top">
+                                        <div class="card-body pb-1">
+                                            <div class="img_border"></div>
+                                            <h5 class="card-title">{{$tutor->name}}</h5>
+                                            <p class="card-text">{{$tutor->about}}</p>
+                                            <a href="{{route('explore.tutor',base64_encode($tutor->id))}}" class="float-right"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card text-center">
-                                <img src="{{asset('design/img/team-2.jpg')}}" class="card-img-top" alt="...">
-                                <div class="card-body pb-1">
-                                    <div class="img_border"></div>
-                                    <h5 class="card-title">Craig Crofton</h5>
-                                    <p class="card-text">Andy Sheppard is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.</p>
-                                    <a href="#" class="float-right"><i class="fas fa-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card text-center">
-                                <img src="{{asset('design/img/team-3.jpg')}}" class="card-img-top" alt="...">
-                                <div class="card-body pb-1">
-                                    <div class="img_border"></div>
-                                    <h5 class="card-title">Innes Sibun</h5>
-                                    <p class="card-text">Andy Sheppard is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.</p>
-                                    <a href="#" class="float-right"><i class="fas fa-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card text-center">
-                                <img src="{{asset('design/img/team-1.jpg')}}" class="card-img-top" alt="...">
-                                <div class="card-body pb-1">
-                                    <div class="img_border"></div>
-                                    <h5 class="card-title">Andy Sheppard</h5>
-                                    <p class="card-text">Andy Sheppard is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.</p>
-                                    <a href="#" class="float-right"><i class="fas fa-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
+                <div class="text-center">
+                    <a href="{{route('explore.tutor')}}" class="btn viewmore">Expore</a>
+                </div>
             </div>
-            <div class="text-center">
-                <a href="#" class="btn viewmore">GET STARTED</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <section class="mt-5 pt-5 pb-5 bg-light">
         <div class="container">

@@ -25,6 +25,9 @@ class CreateReferralsTable extends Migration
             ['code' => 'AAAAAAA','userId'=>1],
             ['code' => 'AAAAAAB','userId'=>2],
             ['code' => 'AAAAAAC','userId'=>3],
+            ['code' => 'AAAAAAD','userId'=>4],
+            ['code' => 'AAAAAAE','userId'=>5],
+            ['code' => 'AAAAAAF','userId'=>5],
         ];
         DB::table('referrals')->insert($data);
     }

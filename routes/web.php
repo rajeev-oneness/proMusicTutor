@@ -20,6 +20,8 @@ Route::get('about-us',[DefaultController::class,'aboutus']);
 Route::get('browse/guitar',[DefaultController::class,'browserGuitar']);
 Route::get('browse/guitar/{seriesId}/details',[DefaultController::class,'browserGuitarDetails']);
 Route::get('subscription',[DefaultController::class,'subscription']);
+Route::get('explore/tutor/{tutorId?}',[DefaultController::class,'exploreTutor'])->name('explore.tutor');
+
 Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
 Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');
 

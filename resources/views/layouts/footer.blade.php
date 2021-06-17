@@ -1,36 +1,37 @@
-<section class="pt-5 pb-5 newsletter">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-5">
-                <h6>
-                    Try some of our classes!
-                    <span>
-                        Enter your email and we’ll send you some samples of our favorite classes.
-                    </span>
-                </h6>
-            </div>
-            <div class="col-12 col-md-6">
-                <form method="post" action="{{route('email.subscribe')}}">
-                    @csrf
-                    <div class="form-group row m-0">
-                        <div class="col-8">
-                            <input type="email" name="email" class="form-control @error('email'){{('is-invalid')}}@enderror" id="inputPassword2" placeholder="Enter your email address..." value="{{old('email')}}">
-                            @error('email')<span class="text-danger">{{$message}}</span>@enderror
+@if(!Session::has('email_subscribe'))
+    <section class="pt-5 pb-5 newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-5">
+                    <h6>
+                        Try some of our classes!
+                        <span>
+                            Enter your email and we’ll send you some samples of our favorite classes.
+                        </span>
+                    </h6>
+                </div>
+                <div class="col-12 col-md-6">
+                    <form method="post" action="{{route('email.subscribe')}}">
+                        @csrf
+                        <div class="form-group row m-0">
+                            <div class="col-8">
+                                <input type="email" name="email" class="form-control @error('email'){{('is-invalid')}}@enderror" id="inputPassword2" placeholder="Enter your email address..." value="{{old('email')}}">
+                                @error('email')<span class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <button type="submit" class="btn viewmore mb-2">Submit</button>
                         </div>
-                        <button type="submit" class="btn viewmore mb-2">Submit</button>
-                    </div>
-                    <div class="form-check ml-3">
-                        <input class="form-check-input" type="checkbox" checked="" name="agree" value="1" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                          I agree to receive email updates
-                        </label>
-                      </div>
-                </form>
+                        <div class="form-check ml-3">
+                            <input class="form-check-input" type="checkbox" checked="" name="agree" value="1" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              I agree to receive email updates
+                            </label>
+                          </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+@endif
 <footer class="pt-5 pb-3 mt-5 mt-md-0" id="contact">
     <div class="container">
         <div class="row m-0 justify-content-center">

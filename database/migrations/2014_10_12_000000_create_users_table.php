@@ -13,6 +13,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        /***** note if you change anything in to migration,
+        you have to also change
+        1. Referral Migration
+        2. User Point Migration *****/
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('user_type')->default(3);
@@ -22,9 +26,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('otp',10);
+            $table->longText('about');
+            $table->date('carrier_started');
             $table->tinyInteger('subscribed')->default(1)->comment('1:Subscribed ,0:Un-Subscribed');
             $table->tinyInteger('status')->comment('1:Active,0:In-Active')->default(1);
-            $table->string('image')->default('/defaultImages/user.jpg');
+            $table->string('image')->default('defaultImages/user.jpg');
             $table->string('referral_code',10)->unique()->comment('Referral Code');
             $table->bigInteger('referred_by')->comment('Referred By UserId');
             $table->string('gender',20)->comment('Male,Female,Not specified');
@@ -44,20 +50,53 @@ class CreateUsersTable extends Migration
                 'email' => 'admin@admin.com',
                 'password' => Hash::make('secret'),
                 'referral_code' => 'AAAAAAA',
+                'about' => '',
+                'image' => 'defaultImages/user.jpg',
             ],
             [
                 'user_type' => 2,
-                'name' => 'Tutor',
-                'email' => 'tutor@tutor.com',
+                'name' => 'Andy Sheppard',
+                'email' => 'andysheppard@tutor.com',
                 'password' => Hash::make('secret'),
                 'referral_code' => 'AAAAAAB',
+                'about' => 'Andy Sheppard is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.',
+                'image' => 'design/img/team-1.jpg',
+            ],
+            [
+                'user_type' => 2,
+                'name' => 'Craig Crofton',
+                'email' => 'craigcrofton@tutor.com',
+                'password' => Hash::make('secret'),
+                'referral_code' => 'AAAAAAC',
+                'about' => 'Craig Crofton is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.',
+                'image' => 'design/img/team-2.jpg',
+            ],
+            [
+                'user_type' => 2,
+                'name' => 'Innes Sibun',
+                'email' => 'innessibun@tutor.com',
+                'password' => Hash::make('secret'),
+                'referral_code' => 'AAAAAAD',
+                'about' => 'Innes Sibun is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.',
+                'image' => 'design/img/team-3.jpg',
             ],
             [
                 'user_type' => 3,
                 'name' => 'User',
                 'email' => 'user@user.com',
                 'password' => Hash::make('secret'),
-                'referral_code' => 'AAAAAAC',
+                'referral_code' => 'AAAAAAE',
+                'about' => '',
+                'image' => 'defaultImages/user.jpg',
+            ],
+            [
+                'user_type' => 2,
+                'name' => 'Demo Tutor',
+                'email' => 'tutor@tutor.com',
+                'password' => Hash::make('secret'),
+                'referral_code' => 'AAAAAAF',
+                'about' => 'Demo is one of Europe’s best saxophonist and is one of the few British sax players to make waves on the international jazz scene in recent years.',
+                'image' => 'defaultImages/user.jpg',
             ],
         ];
 
