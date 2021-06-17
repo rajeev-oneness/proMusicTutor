@@ -22,8 +22,7 @@ class CreateUserTypesTable extends Migration
         });
         $data = [
             ['name' => 'Admin'],
-            ['name' => 'Teacher'],
-            ['name' => 'Student'],
+            ['name' => 'Customer'],
         ];
         DB::table('user_types')->insert($data);
     }

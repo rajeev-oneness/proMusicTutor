@@ -5,7 +5,7 @@ namespace App\Http\Middleware\Custom\Auth;
 use Closure,Auth,Session;
 use Illuminate\Http\Request;
 
-class TeacherMiddleware
+class CustomerMiddleware
 {
     /**
      * Handle an incoming request.

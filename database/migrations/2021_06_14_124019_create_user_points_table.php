@@ -25,8 +25,6 @@ class CreateUserPointsTable extends Migration
         $data = [
             ['userId' => 1, 'points'=>10, 'remarks' => 'Referral Bonus for UserId:2'],
             ['userId' => 2, 'points'=>10, 'remarks' => 'Joining Bonus'],
-            ['userId' => 2, 'points'=>10, 'remarks' => 'Referral Bonus for UserId:3'],
-            ['userId' => 3, 'points'=>10, 'remarks' => 'Joining Bonus'],
         ];
         DB::table('user_points')->insert($data);
     }
