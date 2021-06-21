@@ -30,111 +30,36 @@
         </div>
     </section>
 
-    <section class="pt-5 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center title-inner">
-                    <h1 class="mb-5">Subscription Plans</h1>
+    @if(count($data->subscription) > 0)
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center title-inner">
+                        <h1 class="mb-5">Subscription Plans</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($data->subscription as $key => $subscription)
+                        <div class="col-12 col-sm-6 col-md-4 mb-3">
+                            <div class="card border-0 bg-light-blue subscribe-card">
+                                <img src="{{asset($subscription->image)}}" class="card-img-top">
+                                <div class="card-body text-center">
+                                  <p>{{$subscription->title}}</p>
+                                  <h6>£ {{$subscription->price}} <span>/month</span></h6>
+                                  <ul class="child-subs">
+                                    @foreach($subscription->features as $feature)
+                                        <li>{{$feature->title}}</li>
+                                    @endforeach
+                                  </ul>
+                                </div>
+                                <div class="card-footer border-0 p-0">
+                                    <a href="javascript:void(0)" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
+                                </div>
+                              </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 bg-light-blue subscribe-card">
-                        <img src="{{asset('design/img/guitar_3.png')}}" class="card-img-top">
-                        <div class="card-body text-center">
-                          <p>Monthly Subscripton - Saxophone</p>
-                          <h6>£9.99 <span>/month</span></h6>
-                          <ul class="child-subs">
-                              <li>Unlimited Streaming HD of all Sax  lessons</li>
-                              <li>50% off all downloads</li>
-                          </ul>
-                        </div>
-                        <div class="card-footer border-0 p-0">
-                            <a href="#" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 bg-light-blue subscribe-card">
-                        <img src="{{asset('design/img/guitar_4.png')}}" class="card-img-top">
-                        <div class="card-body text-center">
-                          <p>Monthly Subscripton - Saxophone</p>
-                          <h6>£9.99 <span>/month</span></h6>
-                          <ul class="child-subs">
-                              <li>Unlimited Streaming HD of all Sax  lessons</li>
-                              <li>50% off all downloads</li>
-                          </ul>
-                        </div>
-                        <div class="card-footer border-0 p-0">
-                            <a href="#" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 bg-light-blue subscribe-card">
-                        <img src="{{asset('design/img/guitar_5.png')}}" class="card-img-top">
-                        <div class="card-body text-center">
-                          <p>Monthly Subscripton - Saxophone</p>
-                          <h6>£9.99 <span>/month</span></h6>
-                          <ul class="child-subs">
-                              <li>Unlimited Streaming HD of all Sax  lessons</li>
-                              <li>50% off all downloads</li>
-                          </ul>
-                        </div>
-                        <div class="card-footer border-0 p-0">
-                            <a href="#" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 bg-light-blue subscribe-card">
-                        <img src="{{asset('design/img/guitar_1.png')}}" class="card-img-top">
-                        <div class="card-body text-center">
-                          <p>Monthly Subscripton - Saxophone</p>
-                          <h6>£9.99 <span>/month</span></h6>
-                          <ul class="child-subs">
-                              <li>Unlimited Streaming HD of all Sax  lessons</li>
-                              <li>50% off all downloads</li>
-                          </ul>
-                        </div>
-                        <div class="card-footer border-0 p-0">
-                            <a href="#" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 bg-light-blue subscribe-card">
-                        <img src="{{asset('design/img/guitar_6.png')}}" class="card-img-top">
-                        <div class="card-body text-center">
-                          <p>Monthly Subscripton - Saxophone</p>
-                          <h6>£9.99 <span>/month</span></h6>
-                          <ul class="child-subs">
-                              <li>Unlimited Streaming HD of all Sax  lessons</li>
-                              <li>50% off all downloads</li>
-                          </ul>
-                        </div>
-                        <div class="card-footer border-0 p-0">
-                            <a href="#" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 bg-light-blue subscribe-card">
-                        <img src="{{asset('design/img/guitar_2.png')}}" class="card-img-top">
-                        <div class="card-body text-center">
-                          <p>Monthly Subscripton - Saxophone</p>
-                          <h6>£9.99 <span>/month</span></h6>
-                          <ul class="child-subs">
-                              <li>Unlimited Streaming HD of all Sax  lessons</li>
-                              <li>50% off all downloads</li>
-                          </ul>
-                        </div>
-                        <div class="card-footer border-0 p-0">
-                            <a href="#" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                        </div>
-                      </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection

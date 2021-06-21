@@ -14,4 +14,14 @@ class GuitarSeries extends Model
     {
         return $this->belongsTo('App\Models\GuitarSeriesCategory','categoryId','id');
     }
+
+    public function lession()
+    {
+        return $this->hasMany('App\Models\GuitarLession','guitarSeriesId','id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo('App\Models\User','createdBy','id');
+    }
 }

@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class GuitarLession extends Model
+class SubscriptionPlan extends Model
 {
     use HasFactory,SoftDeletes;
 
-    public function currency()
+    public function features()
     {
-        return $this->belongsTo('App\Models\Currency','currencyId','id');
+        return $this->hasMany('App\Models\SubscriptionPlanFeature','subscriptionPlanId','id');
     }
 }

@@ -26,6 +26,14 @@ class CreateAddressesTable extends Migration
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
+
+        $data = [
+            [
+                'userId' => 5,
+                'address' => 'Boston, USA',
+            ]
+        ];
+        DB::table('addresses')->insert($data);
     }
 
     /**

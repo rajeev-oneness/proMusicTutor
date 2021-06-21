@@ -24,14 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        switch (Auth::user()->user_type) {
-            case 1:
-                return redirect('admin/dashboard');break;
-            case 2:
-                return redirect('user/dashboard');break;
-            default:
-                return view('home');break;
-        }
+        // switch (Auth::user()->user_type) {
+        //     case 1:
+        //         return redirect('admin/dashboard');break;
+        //     case 2:
+        //         return redirect('user/dashboard');break;
+        //     default:
+        //         return view('home');break;
+        // }
         return view('home');
     }
 

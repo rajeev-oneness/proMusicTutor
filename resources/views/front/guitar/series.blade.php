@@ -30,150 +30,60 @@
         </div>
     </section>
 
-    <section class="pt-5 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center title-inner">
-                    <h1 class="mb-5">Choose Your Guitar Series Category</h1>
+    @if(count($data->category) > 0)
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center title-inner">
+                        <h1 class="mb-5">Choose Your Guitar Series Category</h1>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    @foreach($data->category as $index => $cat)
+                        <div class="col-12 col-sm-6 col-md-4 mb-3">
+                            <div class="card border-0 ">
+                                <img src="{{asset($cat->image)}}" class="card-img-top">
+                                <div class="card-body p-0">
+                                  <a href="{{route('guitar.series')}}?categoryId={{$cat->id}}" class="btn signbtn ">{{$cat->name}}</a>
+                                </div>
+                              </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="row m-0">
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 ">
-                        <img src="{{asset('design/img/guitar_1.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body p-0">
-                          <a href="#" class="btn signbtn ">Pro Licks</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 ">
-                        <img src="{{asset('design/img/guitar_2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body p-0">
-                          <a href="#" class="btn signbtn ">Techniques</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card border-0 ">
-                        <img src="{{asset('design/img/guitar_3.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body p-0">
-                          <a href="#" class="btn signbtn ">Popular Songs</a>
-                        </div>
-                      </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
-    <section class="mt-5 mb-5 pt-5 pb-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center title-inner">
-                    <h1 class="mb-5">Browse All Guitar Series</h1>
+    @if(count($data->guitarSeries) > 0)
+        <section class="mt-5 mb-5 pt-5 pb-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center title-inner">
+                        <h1 class="mb-5">Browse All Guitar Series</h1>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    @foreach($data->guitarSeries as $key => $series)
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card border-0 bg-transparent more-course">
+                                <img src="{{asset($series->image)}}" class="card-img-top">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{$series->title}}</h5>
+                                    <p class="card-text">{!! $series->description !!}</p>
+                                    <a href="javascript:void(0)" class="btn buyfull mb-3">BUY FULL SERIES - &pound;  {{calculateLessionPrice($series->lession)}}</a>
+                                </div>
+                                <div class="card-footer d-flex border-0 p-0">
+                                    <a href="{{route('guitar.series.details',$series->id)}}" class="btn detail col-6">Details</a>
+                                    <a href="javascript:void(0)" class="btn preview col-6">PREVIEW</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="text-center mt-5">
+                    <a href="javascript:void(0)" class="btn viewmore">EXPLORE MORE</a>
                 </div>
             </div>
-            <div class="row m-0">
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card border-0 bg-transparent more-course">
-                        <img src="{{asset('design/img/guitar_3.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Building The Blues Series 1</h5>
-                            <p class="card-text">Learn from Micky Moody the legendary 
-                                Whitesnake guitarist. In this series Micky
-                                's aim is to pass on ....</p>
-                            <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound;18.99</a>
-                        </div>
-                        <div class="card-footer d-flex border-0 p-0">
-                            <a href="#" class="btn detail col-6">Details</a>
-                            <a href="#" class="btn preview col-6">PREVIEW</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card border-0 bg-transparent more-course">
-                        <img src="{{asset('design/img/guitar_2.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Building The Blues Series 1</h5>
-                            <p class="card-text">Learn from Micky Moody the legendary 
-                                Whitesnake guitarist. In this series Micky
-                                's aim is to pass on ....</p>
-                            <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound;18.99</a>
-                        </div>
-                        <div class="card-footer d-flex border-0 p-0">
-                            <a href="#" class="btn detail col-6">Details</a>
-                            <a href="#" class="btn preview col-6">PREVIEW</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card border-0 bg-transparent more-course">
-                        <img src="{{asset('design/img/guitar_1.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Building The Blues Series 1</h5>
-                            <p class="card-text">Learn from Micky Moody the legendary 
-                                Whitesnake guitarist. In this series Micky
-                                's aim is to pass on ....</p>
-                            <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound;18.99</a>
-                        </div>
-                        <div class="card-footer d-flex border-0 p-0">
-                            <a href="#" class="btn detail col-6">Details</a>
-                            <a href="#" class="btn preview col-6">PREVIEW</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card border-0 bg-transparent more-course">
-                        <img src="{{asset('design/img/guitar_4.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Building The Blues Series 1</h5>
-                            <p class="card-text">Learn from Micky Moody the legendary 
-                                Whitesnake guitarist. In this series Micky
-                                's aim is to pass on ....</p>
-                            <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound;18.99</a>
-                        </div>
-                        <div class="card-footer d-flex border-0 p-0">
-                            <a href="#" class="btn detail col-6">Details</a>
-                            <a href="#" class="btn preview col-6">PREVIEW</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card border-0 bg-transparent more-course">
-                        <img src="{{asset('design/img/guitar_5.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Building The Blues Series 1</h5>
-                            <p class="card-text">Learn from Micky Moody the legendary 
-                                Whitesnake guitarist. In this series Micky
-                                's aim is to pass on ....</p>
-                            <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound;18.99</a>
-                        </div>
-                        <div class="card-footer d-flex border-0 p-0">
-                            <a href="#" class="btn detail col-6">Details</a>
-                            <a href="#" class="btn preview col-6">PREVIEW</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card border-0 bg-transparent more-course">
-                        <img src="{{asset('design/img/guitar_6.png')}}" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Building The Blues Series 1</h5>
-                            <p class="card-text">Learn from Micky Moody the legendary 
-                                Whitesnake guitarist. In this series Micky
-                                's aim is to pass on ....</p>
-                            <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound;18.99</a>
-                        </div>
-                        <div class="card-footer d-flex border-0 p-0">
-                            <a href="#" class="btn detail col-6">Details</a>
-                            <a href="#" class="btn preview col-6">PREVIEW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-5">
-                <a href="#" class="btn viewmore">EXPLORE MORE</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection

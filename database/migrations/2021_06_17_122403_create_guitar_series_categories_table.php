@@ -16,7 +16,7 @@ class CreateGuitarSeriesCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name',150);
-            $table->string('media',150);
+            $table->string('image',150);
             $table->longText('description')->comment('Optional');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -25,15 +25,15 @@ class CreateGuitarSeriesCategoriesTable extends Migration
         $data = [
             [
                 'name' => 'Pro Licks',
-                'media' => 'design/img/guitar_1.png'
+                'image' => 'design/img/guitar_1.png'
             ],
             [
                 'name' => 'Techniques',
-                'media' => 'design/img/guitar_2.png'
+                'image' => 'design/img/guitar_2.png'
             ],
             [
                 'name' => 'Popular Songs',
-                'media' => 'design/img/guitar_3.png'
+                'image' => 'design/img/guitar_3.png'
             ]
         ];
         DB::table('categories')->insert($data);

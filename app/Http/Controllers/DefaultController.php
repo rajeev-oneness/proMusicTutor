@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmailSubscription,App\Models\Faq,App\Models\User;
-
+use App\Models\Testimonial,App\Models\Instrument,App\Models\Category;
+use App\Models\GuitarSeries,App\Models\SubscriptionPlan;
 class DefaultController extends Controller
 {
     public function welcome(Request $req)
@@ -12,6 +13,8 @@ class DefaultController extends Controller
         $data = (object)[];
         $data->faq = Faq::get();
         $data->tutor = User::where('user_type',2)->orderBy('id','ASC')->limit(10)->get();
+        $data->testimonial = Testimonial::where('id',1)->get();
+        $data->instrument = Instrument::limit(2)->get();
         return view('welcome',compact('data'));
     }
 
@@ -24,18 +27,30 @@ class DefaultController extends Controller
     public function browserGuitar(Request $req)
     {
         $data = (object)[];
+        $data->category = Category::get();
+        $guitarSeries = GuitarSeries::select('*');
+        if(!empty($req->categoryId)){
+            $guitarSeries = $guitarSeries->where('categoryId',$req->categoryId);
+        }
+        $guitarSeries = $guitarSeries->get();
+        $data->guitarSeries = $guitarSeries;
         return view('front.guitar.series',compact('data'));
     }
 
     public function browserGuitarDetails(Request $req,$seriesId)
     {
-        $data = (object)[];
-        return view('front.guitar.seriesDetails',compact('data'));
+        $data = GuitarSeries::where('id',$seriesId)->first();
+        if($data){
+            $data->otherGuitarSeries = GuitarSeries::where('id','!=',$seriesId)->limit(3)->get();
+            return view('front.guitar.seriesDetails',compact('data'));    
+        }
+        return errorResponse('Something went wrong please try after sometime');
     }
 
     public function subscription(Request $req)
     {
         $data = (object)[];
+        $data->subscription = SubscriptionPlan::get();
         return view('front.subscription',compact('data'));
     }
 
@@ -66,6 +81,9 @@ class DefaultController extends Controller
             $email = new EmailSubscription();
             $email->email = $req->email;
             $email->agree = ($req->agree) ? 1 : 0;
+        }
+        if(auth()->user()){
+            $email->createdBy = auth()->user()->id;
         }
         $email->status = 1;
         $email->save();

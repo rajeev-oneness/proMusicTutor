@@ -45,6 +45,14 @@
     	return $random_string;
     }
 
+    function calculateLessionPrice($lessionObject=[]){
+    	$totalPrice = 0;
+    	foreach($lessionObject as $lession){
+    		$totalPrice += $lession->price;
+    	}
+    	return $totalPrice;
+    }
+
     function getSumOfPoints($userPoints){
     	$totalPoint = 0;
     	foreach($userPoints as $getPoint){

@@ -34,10 +34,10 @@ class CreateGuitarLessionsTable extends Migration
                     $data[] = [
                         'categoryId' => ($i+1),
                         'guitarSeriesId' => ($j+1),
-                        'title' => 'Series '.($j+1).' - Lesson '.($k+1),
+                        'title' => 'Series '.($i+1).' - Lesson '.($k+1),
                         'image' => 'design/img/guitar_'.(4+$k).'.png',
                         'currencyId' => 3,
-                        'price' => rand(2.99,5.99),
+                        'price' => rand(2,9).'.99',
                         'description' => "During this series you will be taught and directed by the legendary 'Whitesnake' guitarist, Micky Moody. Throughtout the lessons he'll demonstrate valuable riffs, licks and ideas across a number of styles, including; Bluegrass, Blues, slide and will demonstrate some of his own work using unusual tuning methods. He will demonstrate some of the methods he uses and goes into detail as to slide and picking techniques This series is perfect for the seasoned guitarist - so bring your bottleneck, capo and don't worry - you're in good hands with Micky Moody",
                         'createdBy' => (2+$i),
                     ];

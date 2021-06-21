@@ -16,14 +16,25 @@ class CreateTestimonialsTable extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('designation');
-            $table->string('title');
             $table->string('image');
             $table->longText('quote');
+            $table->string('address');
+            $table->string('designation');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
+
+        $data = [
+            [
+                'name' => 'John Doe',
+                'image' => 'design/img/testi-1.png',
+                'quote' => "Here, the legendary blues guitarist Innes Sibun shows you how to play over a Latin feeling minor blu....",
+                'address' => 'Boston, USA',
+                'designation' => 'Testimonials',
+            ]
+        ];
+        DB::table('testimonials')->insert($data);
     }
 
     /**

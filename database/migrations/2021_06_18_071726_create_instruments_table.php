@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailSubscriptionsTable extends Migration
+class CreateInstrumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,26 @@ class CreateEmailSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('email_subscriptions', function (Blueprint $table) {
+        Schema::create('instruments', function (Blueprint $table) {
             $table->id();
-            $table->string('email',150)->unique();
-            $table->tinyInteger('agree')->default(1);
-            $table->string('reason_for_unsubscribe');
-            $table->tinyInteger('status')->default(1);
-            $table->bigInteger('createdBy');
+            $table->string('name');
+            $table->string('image');
+            $table->longText('description');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
+        $data = [
+            [
+                'name' => 'GUITAR',
+                'image' => 'design/img/instru-1.png',
+            ],
+            [
+                'name' => 'SAXOPHONE',
+                'image' => 'design/img/instru-2.png',
+            ],
+        ];
+        DB::table('instruments')->insert($data);
     }
 
     /**
@@ -33,6 +42,6 @@ class CreateEmailSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_subscriptions');
+        Schema::dropIfExists('instruments');
     }
 }

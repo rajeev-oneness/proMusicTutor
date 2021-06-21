@@ -76,6 +76,7 @@ class CreateGuitarSeriesTable extends Migration
                 'createdBy' => 4,
             ],
         ];
+        DB::table('guitar_series')->insert($data);
     }
 
     /**

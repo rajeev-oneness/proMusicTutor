@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;use Auth;
 |
 */
 
-Route::get('/',[DefaultController::class,'welcome']);
-Route::get('about-us',[DefaultController::class,'aboutus']);
-Route::get('browse/guitar',[DefaultController::class,'browserGuitar']);
-Route::get('browse/guitar/{seriesId}/details',[DefaultController::class,'browserGuitarDetails']);
-Route::get('subscription',[DefaultController::class,'subscription']);
+Route::get('/',[DefaultController::class,'welcome'])->name('welcome');
+Route::get('about-us',[DefaultController::class,'aboutus'])->name('welcome.aboutus');
+Route::get('browse/guitar',[DefaultController::class,'browserGuitar'])->name('guitar.series');
+Route::get('browse/guitar/{seriesId}/details',[DefaultController::class,'browserGuitarDetails'])->name('guitar.series.details');
+Route::get('subscription',[DefaultController::class,'subscription'])->name('subscription');
 Route::get('explore/tutor/{tutorId?}',[DefaultController::class,'exploreTutor'])->name('explore.tutor');
 Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
 Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');

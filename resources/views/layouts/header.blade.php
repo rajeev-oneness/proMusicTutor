@@ -27,7 +27,7 @@
                     </li>
                     @endauth
                     <li class="nav-item">
-                        <a class="nav-link search-icon" id="slide" href="#"><img src="{{asset('design/img/menu_icon.png')}}"> <span class="pl-2">Menu</span></a>
+                        <a class="nav-link search-icon" id="slide" href="javascript:void(0)"><img src="{{asset('design/img/menu_icon.png')}}"> <span class="pl-2">Menu</span></a>
                         <div class="hidden">
                             <div class="menu-section">
                                 <div class="menulogo mb-5">
@@ -47,12 +47,12 @@
                                 <div class="tab-content pt-4" id="myTabContent">
                                     <div class="tab-pane fade show active" id="guitar" role="tabpanel" aria-labelledby="guitar-tab">
                                         <ul class="r_menu_ul">
-                                            <li><a href="" class="active">OFFERS</a></li>
+                                            <li><a href="">OFFERS</a></li>
                                             <li><a href="">ALL SERIES & PREVIEWS</a></li>
-                                            <li><a href="">LATEST SERIES</a></li>
                                             <li><a href="">MEET THE PROS</a></li>
                                             <li><a href="">HOW IT WORKS</a></li>
-                                            <li><a href="">SUBSCRIPTIONS</a></li>
+                                            <li><a class="{{Route::currentRouteName()=='subscription'?'active':''}}" href="{{route('subscription')}}">SUBSCRIPTIONS</a></li>
+                                            <li><a class="{{Route::currentRouteName()=='welcome.aboutus'?'active':''}}" href="{{route('welcome.aboutus')}}">About Us</a></li>
                                         </ul>
                                     </div>
                                     <div class="tab-pane fade" id="sax" role="tabpanel" aria-labelledby="sax-tab">profile tab</div>

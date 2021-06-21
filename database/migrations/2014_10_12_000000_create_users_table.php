@@ -82,12 +82,12 @@ class CreateUsersTable extends Migration
             ],
             [
                 'user_type' => 3,
-                'name' => 'User',
-                'email' => 'user@user.com',
+                'name' => 'John Doe',
+                'email' => 'jogndoe@user.com',
                 'password' => Hash::make('secret'),
                 'referral_code' => 'AAAAAAE',
                 'about' => '',
-                'image' => 'defaultImages/user.jpg',
+                'image' => 'design/img/testi-1.png',
             ],
             [
                 'user_type' => 2,
