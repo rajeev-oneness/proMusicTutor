@@ -24,6 +24,9 @@ Route::get('explore/tutor/{tutorId?}',[DefaultController::class,'exploreTutor'])
 Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
 Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');
 
+Route::get('terms-and-condition',[DefaultController::class,'termsAndCondition'])->name('terms&condition');
+Route::get('privacy/policy',[DefaultController::class,'privacyPolicy'])->name('privacy.policy');
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

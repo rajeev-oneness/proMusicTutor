@@ -102,4 +102,14 @@ class DefaultController extends Controller
         }
         return successResponse('Email Un-Subscribed Success');
     }
+
+    public function termsAndCondition(Request $req)
+    {
+        return response()->json(['error' => true,'message' => 'Something went wrong please try after sometime']);
+    }
+
+    public function privacyPolicy(Request $req)
+    {
+        return response()->json(['error' => true,'message' => 'Something went wrong please try after sometime']);
+    }
 }

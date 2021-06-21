@@ -1,77 +1,80 @@
-@extends('layouts.master')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{{asset('design/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('design/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('design/css/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('design/css/font-awesome.min.css')}}">
+</head>
+<body>
+    <div class="signup pt-5 pb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div class="padd-area">
+                        <div class="left-signin mb-5">
+                            <img src="{{asset('design/img/other/logopro.png')}}">
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="signupacc-text">
+                            <h3>Sign Up Your  Account</h3>
+                            <p>To keep connected with us please Register with your personal information by email address and password</p>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                    <div>
+                        <img src="{{asset('design/img/other/signup-image.png')}}">
+                    </div>
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div class="signup-area">
+                        <div class="under-formarea">
+                            <div class="google-login">
+                                <a href="javascript:void(0)">Login with Google</a>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="text-center">
+                                <span class="orpart">or</span>
                             </div>
-                        </div>
+                            <form method="post" action="{{route('register')}}">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="inputAddress"> <img src="{{asset('design/img/other/mail-icon.png')}}"> EMAIL ADDRESS </label>
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address" autofocus>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+                                <div class="form-group">
+                                    <label for="inputAddress"> <img src="{{asset('design/img/other/password.png')}}"> PASSWORD <span>(Forgot)</span> </label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputAddress"> <img src="{{asset('design/img/other/password.png')}}"> CONFIRM PASSWORD </label>
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+                                    <a class="confirmpw" href="javascript:void(0)"><img src="{{asset('design/img/other/eye.png')}}"></a>
+                                </div>
+
+                                <div class="already-have">
+                                    <p>Already have an account? <span><a href="{{route('login')}}">(Sign In)</a></span></p>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-signup">Sign Up</button>
+                            </form>
+
+                            <p class="endsign">Protected by reCAPTCHA. Google <a href="{{route('privacy.policy')}}">Privacy Policy</a> & <a href="{{route('terms&condition')}}">Terms of Service</a> apply.</p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <script type="text/javascript" src="{{asset('design/js/jquery-3.6.0.min.js')}}"></script>
+</body>
+</html>

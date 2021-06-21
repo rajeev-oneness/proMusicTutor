@@ -206,3 +206,16 @@
       padding: 15px 65px 15px 30px;
    }
 }
+
+/*SignUp Style*/
+/***********Responsive**************/
+@media only screen and (max-width: 576px) 
+{
+  .padd-area {
+      padding-left: 20px;
+  }
+  .signupacc-text h3 {
+      font-size: 30px;
+      margin-bottom: 20px;
+  }
+}

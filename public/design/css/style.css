@@ -1022,3 +1022,202 @@ footer{
     padding: 12px 12px 0px 12px;
 }
 /**************** Sweet Alert Design END********************************/
+
+
+/*Signup Style*/
+.padd-area 
+{
+    padding-left: 77px;
+}
+
+.signupacc-text {
+    border-left: 3px solid #f43600;
+    padding: 5px 0 5px 25px;
+}
+
+.signupacc-text h3 
+{
+    color: #161e1e;
+    font-weight: bold;
+    font-size: 38px;
+    margin-bottom: 30px;
+}
+
+.signupacc-text p 
+{
+    font-size: 15px;
+    color: #646464;
+}
+
+.signup 
+{
+    background: #f7fafb;
+}
+
+.orpart 
+{
+    padding: 20px 0;
+}
+
+.under-formarea .form-group
+{
+    margin-bottom: 25px;
+    position: relative;
+}
+.under-formarea .form-group label
+{
+    color: #232323;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.under-formarea .form-group label span 
+{
+    color: #029fc9;
+}
+
+.under-formarea .form-group label img 
+{
+    margin-right: 10px;
+}
+
+.under-formarea .form-group .form-control 
+{
+    border: none;
+    background: transparent;
+    padding: 0;
+    border-bottom: 1px solid #c4c4c4;
+    border-radius: 0;
+}
+
+.under-formarea .form-group .form-control:focus {
+    color: #495057;
+    background-color: transparent;
+    border-color: #c4c4c4;
+    outline: 0;
+    box-shadow: none;
+}
+
+
+.confirmpw {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+}
+.already-have 
+{
+    margin-bottom: 30px;
+}
+.already-have p 
+{
+    color: #232323;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+.already-have p span 
+{
+    color: #029fc9;
+}
+
+.btn-signup 
+{
+    width: 100%;
+    background: #384a58;
+    border: none;
+    padding: 18px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.btn-signup:hover
+{
+    background: #384a58;
+}
+.btn-signup:focus {
+    color: #fff;
+    background-color: #384a58;
+    border-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.btn-signup:not(:disabled):not(.disabled).active, .btn-signup:not(:disabled):not(.disabled):active, .show>.btn-signup.dropdown-toggle {
+    color: #fff;
+    background-color: #384a58;
+    border-color: transparent;
+    border: none;
+}
+
+.endsign 
+{
+    margin-top: 25px;
+}
+
+.signup-area {
+    background: #FFF;
+    border-top: 45px solid #384a58;
+    border-radius: 10px;
+    box-shadow: 0 0px 35px #0000002e;
+}
+
+.under-formarea {
+    padding: 35px 35px 15px 35px;
+}
+
+
+.google-login {
+    height: 60px;
+    border-radius: 50px;
+    background: #f7fafb url('../images/google-icon.png') no-repeat left;
+    border: 1px solid #e6e6e6;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-position-x: 12px;
+}
+.google-login a  
+{
+    color: #029fc9;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.orpart {
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+.orpart::before 
+{
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 2px;
+    width: 175px;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(162,162,162,1) 100%);
+}
+.orpart::after 
+{
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 2px;
+    width: 175px;
+    background: rgb(162,162,162);
+    background: linear-gradient(90deg, rgba(162,162,162,1) 0%, rgba(0,0,0,0) 100%);
+}
+.endsign 
+{
+    color: #37364f;
+    font-size: 15px;
+    font-weight: 500;
+}
