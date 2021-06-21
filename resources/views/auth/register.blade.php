@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>{{config('app.name', 'Pro Music Tutor')}} - Signup</title>
     <link rel="stylesheet" type="text/css" href="{{asset('design/css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('design/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('design/css/responsive.css')}}">
@@ -15,16 +15,16 @@
                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
                     <div class="padd-area">
                         <div class="left-signin mb-5">
-                            <img src="{{asset('design/img/other/logopro.png')}}">
+                            <img src="{{asset('design/img/logopro.png')}}">
                         </div>
                         <div class="signupacc-text">
-                            <h3>Sign Up Your  Account</h3>
+                            <h3>Sign Up Your Account</h3>
                             <p>To keep connected with us please Register with your personal information by email address and password</p>
                         </div>
                     </div>
 
                     <div>
-                        <img src="{{asset('design/img/other/signup-image.png')}}">
+                        <img src="{{asset('design/img/signup-image.png')}}">
                     </div>
                 </div>
 
@@ -39,16 +39,31 @@
                             </div>
                             <form method="post" action="{{route('register')}}">
                                 @csrf
+                                <input type="hidden" name="user_type" value="3" readonly>
                                 <div class="form-group">
-                                    <label for="inputAddress"> <img src="{{asset('design/img/other/mail-icon.png')}}"> EMAIL ADDRESS </label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address" autofocus>
+                                    <label for="inputAddress"> <img src="{{asset('design/img/mail-icon.png')}}"> Name </label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Full name" autofocus>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputAddress"> <img src="{{asset('design/img/mail-icon.png')}}"> EMAIL ADDRESS </label>
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputAddress"> <img src="{{asset('design/img/other/password.png')}}"> PASSWORD <span>(Forgot)</span> </label>
+                                    <label for="inputAddress"> <img src="{{asset('design/img/password.png')}}"> PASSWORD 
+                                        @if (Route::has('password.request'))
+                                            <span><a class="btn btn-link" href="{{ route('password.request') }}">
+                                                (Forgot)
+                                            </a></span>
+                                        @endif
+                                    </label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -56,9 +71,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputAddress"> <img src="{{asset('design/img/other/password.png')}}"> CONFIRM PASSWORD </label>
+                                    <label for="inputAddress"> <img src="{{asset('design/img/password.png')}}"> CONFIRM PASSWORD </label>
                                     <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
-                                    <a class="confirmpw" href="javascript:void(0)"><img src="{{asset('design/img/other/eye.png')}}"></a>
+                                    <a class="confirmpw" href="javascript:void(0)"><img src="{{asset('design/img/eye.png')}}"></a>
                                 </div>
 
                                 <div class="already-have">

@@ -36,8 +36,11 @@ class Controller extends BaseController
             $user->password = Hash::make($userData->password);
             $user->user_type = $userData->user_type;
             $user->save();
+            $referral = '';
+            if(!empty($userData->referral))
+                $referral = $userData->referral;
+            $this->setReferralCode($user,$referral);
             // sendMail();
-            $this->setReferralCode($user,$userData->referral);
             DB::commit();
             return $user;
         }catch (Exception $e) {

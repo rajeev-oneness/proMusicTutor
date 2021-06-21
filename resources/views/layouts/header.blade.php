@@ -1,7 +1,7 @@
 <header class="bg-dark-blue">
     <div class="container p-0">
         <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center pt-0 pb-0">
-            <a href="javascript:void(0)" class="navbar-brand d-flex w-25 mr-auto"><img src="{{asset('design/img/logo.png')}}"></a>
+            <a href="{{url('/')}}" class="navbar-brand d-flex w-25 mr-auto"><img src="{{asset('design/img/logo.png')}}"></a>
             <div class="navbar-collapse w-100">
                 <p class="navbar-nav w-75 justify-content-center d-md-block d-none text-center nav-text">
                     All downloads available in <span>FULL HD </span>or <span>stream</span>

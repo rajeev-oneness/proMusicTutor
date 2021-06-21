@@ -35,7 +35,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'],function(){
 	Route::get('user/profile',[HomeController::class, 'userProfile'])->name('user.profile');
 	Route::post('user/profile',[HomeController::class, 'userProfileSave'])->name('user.profile.save');
-	//Route::get('user/change/password',[HomeController::class, 'index'])->name('user.changepassword');
+	// Route::get('user/change/password',[HomeController::class, 'index'])->name('user.changepassword');
 	Route::post('user/change/password',[HomeController::class, 'updateUserPassword'])->name('user.changepassword.save');
 	Route::get('user/points',[HomeController::class, 'userPoints'])->name('user.points');
 });
