@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request,App\Models\ContactUs;
 use App\Models\EmailSubscription,App\Models\Faq,App\Models\User;
 use App\Models\Testimonial,App\Models\Instrument,App\Models\Category;
 use App\Models\GuitarSeries,App\Models\SubscriptionPlan;
+
 class DefaultController extends Controller
 {
     public function welcome(Request $req)
@@ -22,6 +23,31 @@ class DefaultController extends Controller
     {
         $data = (object)[];
         return view('front.about-us',compact('data'));
+    }
+
+    public function contactUsFront(Request $req)
+    {
+        return view('front.contact-us');
+    }
+
+    public function contactUsFrontSave(Request $req)
+    {
+        $req->validate([
+            'name' => 'required|string|max:200',
+            'email' => 'required|string|email|max:200',
+            'phone' => 'required|numeric',
+            'subject' => 'required|string|max:200',
+            'description' => 'nullable|string',
+        ]);
+        $contact = new ContactUs();
+            $contact->name = $req->name;
+            $contact->email = $req->email;
+            $contact->phone = $req->phone;
+            $contact->subject = $req->subject;
+            $contact->description = emptyCheck($req->description);
+        $contact->save();
+        $error['success'] = 'Thankyou for contact we will catch you shortly';
+        return back()->withErrors($error);
     }
 
     public function browserGuitar(Request $req)

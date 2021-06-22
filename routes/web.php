@@ -25,6 +25,8 @@ Route::get('explore/tutor/{tutorId?}',[DefaultController::class,'exploreTutor'])
 Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
 Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');
 
+Route::get('contact-us',[DefaultController::class,'contactUsFront'])->name('contact.us');
+Route::post('contact-us',[DefaultController::class,'contactUsFrontSave'])->name('contactus.save');
 Route::get('terms-and-condition',[DefaultController::class,'termsAndCondition'])->name('terms&condition');
 Route::get('privacy/policy',[DefaultController::class,'privacyPolicy'])->name('privacy.policy');
 
@@ -36,10 +38,6 @@ Route::any('logout',[HomeController::class,'logout'])->name('logout');
 // SOCIALITE SIGN-IN
 Route::get('sign-in/{socialite}',[LoginController::class,'socialiteLogin'])->name('socialite.login');
 Route::get('sign-in/{socialite}/redirect',[LoginController::class,'socialiteLoginRedirect'])->name('socialite.login.redirect');
-
-// // SOCIALITE SIGN-IN
-// Route::get('sign-in/{socialite}','LoginController@socialiteLogin');
-// Route::get('sign-in/{socialite}/redirect','LoginController@socialiteLoginRedirect')->name('socialite.login.redirect');
 
 // Common Auth Routes
 Route::group(['middleware' => 'auth'],function(){
