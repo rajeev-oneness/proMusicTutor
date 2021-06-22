@@ -5,9 +5,47 @@
    ========================================================================== */
 
 
-@media (max-width: 320px){
+@media (max-width: 1359px){
 	
+   .content-priv {
+    padding-left: 8%;
+
+ }
+
+ 
+
+
 }
+
+@media (max-width: 1200px){ 
+
+  .content-priv {
+    padding: 10% 10% 0 10%;
+}
+
+.policy {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.privacy-image {
+    width: calc(100% - -100%);
+    width: 100%;
+    text-align: center;
+}
+
+.privacy-image img {
+    width: auto;
+    max-width: 100%;
+}
+
+
+
+}
+
+
 @media (max-width: 360px){
 	.navbar-light .navbar-nav .signup-bg {
       padding: 18px 6px !important;
@@ -19,8 +57,30 @@
       width: 63px !important;
       height: 62px !important;
    }
+
+
 }
 @media (max-width: 480px){
+
+   .top-infocon p {
+    font-size: 18px;
+    color: #FFF;
+    margin: 0;
+    line-height: 1;
+    word-break: break-all;
+}
+
+.top-infocon a {
+    display: block;
+    font-size: 18px !important;
+    color: #FFF !important;
+    line-height: 2;
+}
+
+.content-priv h3 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
 
 }
 @media (max-width: 640px){
@@ -43,6 +103,28 @@
    .newsletter .viewmore {
       width: 98px !important;
    }
+
+   .sidenav {
+    height: 100%;
+    position: absolute;
+}
+
+.full-loginmodal .modal-body {
+    flex: 0 0 100%;
+    width: 100%;
+}
+
+.headinglog {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.content-priv h3 {
+    font-size: 40px;
+    margin-bottom: 18px;
+}
+
+
 }
 @media (max-width: 768px){
 	.banner h1 {
@@ -55,6 +137,11 @@
      width: auto;
   }
   
+.content-priv {
+    padding: 5% 5% 0 5%;
+}
+
+
    
 }
 @media (max-width: 860px) {
@@ -205,6 +292,11 @@
       font-size: 14px;
       padding: 15px 65px 15px 30px;
    }
+
+
+
+
+
 }
 
 /*SignUp Style*/
@@ -218,4 +310,31 @@
       font-size: 30px;
       margin-bottom: 20px;
   }
+
+
+.flex-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+
+.admin-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.admin-right 
+{
+   width: 100%;
+   flex: 0 0 100%;
+}
+
+
+
+
+
 }

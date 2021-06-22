@@ -80,8 +80,6 @@ class LoginController extends Controller
 
     public function socialiteLogin(Request $req,$socialite)
     {
-        $error['socialite'] = 'Something went wrong please try after some time';
-        return redirect(route('login'))->withErrors($error);
         return Socialite::driver($socialite)->redirect();
     }
 

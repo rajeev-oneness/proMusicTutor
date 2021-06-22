@@ -724,7 +724,7 @@ footer{
   width:100%;
   z-index:2;
   position:fixed;
-  right:-1500px;
+  right:-1920px;
   background:rgba(255, 255, 255, 0.55);
   color:#fff;
   height: 100vh;
@@ -1221,3 +1221,550 @@ footer{
     font-size: 15px;
     font-weight: 500;
 }
+
+
+
+
+
+/************** Log in *********************/
+
+
+.full-loginmodal .modal-dialog {
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    height: 100%;
+    top: 50px;
+    position: relative;
+}
+
+
+.full-loginmodal .modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 639px;
+    width: 639px;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.full-loginmodal .modal-body form 
+{
+  width: 100%;
+}
+
+
+
+.full-loginmodal .modal-content {
+    background-color: rgb(23 29 35 / 80%);
+    border: none;
+    border-radius: 0rem;
+    outline: 0;
+    min-height: 800px;
+}
+
+.full-loginmodal .form-control {
+    background: rgb(43 51 55 / 90%);
+    border: none;
+    border-radius: 50px;
+    height: 55px;
+    padding: 0 30px;
+    color: #FFF;
+    border: 1px solid #6b6b6b !important;
+}
+
+.full-loginmodal p 
+{
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.full-loginmodal p a {
+    color: #029fc9;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.full-loginmodal .form-group {
+    margin-bottom: 30px;
+}
+ 
+.orange-btn {
+    background: #f43600;
+    color: #FFF;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    width: 200px;
+}
+
+.orange-btn:hover 
+{
+  background: #f43600;
+  border: none;
+}
+.orange-btn:focus 
+{
+  background: #f43600;
+  border: none;
+  box-shadow: none;
+}
+
+.orange-btn:not(:disabled):not(.disabled).active:focus, .orange-btn:not(:disabled):not(.disabled):active:focus, .show>.orange-btn.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.orange-btn:not(:disabled):not(.disabled).active, .orange-btn:not(:disabled):not(.disabled):active, .show>.orange-btn.dropdown-toggle {
+    color: #fff;
+    background: #f43600;
+    border-color: transparent;
+}
+
+.full-loginmodal button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    right: 0;
+    color: #FFF;
+    opacity: 1;
+    padding: 30px;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+
+.full-loginmodal .modal {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    opacity: 1 !important;
+    background: url(../img/backgroundlogin.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.headinglog {
+    color: #fff;
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+/************ Admin ******************/
+
+/*****************************/
+/*        Head Admin */
+/*****************************/
+
+
+.admin-left {
+    display: flex;
+    align-items: center;
+}
+
+.btn-togglearea {
+    width: 75px;
+    height: 90px;
+    flex: 0 0 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0e0e0e;
+    margin-right: 30px;
+}
+
+.btn-togglearea a 
+{
+  font-size: 50px;
+  color: #f43600;
+}
+
+.opennav
+{
+  font-size: 30px;
+  color: #f43600;
+}
+
+.flex-header 
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-right {
+    background: #f43600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    padding: 0 0px;
+    flex: 0 0 185px;
+}
+
+.admin-right i 
+{
+  color: #FFF;
+  font-size: 30px;
+}
+
+.admin-right a 
+{
+  padding: 0 25px;
+  position: relative;
+}
+
+.admin-right a span {
+    color: #FFF;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: 2px solid #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -10px;
+    z-index: 9999;
+    right: 10px;
+}
+
+.admin-left .navbar-brand
+{
+  margin-bottom: 0;
+  padding: 0;
+}
+
+
+/*****************************/
+/*        Head Admin */
+/*****************************/
+
+.cover-admin 
+{
+  display: flex;
+  position: relative;
+}
+
+.sidenav {
+    height: auto;
+    width: 295px;
+    flex: 0 0 295px;
+    position: relative;
+    z-index: 1;
+    left: 0;
+    background-color: #262c32;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.linkside li a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff !important;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 2px solid #5c6065;
+    line-height: 2;
+}
+
+.sidenav li a > img 
+{
+  margin-right: 20px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  /* margin-left: 295px; */
+  padding: 0 5%;
+}
+
+
+.profile-details 
+{
+  background: #2f343a;
+  padding-top: 50px;
+}
+
+.pro-image 
+{
+  width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: #FFF;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+
+.client-name 
+{
+  font-size: 20px;
+  color: #FFF;
+  font-weight: 500;
+}
+
+.details-list  
+{
+  padding-bottom: 40px;
+  border-bottom: 2px solid #5c6065;
+}
+
+.details-list li {
+    color: #FFF;
+    font-size: 16px;
+    padding: 5px 20px;
+}
+
+
+.details-list li img 
+{
+  margin-right: 15px;
+}
+
+.user-profile 
+{
+  background: #2f343a;
+  padding: 30px 0;
+}
+
+.socialmedia {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.socialmedia li a {
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    color: #2f343a;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 7px;
+    font-size: 20px;
+}
+
+
+.socialmedia li:hover a
+{
+  color: #2f343a;
+}
+
+
+.edit-prof-btn {
+    background: #f43600;
+    padding: 10px 20px;
+    color: #FFF;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    margin: 0 auto;
+}
+
+.edit-prof-btn img 
+{
+  margin-right: 10px;
+}
+
+.logout-btn {
+    background: #0e0e0e;
+    padding: 15px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF !important;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
+/**************** Contact Us *********************/
+
+.under-contact 
+{
+  background: #262c32;
+  padding-top: 75px;
+  padding-bottom: 100px;
+}
+
+
+.con-formarea 
+{
+  background: #171d23;
+  padding: 50px 30px;
+}
+
+.full-image 
+{
+  width: 100%;
+}
+
+.top-infocon a
+{
+  display: block;
+  font-size: 21px !important;
+  color: #FFF !important;
+  line-height: 2;
+}
+
+.blue-text 
+{
+  font-size: 21px;
+  color: #3e8ac8 !important;
+}
+
+.top-infocon a span,.top-infocon p span
+{
+  color: #f43600 !important;
+}
+
+.top-infocon p 
+{
+  font-size: 21px;
+  color: #FFF;
+  margin: 0;
+  line-height: 2;
+}
+
+
+.con-formarea .form-control
+{
+  background: #252a30;
+  border: none;
+}
+
+.con-formarea input[type="text"] 
+{
+  height: 58px;
+  padding: 0 15px;
+}
+
+.contact-btn {
+    background: #f43600;
+    font-size: 18px;
+    color: #FFF;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    height: 55px;
+}
+
+
+.contact-btn:hover {
+    color: #fff;
+    background-color: #f43600;
+    border-color: transparent;
+}
+
+
+.contact-btn:not(:disabled):not(.disabled).active, .contact-btn:not(:disabled):not(.disabled):active, .show>.contact-btn.dropdown-toggle {
+    color: #fff;
+    background-color: #f43600;
+    border-color: transparent;
+}
+
+.contact-btn.focus, .contact-btn:focus {
+    color: #fff;
+    background-color: #f43600;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.policy {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.lightgray 
+{
+  background: #f7f8fa;
+}
+.privacy-image  
+{
+  width: calc(100% - -100%);
+}
+.privacy-image img
+{
+  width: 100%;
+}
+
+.content-priv h3 
+{
+  font-size: 60px;
+  font-weight: bold;
+  color: #090909;
+  line-height: 1.5;
+  margin-bottom: 35px;
+}
+
+.content-priv  
+{
+  padding-left: 15%;
+  padding-top: 100px;
+  padding-bottom: 70px;
+}
+
+.content-priv p 
+{
+  font-size: 15px;
+  color: #515151;
+}
+
+.content-priv ul  
+{
+  list-style: none;
+  margin: 30px 0;
+}
+
+.content-priv ul li  
+{
+  color: #515151;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  padding-left: 45px;
+  background: url('../img/check-icon.png') no-repeat left;
+  background-position-y: top;
+}
+
+
+
+
+
+
+
