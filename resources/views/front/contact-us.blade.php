@@ -5,13 +5,13 @@
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
-                    <img class="full-image" src="{{asset('design/img/pic-1.png')}}" alt="">
+                    <img class="full-image" src="{{asset($contact->image)}}" alt="">
                 </div>
                 <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
                     <div class="con-formarea">
                         <div class="top-infocon mb-5">
-                            <a href="mailto:info@promusictutor.com">EMAIL: <span>info@promusictutor.com</span></a>
-                            <a href="www.facebook.com/tpromusictutor/"> FB <span>MESSENGER:</span> <p class="blue-text">www.facebook.com/tpromusictutor/</p></a>
+                            <a href="mailto:info@promusictutor.com">EMAIL: <span>{{$contact->email}}</span></a>
+                            <a href="{{$contact->facebook}}" target="_blank"> FB <span>MESSENGER:</span> <p class="blue-text">{{$contact->facebook}}</p></a>
                             <p>We typically respond in <span>24 hours</span> or less.</p>
                             @error('success')
                                 <span class="valid" role="alert">{{ $message }}</span>

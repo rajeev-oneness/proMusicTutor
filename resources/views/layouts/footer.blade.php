@@ -40,10 +40,14 @@
                     <img src="{{asset('design/img/logo.png')}}" class="mb-4">
                     <h4 class="widget-title">Your Account</h4>
                     <ul class="footer-menu">
-                        <li><a href="#">Affiliate Sign In</a></li>
-                        <li><a href="#">Login to your Account</a></li>
-                        <li><a href="#">Create an account</a></li>
-                        <li><a href="#">Forgotten your password?</a></li>
+                        <li><a href="{{route('login')}}">Affiliate Sign In</a></li>
+                        <li><a href="{{route('home')}}">Login to your Account</a></li>
+                        @if (Route::has('register'))
+                            <li><a href="{{route('register')}}">Create an account</a></li>
+                        @endif
+                        @if (Route::has('password.request'))
+                            <li><a href="{{route('password.request')}}">Forgotten your password?</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -51,12 +55,12 @@
                 <div class="footer-widget">
                     <h4 class="widget-title">Quick Link</h4>
                     <ul class="footer-menu">
-                        <li><a href="#">Affiliates</a></li>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">Frequently Asked Questions</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="javascript:void(0)">Affiliates</a></li>
+                        <li><a href="{{route('howitworks')}}">How It Works</a></li>
+                        <li><a href="javascript:void(0)">Frequently Asked Questions</a></li>
+                        <li><a href="{{route('welcome.aboutus')}}">About Us</a></li>
+                        <li><a href="{{route('contact.us')}}">Contact Us</a></li>
+                        <li><a href="{{route('policy.refund')}}">Refund Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,25 +68,20 @@
                 <div class="footer-widget">
                     <div class="footer-add">
                         <ul class="footer-card">
-                            <li><a href="#"><img src="{{asset('design/img/card1.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card2.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card3.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card4.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card5.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card6.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card7.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('design/img/card8.png')}}"></a></li>
+                            @for($loop = 1; $loop <= 8; $loop++)
+                                <li><a href="javascript:void(0)"><img src="{{asset('design/img/card'.$loop.'.png')}}"></a></li>
+                            @endfor
                         </ul>
                     </div>
                 </div>
                 <div class="sub-footer">
                     <ul>
                         <li>
-                            <a href="#">Terms of Use</a>
+                            <a href="{{route('terms&condition')}}">Terms of Use</a>
                         </li>
                         <li>|</li>
                         <li>
-                            <a href="#">Privacy Policy</a>
+                            <a href="{{route('privacy.policy')}}">Privacy Policy</a>
                         </li>
                     </ul>
                 </div>
@@ -95,10 +94,9 @@
                 <p>© Jem Music International. Company No. 106351</p>
             </div>
             <div class="col-12 col-md-2 ml-auto social_icon d-flex">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="{{$contact->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{$contact->linkedin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{$contact->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </div>

@@ -25,10 +25,12 @@ Route::get('explore/tutor/{tutorId?}',[DefaultController::class,'exploreTutor'])
 Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
 Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');
 
+Route::get('how-it-works',[DefaultController::class,'howItWorks'])->name('howitworks');
 Route::get('contact-us',[DefaultController::class,'contactUsFront'])->name('contact.us');
 Route::post('contact-us',[DefaultController::class,'contactUsFrontSave'])->name('contactus.save');
 Route::get('terms-and-condition',[DefaultController::class,'termsAndCondition'])->name('terms&condition');
 Route::get('privacy/policy',[DefaultController::class,'privacyPolicy'])->name('privacy.policy');
+Route::get('refund/policy',[DefaultController::class,'refundPolicy'])->name('policy.refund');
 
 Auth::routes(['logout'=>false]);
 
@@ -60,6 +62,6 @@ Route::group(['prefix'=>'tutor','middleware'=>'tutor'],function(){
 	require 'custom/tutor.php';
 });
 
-Route::group(['prefix'=>'user','middleware'=>'customer'],function(){
+Route::group(['prefix'=>'user','middleware'=>'user'],function(){
 	require 'custom/user.php';
 });
