@@ -32,7 +32,7 @@
                     <div class="signup-area">
                         <div class="under-formarea">
                             <div class="google-login">
-                                <a href="javascript:void(0)">Login with Google</a>
+                                <a href="{{route('socialite.login','google')}}">Login with Google</a>
                             </div>
                             <div class="text-center">
                                 <span class="orpart">or</span>

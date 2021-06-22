@@ -31,10 +31,13 @@ class Controller extends BaseController
         DB::beginTransaction();
         try {
             $user = new User();
-            $user->name = $userData->name;
+            $user->name = emptyCheck($userData->name);
             $user->email = $userData->email;
             $user->password = Hash::make($userData->password);
             $user->user_type = $userData->user_type;
+            if(!empty($userData->image)){
+                $user->image = $userData->image;
+            }
             $user->save();
             $referral = '';
             if(!empty($userData->referral))
@@ -49,7 +52,7 @@ class Controller extends BaseController
         }
     }
 
-    public function setReferralCode($user,$referalCode='AAAAAAA')
+    public function setReferralCode($user,$referalCode='')
     {
         $referral = $this->generateUniqueReferral();
         $user->referral_code = $referral->code;

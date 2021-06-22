@@ -35,6 +35,13 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function logout(Request $request)
+    {
+        auth()->guard()->logout();
+        $request->session()->invalidate();
+        return redirect('/');
+    }
+
     public function userProfile(Request $req)
     {
         $user = Auth::user();

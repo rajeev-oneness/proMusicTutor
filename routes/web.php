@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Route;use Auth;
+use Illuminate\Support\Facades\Route,Auth;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,18 @@ Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->n
 Route::get('terms-and-condition',[DefaultController::class,'termsAndCondition'])->name('terms&condition');
 Route::get('privacy/policy',[DefaultController::class,'privacyPolicy'])->name('privacy.policy');
 
-Auth::routes();
+Auth::routes(['logout'=>false]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::any('logout',[HomeController::class,'logout'])->name('logout');
+
+// SOCIALITE SIGN-IN
+Route::get('sign-in/{socialite}',[LoginController::class,'socialiteLogin'])->name('socialite.login');
+Route::get('sign-in/{socialite}/redirect',[LoginController::class,'socialiteLoginRedirect'])->name('socialite.login.redirect');
+
+// // SOCIALITE SIGN-IN
+// Route::get('sign-in/{socialite}','LoginController@socialiteLogin');
+// Route::get('sign-in/{socialite}/redirect','LoginController@socialiteLoginRedirect')->name('socialite.login.redirect');
 
 // Common Auth Routes
 Route::group(['middleware' => 'auth'],function(){

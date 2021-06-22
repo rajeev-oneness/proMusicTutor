@@ -1171,7 +1171,7 @@ footer{
 .google-login {
     height: 60px;
     border-radius: 50px;
-    background: #f7fafb url('../images/google-icon.png') no-repeat left;
+    background: #f7fafb url('/design/img/google-icon.png') no-repeat left;
     border: 1px solid #e6e6e6;
     text-align: center;
     display: flex;
