@@ -132,18 +132,20 @@ class DefaultController extends Controller
     public function termsAndCondition(Request $req)
     {
         return view('front.policy.terms_condition');
-        return response()->json(['error' => true,'message' => 'Something went wrong please try after sometime']);
     }
 
     public function privacyPolicy(Request $req)
     {
         return view('front.policy.privacyPolicy');
-        return response()->json(['error' => true,'message' => 'Something went wrong please try after sometime']);
     }
 
     public function refundPolicy(Request $req)
     {
         return view('front.policy.refundPolicy');
-        return response()->json(['error' => true,'message' => 'Something went wrong please try after sometime']);
+    }
+
+    public function howItWorks(Request $req)
+    {
+        return view('front.policy.howItWorks');
     }
 }
