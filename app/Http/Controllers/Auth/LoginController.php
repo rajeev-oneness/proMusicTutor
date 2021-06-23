@@ -108,6 +108,6 @@ class LoginController extends Controller
         }
         DB::commit();
         auth()->login($user);
-        return redirect('/home');
+        return redirect()->intended('/home');
     }
 }

@@ -8,7 +8,7 @@
                 </p>
                 <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link search-icon" href="#"><img src="{{asset('design/img/search_icon.png')}}"></a>
+                        <a class="nav-link search-icon" href="javascript:void(0)"><img src="{{asset('design/img/search_icon.png')}}"></a>
                     </li>
                     @if(Route::has('register'))
                         <li class="nav-item">
@@ -22,7 +22,7 @@
                     @endif
                     @auth
                     <li class="nav-item position-relative">
-                        <a class="nav-link signup-bg" href="#"><img src="{{asset('design/img/cart_icon.png')}}"></a>
+                        <a class="nav-link signup-bg" href="javascript:void(0"><img src="{{asset('design/img/cart_icon.png')}}"></a>
                         <div class="cart-count">2</div>
                     </li>
                     @endauth

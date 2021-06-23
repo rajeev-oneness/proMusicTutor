@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Guitar Series')
+@section('title','Subscription')
 @section('content')
     <section class="banner series_details subsscription">
         <div class="container">
@@ -52,14 +52,35 @@
                                     @endforeach
                                   </ul>
                                 </div>
-                                <div class="card-footer border-0 p-0">
-                                    <a href="javascript:void(0)" class="btn buyfull d-block bg-orange">SUBSCRIBE NOW</a>
-                                </div>
-                              </div>
+                                <form id="checkoutForm{{$subscription->id}}" action="{{route('razorpay.payment.store')}}" method="POST" >
+                                    @csrf
+                                    <input type="hidden" name="redirectURL">
+                                    <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                            data-key="{{ env('RAZORPAY_KEY') }}"
+                                            data-amount="{{($subscription->price) * 100}}"
+                                            /****data-buttontext="Pay {{$subscription->price}} INR"****/
+                                            data-name="Pro Music Tutor"
+                                            data-description="All downloads available in FULL HD or stream"
+                                            data-image="{{asset('defaultImages/logo.jpeg')}}"
+                                            data-prefill.name=""
+                                            data-prefill.email=""
+                                            data-theme.color="#ff7529">
+                                    </script>
+                                    <div class="card-footer border-0 p-0">
+                                        <a href="javascript:void(0)" class="btn buyfull d-block bg-orange" onclick="$('#checkoutForm{{$subscription->id}}').submit()">SUBSCRIBE NOW</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     @endforeach
                 </div>
             </div>
         </section>
     @endif
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $('.razorpay-payment-button').remove();
+</script>
 @endsection

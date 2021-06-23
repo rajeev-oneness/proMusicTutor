@@ -48,11 +48,13 @@ Route::group(['middleware' => 'auth'],function(){
 	// Route::get('user/change/password',[HomeController::class, 'index'])->name('user.changepassword');
 	Route::post('user/change/password',[HomeController::class, 'updateUserPassword'])->name('user.changepassword.save');
 	Route::get('user/points',[HomeController::class, 'userPoints'])->name('user.points');
+	// Razorpay Payment Route
+	Route::post('razorpay/payment', [PaymentController::class, 'storerazorePayPayment'])->name('razorpay.payment.store');
 });
 
 // Stripe Payment Route
-Route::post('stripe/payment/form_submit',[StripePaymentController::class, 'stripePostForm_Submit'])->name('stripe.payment.form_submit');
-Route::get('payment/successfull/thankyou/{stripeTransactionId}',[StripePaymentController::class, 'thankyouStripePayment'])->name('payment.successfull.thankyou');
+Route::post('stripe/payment/form_submit',[PaymentController::class, 'stripePostForm_Submit'])->name('stripe.payment.form_submit');
+Route::get('payment/successfull/thankyou/{stripeTransactionId}',[PaymentController::class, 'thankyouPayment'])->name('payment.successfull.thankyou');
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	require 'custom/admin.php';
