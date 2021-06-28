@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.auth.authMaster')
 @section('title','Point')
 @section('content')
 <div class="container-fluid  dashboard-content">
@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <h5 class="mb-0">User Points of ({{$user->name}})
                         @if(Auth::user()->user_type == 1)
-                            <a class="headerbuttonforAdd" href="{{route('admin.users')}}">
+                            <a href="{{route('admin.users')}}">
                                 <i class="fa fa-plus" aria-hidden="true"></i>Back
                             </a>
                         @endif

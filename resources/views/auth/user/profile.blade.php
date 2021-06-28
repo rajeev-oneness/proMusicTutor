@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.auth.authMaster')
 @section('title','Profile')
 @section('content')
 <div class="container-fluid  dashboard-content">
@@ -23,7 +23,7 @@
                                 <label for="name" class="col-form-label">Name:</label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name" value="{{(old('name') ? old('name') : $user->name)}}" autofocus="">
                                 @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
-                            </div>    
+                            </div>
                         </div>
                         
                         <div class="row">

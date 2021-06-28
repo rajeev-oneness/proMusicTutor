@@ -42,4 +42,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function referred_through()
+    {
+        return $this->belongsTo('App\Models\User','referred_by','id');
+    }
+
+    public function referred_to()
+    {
+        return $this->hasMany('App\Models\User','referred_by','id');
+    }
+
+    public function user_points()
+    {
+        return $this->hasMany('App\Models\UserPoints','userId','id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\UserType','user_type','id');
+    }
 }
