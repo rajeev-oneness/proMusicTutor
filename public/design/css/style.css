@@ -78,6 +78,9 @@ button:focus {
 .bg-orange{
   background: #f43600 !important;
 }
+.bg-purchased {
+    background: #536d05 !important;
+}
 .bg-light-yellow{
   background: #fcefab !important;
 }
@@ -573,6 +576,15 @@ footer{
   color: #191919;
   font-size: 14px;
   line-height: 22px;
+}
+.purchased-Full{
+  background: #793b29;
+  color: #fff !important;
+  padding: 8px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0;
+  font-size: 14px;
 }
 .buyfull{
   background: #f43600;

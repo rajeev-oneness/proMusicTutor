@@ -42,7 +42,31 @@
                 <div class="col-md-6 col-12">
                     <div class="row m-0">
                         <h5 class="col-6 pt-2 pl-0 pl-md-3">{{$data->title}}</h5>
-                        <a href="#" class="col-6 col-md-5 ml-auto buyfull">BUY FULL SERIES - £ {{$totalPrice}}</a>
+                        @guest
+                            <a href="javascript:void(0)" class="col-6 col-md-5 ml-auto buyfull" onclick="alert('please login to continue')">BUY FULL SERIES - £ {{$totalPrice}}</a>
+                        @else
+                            @if($data->userPurchased)
+                                <a href="javascript:void(0)" class="btn purchased-Full mb-3">Already Purchased</a>
+                            @else
+                                <!-- Checkout Form -->
+                                <form id="checkoutFormDetails{{$data->id}}" action="{{route('razorpay.payment.store')}}" method="POST" >
+                                    @csrf
+                                    <input type="hidden" name="redirectURL" value="{{route('after.purchase.guitar_series',$data->id)}}">
+                                    <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                            data-key="{{ env('RAZORPAY_KEY') }}"
+                                            data-amount="{{($totalPrice) * 100}}"
+                                            /****data-buttontext="Pay {{$totalPrice}} INR"****/
+                                            data-name="Pro Music Tutor"
+                                            data-description="All downloads available in FULL HD or stream"
+                                            data-image="{{asset('defaultImages/logo.jpeg')}}"
+                                            /*data-prefill.name=""
+                                            data-prefill.email=""*/
+                                            data-theme.color="#ff7529">
+                                    </script>
+                                    <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="$('#checkoutFormDetails{{$data->id}}').submit()">BUY FULL SERIES - &pound;  {{$totalPrice}}</a>
+                                </form>
+                            @endif
+                        @endguest
                     </div>
                     <div class="col-12 pt-4 pl-0 pl-md-3">
                         <h6 class="mb-3">Series Description</h6>
@@ -80,21 +104,53 @@
             <div class="container">
                 <div class="row m-0 mb-5">
                     <h5 class="pt-2">LESSONS</h5>
-                    <a href="#" class="buyfull ml-3 ml-md-5">BUY FULL SERIES - £ {{$totalPrice}}</a>
+                    @guest
+                        <a href="javascript:void(0)" class="buyfull ml-3 ml-md-5" onclick="alert('please login to continue')">BUY FULL SERIES - £ {{$totalPrice}}</a>
+                    @else
+                        @if($data->userPurchased)
+                            <a href="javascript:void(0)" class="purchased-Full ml-3 ml-md-5">Already Purchased</a>
+                        @else
+                            <a href="javascript:void(0)" class="buyfull ml-3 ml-md-5" onclick="$('#checkoutFormDetails{{$data->id}}').submit()">BUY FULL SERIES - &pound;  {{$totalPrice}}</a>
+                        @endif
+                    @endguest
                 </div>
                 <div class="row m-0">
                     @foreach($lessions as $key => $less)
                         <div class="card col-12 p-0 mb-3">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                <img src="{{asset($less->image)}}" class="card-img" alt="...">
+                                    <img src="{{asset($less->image)}}" class="card-img">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body position-relative">
                                         <h5 class="card-title">{{$less->title}}</h5>
                                         <p class="card-text">{!! $less->description !!}</p>
                                         <div class="float-right buynow-btn">
-                                            <a href="#" class="buyfull btn">Buy Now - £ {{$less->price}}</a>
+                                            @guest
+                                                <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="alert('please login to continue')">Buy Now - £ {{$less->price}}</a>
+                                            @else
+                                                @if(userLessionPurchased($less))
+                                                    <a href="javascript:void(0)" class="purchased-Full btn">Already Purchased</a>
+                                                @else
+                                                    <!-- Checkout Form -->
+                                                    <form id="checkoutForm{{$less->id}}" action="{{route('razorpay.payment.store')}}" method="POST" >
+                                                        @csrf
+                                                        <input type="hidden" name="redirectURL" value="{{route('after.purchase.guitar_lession_series',$less->id)}}">
+                                                        <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                                                data-key="{{ env('RAZORPAY_KEY') }}"
+                                                                data-amount="{{($less->price) * 100}}"
+                                                                /****data-buttontext="Pay {{$less->price}} INR"****/
+                                                                data-name="Pro Music Tutor"
+                                                                data-description="All downloads available in FULL HD or stream"
+                                                                data-image="{{asset('defaultImages/logo.jpeg')}}"
+                                                                /*data-prefill.name=""
+                                                                data-prefill.email=""*/
+                                                                data-theme.color="#ff7529">
+                                                        </script>
+                                                        <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="$('#checkoutForm{{$less->id}}').submit()">Buy Now - £ {{$less->price}}</a>
+                                                    </form>
+                                                @endif
+                                            @endguest
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +182,32 @@
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{$otherSeries->title}}</h5>
                                     <p class="card-text">{!! $otherSeries->description !!}</p>
-                                    <a href="#" class="btn buyfull mb-3">BUY FULL SERIES - &pound; {{calculateLessionPrice($otherSeries->lession)}}</a>
+                                    <?php $seriesPrice = calculateLessionPrice($otherSeries->lession); ?>
+                                    @guest
+                                        <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="alert('please login to continue')">BUY FULL SERIES - &pound;  {{$seriesPrice}}</a>
+                                    @else
+                                        @if($otherSeries->userPurchased)
+                                            <a href="javascript:void(0)" class="btn purchased-Full mb-3">Already Purchased</a>
+                                        @else
+                                            <!-- Checkout Form -->
+                                            <form id="checkoutForm{{$otherSeries->id}}" action="{{route('razorpay.payment.store')}}" method="POST" >
+                                                @csrf
+                                                <input type="hidden" name="redirectURL" value="{{route('after.purchase.guitar_series',$otherSeries->id)}}">
+                                                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                                        data-key="{{ env('RAZORPAY_KEY') }}"
+                                                        data-amount="{{($seriesPrice) * 100}}"
+                                                        /****data-buttontext="Pay {{$seriesPrice}} INR"****/
+                                                        data-name="Pro Music Tutor"
+                                                        data-description="All downloads available in FULL HD or stream"
+                                                        data-image="{{asset('defaultImages/logo.jpeg')}}"
+                                                        /*data-prefill.name=""
+                                                        data-prefill.email=""*/
+                                                        data-theme.color="#ff7529">
+                                                </script>
+                                                <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="$('#checkoutForm{{$otherSeries->id}}').submit()">BUY FULL SERIES - &pound;  {{$seriesPrice}}</a>
+                                            </form>
+                                        @endif
+                                    @endif
                                 </div>
                                 <div class="card-footer d-flex border-0 p-0">
                                     <a href="{{route('guitar.series.details',$otherSeries->id)}}" class="btn detail col-6">Details</a>
@@ -139,4 +220,9 @@
             </div>
         </section>
     @endif
+@endsection
+@section('script')
+<script type="text/javascript">
+    $('.razorpay-payment-button').remove();
+</script>
 @endsection

@@ -70,7 +70,32 @@
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{$series->title}}</h5>
                                     <p class="card-text">{!! $series->description !!}</p>
-                                    <a href="javascript:void(0)" class="btn buyfull mb-3">BUY FULL SERIES - &pound;  {{calculateLessionPrice($series->lession)}}</a>
+                                    <?php $seriesPrice = calculateLessionPrice($series->lession); ?>
+                                    @guest
+                                        <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="alert('please login to continue')">BUY FULL SERIES - &pound;  {{$seriesPrice}}</a>
+                                    @else
+                                        @if($series->userPurchased)
+                                            <a href="javascript:void(0)" class="btn purchased-Full mb-3">Already Purchased</a>
+                                        @else
+                                            <!-- Checkout Form -->
+                                            <form id="checkoutForm{{$series->id}}" action="{{route('razorpay.payment.store')}}" method="POST" >
+                                                @csrf
+                                                <input type="hidden" name="redirectURL" value="{{route('after.purchase.guitar_series',$series->id)}}">
+                                                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                                        data-key="{{ env('RAZORPAY_KEY') }}"
+                                                        data-amount="{{($seriesPrice) * 100}}"
+                                                        /****data-buttontext="Pay {{$seriesPrice}} INR"****/
+                                                        data-name="Pro Music Tutor"
+                                                        data-description="All downloads available in FULL HD or stream"
+                                                        data-image="{{asset('defaultImages/logo.jpeg')}}"
+                                                        /*data-prefill.name=""
+                                                        data-prefill.email=""*/
+                                                        data-theme.color="#ff7529">
+                                                </script>
+                                                <a href="javascript:void(0)" class="btn buyfull mb-3" onclick="$('#checkoutForm{{$series->id}}').submit()">BUY FULL SERIES - &pound;  {{$seriesPrice}}</a>
+                                            </form>
+                                        @endif
+                                    @endguest
                                 </div>
                                 <div class="card-footer d-flex border-0 p-0">
                                     <a href="{{route('guitar.series.details',$series->id)}}" class="btn detail col-6">Details</a>
@@ -86,4 +111,9 @@
             </div>
         </section>
     @endif
+@endsection
+@section('script')
+<script type="text/javascript">
+    $('.razorpay-payment-button').remove();
+</script>
 @endsection

@@ -1,4 +1,28 @@
 <?php 
+
+	function razorpayPaymentForm($price = 1,$redirectURL=''){
+		$key = env('RAZORPAY_KEY');
+        $route = route('razorpay.payment.store');
+        $token = csrf_field();
+        $logoImage = asset('defaultImages/logo.jpeg');
+        $dataAmount = $price * 100;
+        echo "
+	        <form action='$route' method='POST'>
+	            $token
+	            <input type='hidden' name='redirectURL' value='$redirectURL'>
+                <script src='https://checkout.razorpay.com/v1/checkout.js'
+                        data-key='$key'
+                        data-amount='$dataAmount'
+                        /****data-buttontext='Pay $price INR'****/
+                        data-name='Pro Music Tutor'
+                        data-description='All downloads available in FULL HD or stream'
+                        data-image='$logoImage'
+                        /*data-prefill.name=''
+                        data-prefill.email=''*/
+                        data-theme.color='#ff7529'>
+                </script>
+            </form>";
+	}
 	
 	function successResponse($msg='',$data=[],$status=200)
 	{
@@ -59,6 +83,16 @@
     		$totalPoint += $getPoint->points;
     	}
     	return $totalPoint;
+    }
+
+    function userLessionPurchased($lession_data = [])
+    {
+    	$return = false;
+    	$check = \App\Models\UserGuitarLessionPurchase::where('userId',auth()->user()->id)->where('guitarSeriesLessionId',$lession_data->id)->where('guitarSeriesId',$lession_data->guitarSeriesId)->first();
+    	if($check){
+    		$return = true;
+    	}
+    	return $return;	
     }
 
 

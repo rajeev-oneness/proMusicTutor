@@ -10,21 +10,22 @@
                     <li class="nav-item">
                         <a class="nav-link search-icon" href="javascript:void(0)"><img src="{{asset('design/img/search_icon.png')}}"></a>
                     </li>
-                    @if(Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link signup-bg {{ Route::currentRouteName() == 'register' ? 'bg-orange' : '' }}" href="{{route('register')}}">Sign Up</a>
+                    @guest
+                        @if(Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link signup-bg {{ Route::currentRouteName() == 'register' ? 'bg-orange' : '' }}" href="{{route('register')}}">Sign Up</a>
+                            </li>
+                        @endif
+                        @if(Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link signup-bg login-bg {{ Route::currentRouteName() == 'login' ? 'bg-orange' : '' }}" href="{{route('login')}}"><i class="fas fa-user mr-1"></i> Login</a>
+                            </li>
+                        @endif
+                        <li class="nav-item position-relative">
+                            <a class="nav-link signup-bg" href="javascript:void(0"><img src="{{asset('design/img/cart_icon.png')}}"></a>
+                            <div class="cart-count">2</div>
                         </li>
-                    @endif
-                    @if(Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link signup-bg login-bg {{ Route::currentRouteName() == 'login' ? 'bg-orange' : '' }}" href="{{route('login')}}"><i class="fas fa-user mr-1"></i> Login</a>
-                        </li>
-                    @endif
-                    @auth
-                    <li class="nav-item position-relative">
-                        <a class="nav-link signup-bg" href="javascript:void(0"><img src="{{asset('design/img/cart_icon.png')}}"></a>
-                        <div class="cart-count">2</div>
-                    </li>
+                    @else
                     @endauth
                     <li class="nav-item">
                         <a class="nav-link search-icon" id="slide" href="javascript:void(0)"><img src="{{asset('design/img/menu_icon.png')}}"> <span class="pl-2">Menu</span></a>
@@ -47,12 +48,15 @@
                                 <div class="tab-content pt-4" id="myTabContent">
                                     <div class="tab-pane fade show active" id="guitar" role="tabpanel" aria-labelledby="guitar-tab">
                                         <ul class="r_menu_ul">
-                                            <li><a href="">OFFERS</a></li>
-                                            <li><a href="">ALL SERIES & PREVIEWS</a></li>
-                                            <li><a href="">MEET THE PROS</a></li>
-                                            <li><a href="">HOW IT WORKS</a></li>
-                                            <li><a class="{{Route::currentRouteName()=='subscription'?'active':''}}" href="{{route('subscription')}}">SUBSCRIPTIONS</a></li>
+                                            <li><a href="javascript:void(0)">OFFERS</a></li>
+                                            <li><a href="{{route('guitar.series')}}">ALL SERIES & PREVIEWS</a></li>
+                                            <li><a href="javascript:void(0)">MEET THE PROS</a></li>
+                                            <li><a href="javascript:void(0)">HOW IT WORKS</a></li>
+                                            <li><a class="{{Route::currentRouteName()=='subscription.plan'?'active':''}}" href="{{route('subscription.plan')}}">SUBSCRIPTIONS</a></li>
                                             <li><a class="{{Route::currentRouteName()=='welcome.aboutus'?'active':''}}" href="{{route('welcome.aboutus')}}">About Us</a></li>
+                                            @auth
+                                            <li><a class="" href="{{route('logout')}}">Logout</a></li>
+                                            @endauth
                                         </ul>
                                     </div>
                                     <div class="tab-pane fade" id="sax" role="tabpanel" aria-labelledby="sax-tab">profile tab</div>

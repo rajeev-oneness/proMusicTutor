@@ -17,10 +17,11 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/',[DefaultController::class,'welcome'])->name('welcome');
+// Route::get('/',[PaymentController::class,'razorPayPaymentView'])->name('welcome');
 Route::get('about-us',[DefaultController::class,'aboutus'])->name('welcome.aboutus');
-Route::get('browse/guitar',[DefaultController::class,'browserGuitar'])->name('guitar.series');
-Route::get('browse/guitar/{seriesId}/details',[DefaultController::class,'browserGuitarDetails'])->name('guitar.series.details');
-Route::get('subscription',[DefaultController::class,'subscription'])->name('subscription');
+Route::get('guitar/series',[DefaultController::class,'browserGuitar'])->name('guitar.series');
+Route::get('guitar/series/{seriesId}/details',[DefaultController::class,'browserGuitarDetails'])->name('guitar.series.details');
+Route::get('subscription/plan',[DefaultController::class,'subscription'])->name('subscription.plan');
 Route::get('explore/tutor/{tutorId?}',[DefaultController::class,'exploreTutor'])->name('explore.tutor');
 Route::post('email/subscribe',[DefaultController::class,'subscribeEmail'])->name('email.subscribe');
 Route::get('email/unsubscribe',[DefaultController::class,'unSubscribeEmail'])->name('email.unsubscribe');
@@ -48,6 +49,17 @@ Route::group(['middleware' => 'auth'],function(){
 	// Route::get('user/change/password',[HomeController::class, 'index'])->name('user.changepassword');
 	Route::post('user/change/password',[HomeController::class, 'updateUserPassword'])->name('user.changepassword.save');
 	Route::get('user/points',[HomeController::class, 'userPoints'])->name('user.points');
+	
+	// Subscription Purchase
+	Route::get('after/purchase/subscription/{subscriptionId}',[DefaultController::class,'afterPaymentSubscription'])->name('after.purchase.subscribe');
+	Route::get('subscription/purchase/successfull',[DefaultController::class,'thankyouSubscriptionPurchase'])->name('subscription.purchase.thankyou');
+
+	// guitar Series Purchase
+	Route::get('after/purchase/guitar/series/{seriesId}',[DefaultController::class,'afterPaymentGuitarSeries'])->name('after.purchase.guitar_series');
+	Route::get('guitar/series/purchase/successfull',[DefaultController::class,'thankyouGuitarSeries'])->name('guitar.series.purchase.thankyou');
+
+	// Guitar Lession Purchase
+	Route::get('after/purchase/guitar/series/lession/{lessionId}',[DefaultController::class,'afterPaymentGuitarSeriesLession'])->name('after.purchase.guitar_lession_series');
 	// Razorpay Payment Route
 	Route::post('razorpay/payment', [PaymentController::class, 'storerazorePayPayment'])->name('razorpay.payment.store');
 });

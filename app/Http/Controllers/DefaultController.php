@@ -6,6 +6,8 @@ use Illuminate\Http\Request,App\Models\ContactUs;
 use App\Models\EmailSubscription,App\Models\Faq,App\Models\User;
 use App\Models\Testimonial,App\Models\Instrument,App\Models\Category;
 use App\Models\GuitarSeries,App\Models\SubscriptionPlan;
+use App\Models\Transaction,App\Models\UserSubscription;
+use App\Models\UserGuitarLessionPurchase,App\Models\GuitarLession;
 
 class DefaultController extends Controller
 {
@@ -52,33 +54,188 @@ class DefaultController extends Controller
 
     public function browserGuitar(Request $req)
     {
-        $data = (object)[];
+        $data = (object)[];$user = auth()->user();
         $data->category = Category::get();
         $guitarSeries = GuitarSeries::select('*');
         if(!empty($req->categoryId)){
             $guitarSeries = $guitarSeries->where('categoryId',$req->categoryId);
         }
         $guitarSeries = $guitarSeries->get();
+        foreach($guitarSeries as $key => $guitar){
+            if($user){
+                $checkPurchase = UserGuitarLessionPurchase::where('userId',$user->id)->where('guitarSeriesId',$guitar->id)->first();
+                if($checkPurchase){
+                    $guitar->userPurchased = true;
+                }else{
+                    $guitar->userPurchased = false;
+                }
+            }else{
+                $guitar->userPurchased = false;
+            }
+        }
         $data->guitarSeries = $guitarSeries;
         return view('front.guitar.series',compact('data'));
     }
 
     public function browserGuitarDetails(Request $req,$seriesId)
     {
+        $user = auth()->user();
         $data = GuitarSeries::where('id',$seriesId)->first();
         if($data){
+            if($user){
+                $checkPurchase = UserGuitarLessionPurchase::where('userId',$user->id)->where('guitarSeriesId',$data->id)->first();
+                if($checkPurchase){
+                    $data->userPurchased = true;
+                }
+            }
             $data->otherGuitarSeries = GuitarSeries::where('id','!=',$seriesId)->limit(3)->get();
+            foreach($data->otherGuitarSeries as $key => $other){
+                if($user){
+                    $checkPurchase = UserGuitarLessionPurchase::where('userId',$user->id)->where('guitarSeriesId',$other->id)->first();
+                    if($checkPurchase){
+                        $other->userPurchased = true;
+                    }
+                }
+            }
             return view('front.guitar.seriesDetails',compact('data'));    
         }
         return errorResponse('Something went wrong please try after sometime');
     }
-
+/************************************* Subscription **************************************/
     public function subscription(Request $req)
     {
+        $user = auth()->user();
         $data = (object)[];
         $data->subscription = SubscriptionPlan::get();
+        foreach($data->subscription as $key => $subscription){
+            if($user){
+                $checkSubscription = UserSubscription::where('userId',$user->id)->where('subscriptionId',$subscription->id)->first();
+                if($checkSubscription){
+                    $subscription->userSubscribed = true;
+                }else{
+                    $subscription->userSubscribed = false;
+                }
+            }else{
+                $subscription->userSubscribed = false;
+            }
+        }
         return view('front.subscription',compact('data'));
     }
+
+    public function afterPaymentSubscription(Request $req,$subscriptionId)
+    {
+        if(!empty($req->transactionId)){
+            $transaction = Transaction::where('id',$req->transactionId)->first();
+            if($transaction){
+                $subscription = SubscriptionPlan::where('id',$subscriptionId)->first();
+                if($subscription){
+                    $userSubscription = new UserSubscription();
+                        $userSubscription->userId = auth()->user()->id;
+                        $userSubscription->subscriptionId = $subscription->id;
+                        $userSubscription->transactionId = $transaction->id;
+                    $userSubscription->save();
+                    return redirect(route('subscription.purchase.thankyou').'?userSubscriptionId='.$userSubscription->id);
+                }else{
+                    $message = 'Invalid Subscription Plan Selected';
+                }
+            }else{
+                $message = 'Invalid Transaction Id';
+            }
+        }else{
+            $message = 'Transaction Id must be There';
+        }
+        return response()->json(['error' => true,'message' => $message]);
+    }
+
+    public function thankyouSubscriptionPurchase(Request $req)
+    {
+        if(!empty($req->userSubscriptionId)){
+            $purchaseSubscription = UserSubscription::where('id',$req->userSubscriptionId)->where('userId',auth()->user()->id)->first();
+            if($purchaseSubscription){
+                return view('payment.razorpay.subscription.thankyou',compact('purchaseSubscription'));
+            }
+        }
+        return response()->json(['error' => true,'message' => 'Invalid Request Found']);
+    }
+/************************************* Subscription End **************************************/
+
+
+/************************************* Guitar Series and Their Lession Purchase **************************************/
+    
+    public function afterPaymentGuitarSeries(Request $req,$seriesId)
+    {
+        if(!empty($req->transactionId)){
+            $transaction = Transaction::where('id',$req->transactionId)->first();
+            if($transaction){
+                $guitarSeries = GuitarSeries::where('id',$seriesId)->first();
+                if($guitarSeries){
+                    foreach ($guitarSeries->lession as $key => $lession){
+                        $newLessionPurchase = new UserGuitarLessionPurchase();
+                            $newLessionPurchase->userId = auth()->user()->id;
+                            $newLessionPurchase->guitarSeriesId = $guitarSeries->id;
+                            $newLessionPurchase->guitarSeriesLessionId = $lession->id;
+                            $newLessionPurchase->transactionId = $transaction->id;
+                        $newLessionPurchase->save();
+                    }
+                    return redirect(route('guitar.series.purchase.thankyou').'?guitarSeriesId='.$guitarSeries->id);
+                }else{
+                    $message = 'Invalid Guitar Series Plan Selected';
+                }
+            }else{
+                $message = 'Invalid Transaction Id';
+            }
+        }else{
+            $message = 'Transaction Id must be There';
+        }
+        return response()->json(['error' => true,'message' => $message]);
+    }
+
+    public function afterPaymentGuitarSeriesLession(Request $req,$lessionId)
+    {
+        if(!empty($req->transactionId)){
+            $transaction = Transaction::where('id',$req->transactionId)->first();
+            if($transaction){
+                $guitarLession = GuitarLession::where('id',$lessionId)->first();
+                if($guitarLession){
+                        $newLessionPurchase = new UserGuitarLessionPurchase();
+                            $newLessionPurchase->userId = auth()->user()->id;
+                            $newLessionPurchase->guitarSeriesId = $guitarLession->guitarSeriesId;
+                            $newLessionPurchase->guitarSeriesLessionId = $guitarLession->id;
+                            $newLessionPurchase->transactionId = $transaction->id;
+                        $newLessionPurchase->save();
+                    return redirect(route('guitar.series.purchase.thankyou').'?guitarSeriesId='.$guitarLession->guitarSeriesId.'&guitarLessionId='.$guitarLession->id);
+                }else{
+                    $message = 'Invalid Guitar Series Plan Selected';
+                }
+            }else{
+                $message = 'Invalid Transaction Id';
+            }
+        }else{
+            $message = 'Transaction Id must be There';
+        }
+        return response()->json(['error' => true,'message' => $message]);
+    }
+
+    public function thankyouGuitarSeries(Request $req)
+    {
+        $purchaseGuitarSeries = UserGuitarLessionPurchase::select('*')->where('userId',auth()->user()->id);
+        if(!empty($req->guitarSeriesId)){
+            $purchaseGuitarSeries = $purchaseGuitarSeries->where('guitarSeriesId',$req->guitarSeriesId);
+        }
+        if(!empty($req->guitarLessionId)){
+            $purchaseGuitarSeries = $purchaseGuitarSeries->where('guitarSeriesLessionId',$req->guitarLessionId);
+        }
+        $purchaseGuitarSeries = $purchaseGuitarSeries->get();
+        if(count($purchaseGuitarSeries) > 0){
+            return view('payment.razorpay.guitar.thankyou',compact('purchaseGuitarSeries'));
+        }
+        return response()->json(['error' => true,'message' => 'Invalid Request Found']);
+    }
+
+
+
+/************************************* Guitar Series and Their Lession Purchase END **************************************/
+
 
     public function exploreTutor(Request $req,$tutorId = '')
     {

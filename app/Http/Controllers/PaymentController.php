@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Stripe,Session,App\Model\StripeTransaction;
+use Stripe,Session,App\Models\StripeTransaction;
 use Razorpay\Api\Api,Exception;
+use App\Models\Transaction;
 
 class PaymentController extends Controller
 {
@@ -13,6 +14,26 @@ class PaymentController extends Controller
 
     public function razorPayPaymentView(Request $req)
     {
+        $key = env('RAZORPAY_KEY');
+        $route = route('razorpay.payment.store');
+        $token = csrf_field();
+        $form = <<<EOF
+            <form action="$route" method="POST">
+            $token
+                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                        data-key="$key"
+                        data-amount="1000"
+                        /****data-buttontext="Pay 100 INR"****/
+                        data-name="Pro Music Tutor"
+                        data-description="All downloads available in FULL HD or stream"
+                        data-image="{{asset('defaultImages/logo.jpeg')}}"
+                        /*data-prefill.name=""
+                        data-prefill.email=""*/
+                        data-theme.color="#ff7529">
+                </script>
+            </form>
+        EOF;
+        return $form;
         return view('payment.razorpay.index');
     }
 
@@ -26,16 +47,39 @@ class PaymentController extends Controller
         $payment = $api->payment->fetch($req->razorpay_payment_id);
         if($payment){
             try{
-                $response = $api->payment->fetch($req->razorpay_payment_id)->capture(array('amount'=>$payment['amount']));
+                $response = $payment->capture(array('amount'=>$payment['amount']));
                 if($response){
-                    dd($response);
+                    $newPayment = new Transaction();
+                    $newPayment->transactionId = $response->id;
+                    $newPayment->entity = emptyCheck($response->entity);
+                    $newPayment->amount = $response->amount;
+                    $newPayment->currency = emptyCheck($response->currency);
+                    $newPayment->status = emptyCheck($response->status);
+                    $newPayment->order_id = emptyCheck($response->order_id);
+                    $newPayment->invoice_id = emptyCheck($response->invoice_id);
+                    $newPayment->international = emptyCheck($response->international);
+                    $newPayment->method = emptyCheck($response->method);
+                    $newPayment->amount_refunded = emptyCheck($response->amount_refunded);
+                    $newPayment->refund_status = emptyCheck($response->refund_status);
+                    $newPayment->captured = emptyCheck($response->captured);
+                    $newPayment->description = emptyCheck($response->description);
+                    $newPayment->card_id = emptyCheck($response->card_id);
+                    $newPayment->bank = emptyCheck($response->bank);
+                    $newPayment->wallet = emptyCheck($response->wallet);
+                    $newPayment->vpa = emptyCheck($response->vpa);
+                    $newPayment->email = emptyCheck($response->email);
+                    $newPayment->contact = emptyCheck($response->contact);
+                    $newPayment->created_at_time = $response->created_at;
+                    $newPayment->save();
+                    return redirect($req->redirectURL.'?transactionId='.$newPayment->id);
                 }else{
-                    dd('Something went wrong please try after some time');
+                    return response()->json(['error' => true,'message' => 'Something went wrong please try after some time']);
                 }
             }catch(Exception $e){
-                dd($e);
+                return response()->json(['error' => true,'message' => $e->getMessage()]);
             }
         }
+        return response()->json(['error' => true,'message' => 'Payment Not done, your money will be refunded withing 7 days']);
     }
 
 
