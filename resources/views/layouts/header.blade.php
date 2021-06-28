@@ -7,9 +7,9 @@
                     All downloads available in <span>FULL HD </span>or <span>stream</span>
                 </p>
                 <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link search-icon" href="javascript:void(0)"><img src="{{asset('design/img/search_icon.png')}}"></a>
-                    </li>
+                    </li> -->
                     @guest
                         @if(Route::has('register'))
                             <li class="nav-item">
@@ -21,11 +21,11 @@
                                 <a class="nav-link signup-bg login-bg {{ Route::currentRouteName() == 'login' ? 'bg-orange' : '' }}" href="{{route('login')}}"><i class="fas fa-user mr-1"></i> Login</a>
                             </li>
                         @endif
-                        <li class="nav-item position-relative">
-                            <a class="nav-link signup-bg" href="javascript:void(0"><img src="{{asset('design/img/cart_icon.png')}}"></a>
-                            <div class="cart-count">2</div>
-                        </li>
                     @else
+                        <!-- <li class="nav-item position-relative">
+                            <a class="nav-link signup-bg" href="javascript:void(0"><img src="{{asset('design/img/cart_icon.png')}}"></a>
+                            <div class="cart-count">0</div>
+                        </li> -->
                     @endauth
                     <li class="nav-item">
                         <a class="nav-link search-icon" id="slide" href="javascript:void(0)"><img src="{{asset('design/img/menu_icon.png')}}"> <span class="pl-2">Menu</span></a>
