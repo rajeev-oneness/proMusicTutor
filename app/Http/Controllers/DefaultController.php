@@ -96,6 +96,7 @@ class DefaultController extends Controller
         }
         return errorResponse('Something went wrong please try after sometime');
     }
+
 /************************************* Subscription **************************************/
     public function subscription(Request $req)
     {
@@ -152,7 +153,6 @@ class DefaultController extends Controller
         }
         return response()->json(['error' => true,'message' => 'Invalid Request Found']);
     }
-/************************************* Subscription End **************************************/
 
 
 /************************************* Guitar Series and Their Lession Purchase **************************************/
@@ -229,7 +229,7 @@ class DefaultController extends Controller
 
 
 
-/************************************* Guitar Series and Their Lession Purchase END **************************************/
+/************************* Guitar Series and Their Lession Purchase END *****************************/
 
 
     public function exploreTutor(Request $req,$tutorId = '')

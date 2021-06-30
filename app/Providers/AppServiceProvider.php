@@ -46,7 +46,6 @@ class AppServiceProvider extends ServiceProvider
             $contact->facebook = "https://www.facebook.com";
             $contact->linkedin = "https://www.linkedin.com";
             $contact->youtube = "https://www.youtube.com";
-
         return $contact;
     }
 }

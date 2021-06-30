@@ -42,4 +42,13 @@
 		Route::post('/update',[CrudController::class,'updateFaq'])->name('admin.faq.update');
 		Route::post('/{id}/delete', [CrudController::class,'deleteFaq'])->name('admin.faq.delete');
 	});
+
+	// Setting
+	Route::group(['prefix' => 'setting'],function(){
+		// Route::get('about-us',[AdminController::class,'aboutUs'])->name('admin.setting.about_us');
+		// Route::post('about-us',[AdminController::class,'saveaboutUs'])->name('admin.setting.save_aboutUs');
+		// Route::get('how-it-works',[AdminController::class,'howItWorks'])->name('admin.setting.how_it_works');
+		// Route::get('how-it-works/{id}/delete',[AdminController::class,'deleteHowItWorks'])->name('admin.setting.howitWork.delete');
+		// Route::post('how-it-works',[AdminController::class,'updateHowItWorks'])->name('admin.setting.updatehow_it_works');
+	});
 ?>
