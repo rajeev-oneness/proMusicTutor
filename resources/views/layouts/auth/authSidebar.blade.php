@@ -25,12 +25,12 @@
 
                         <!-- Admin Sidebar -->
                         @if(Auth::user()->user_type == 1)
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.users')?'active':''}}" href="{{route('admin.users')}}"><i class="fa fa-fw fa-user-circle"></i>Users</a>
-                            </li>
+                            </li> -->
 
                             <!-- Report Section -->
-                            <li class="nav-divider">Report</li>
+                            <!-- <li class="nav-divider">Report</li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.report.contactus')?'active':''}}" href="{{route('admin.report.contactus')}}"><i class="fa fa-fw fa-user-circle"></i>Contact us</a>
                             </li>
@@ -41,7 +41,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.faq')?'active':''}}" href="{{route('admin.faq')}}"><i class="fa fa-fw fa-user-circle"></i>Faq</a>
-                            </li>
+                            </li> -->
                         <!-- Admin Sidebar End -->
                         <!-- Tutor Sidebar -->
                         @elseif(Auth::user()->user_type == 2)
