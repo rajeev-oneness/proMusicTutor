@@ -20,8 +20,7 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Title</th>
-                                    <th>Designation</th>
+                                    <th>Address</th>
                                     <th>Quotation</th>
                                     <th>Action</th>
                                 </tr>
@@ -31,8 +30,7 @@
                                     <tr>
                                         <td style="height: 100px; width: 100px"><img height="100px" width="100px" src="{{$testimonial->image}}"></td>
                                         <td>{{$testimonial->name}}</td>
-                                        <td>{{$testimonial->title}}</td>
-                                        <td>{{$testimonial->designation}}</td>
+                                        <td>{{$testimonial->address}}</td>
                                         <td>{{$testimonial->quote}}</td>
                                         <td>
                                             <a href="{{route('admin.testimonial.edit',$testimonial->id)}}">Edit</a> | <a href="javascript:void(0)" class="deleteTestimonial text-danger" data-id="{{$testimonial->id}}">Delete</a>

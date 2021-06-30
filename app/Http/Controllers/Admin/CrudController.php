@@ -197,16 +197,14 @@ class CrudController extends Controller
     {
         $req->validate([
             'name' => 'required|max:200',
-            'title' => 'required|max:200',
-            'designation' => 'required|max:200',
+            'address' => 'required|string|max:200',
             'quote' => 'required',
             'image' => '',
         ]);
         $testimonial = new Testimonial();
         $testimonial->name = $req->name;
-        $testimonial->title = $req->title;
-        $testimonial->designation = $req->designation;
         $testimonial->quote = $req->quote;
+        $testimonial->address = $req->address;
         if($req->hasFile('image')){
             $image = $req->file('image');
             $random = randomGenerator();
@@ -229,16 +227,14 @@ class CrudController extends Controller
         $req->validate([
             'testimonialId' => 'required|numeric|min:1',
             'name' => 'required|max:200',
-            'title' => 'required|max:200',
-            'designation' => 'required|max:200',
+            'address' => 'required|string|max:200',
             'quote' => 'required',
             'image' => '',
         ]);
         $testimonial = Testimonial::find($req->testimonialId);
         $testimonial->name = $req->name;
-        $testimonial->title = $req->title;
-        $testimonial->designation = $req->designation;
         $testimonial->quote = $req->quote;
+        $testimonial->address = $req->address;
         if($req->hasFile('image')){
             $image = $req->file('image');
             $random = randomGenerator();

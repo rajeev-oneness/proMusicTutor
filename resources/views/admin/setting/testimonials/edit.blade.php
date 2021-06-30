@@ -30,18 +30,9 @@
                                 @enderror
                         </div>
                         <div class="form-group">
-                            <label for="title" class="col-form-label">Title:</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Your Title" value="{{$testimonial->title}}">
-                            @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="designation" class="col-form-label">Designation:</label>
-                            <input type="text" class="form-control @error('designation') is-invalid @enderror" id="designation" name="designation" placeholder="Your Designation" value="{{$testimonial->designation}}">
-                            @error('designation')
+                            <label for="address" class="col-form-label">Address:</label>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Address" value="{{$testimonial->address}}">
+                            @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
