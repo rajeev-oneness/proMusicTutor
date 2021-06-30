@@ -31,12 +31,12 @@
                 <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
                     <div class="signup-area">
                         <div class="under-formarea">
-                            <div class="google-login">
+<!--                             <div class="google-login">
                                 <a href="{{route('socialite.login','google')}}">Login with Google</a>
                             </div>
                             <div class="text-center">
                                 <span class="orpart">or</span>
-                            </div>
+                            </div> -->
                             <form method="post" action="{{route('register')}}">
                                 @csrf
                                 <input type="hidden" name="user_type" value="3" readonly>

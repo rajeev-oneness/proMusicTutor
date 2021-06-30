@@ -7,9 +7,9 @@
                 <div class="modal-dialog">
                     <div class="modal-content">    
                         <div class="modal-body">
-                        <div class="google-login">
+                            <!-- <div class="google-login">
                                 <a href="{{route('socialite.login','google')}}">Login with Google</a>
-                            </div>
+                            </div> -->
                             <form action="{{ route('login') }}" method="post">
                                 @csrf
                                 <div class="form-group">
