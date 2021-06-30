@@ -25,15 +25,15 @@ class CreateGuitarSeriesCategoriesTable extends Migration
         $data = [
             [
                 'name' => 'Pro Licks',
-                'image' => 'design/img/guitar_1.png'
+                'image' => '/design/img/guitar_1.png'
             ],
             [
                 'name' => 'Techniques',
-                'image' => 'design/img/guitar_2.png'
+                'image' => '/design/img/guitar_2.png'
             ],
             [
                 'name' => 'Popular Songs',
-                'image' => 'design/img/guitar_3.png'
+                'image' => '/design/img/guitar_3.png'
             ]
         ];
         DB::table('categories')->insert($data);

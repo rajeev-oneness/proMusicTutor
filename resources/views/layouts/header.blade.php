@@ -51,7 +51,7 @@
                                             <li><a href="javascript:void(0)">OFFERS</a></li>
                                             <li><a href="{{route('guitar.series')}}">ALL SERIES & PREVIEWS</a></li>
                                             <li><a href="javascript:void(0)">MEET THE PROS</a></li>
-                                            <li><a href="javascript:void(0)">HOW IT WORKS</a></li>
+                                            <li><a href="{{route('howitworks')}}">HOW IT WORKS</a></li>
                                             <li><a class="{{Route::currentRouteName()=='subscription.plan'?'active':''}}" href="{{route('subscription.plan')}}">SUBSCRIPTIONS</a></li>
                                             <li><a class="{{Route::currentRouteName()=='welcome.aboutus'?'active':''}}" href="{{route('welcome.aboutus')}}">About Us</a></li>
                                             @auth

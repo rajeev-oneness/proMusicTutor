@@ -17,7 +17,6 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/',[DefaultController::class,'welcome'])->name('welcome');
-// Route::get('/',[PaymentController::class,'razorPayPaymentView'])->name('welcome');
 Route::get('about-us',[DefaultController::class,'aboutus'])->name('welcome.aboutus');
 Route::get('guitar/series',[DefaultController::class,'browserGuitar'])->name('guitar.series');
 Route::get('guitar/series/{seriesId}/details',[DefaultController::class,'browserGuitarDetails'])->name('guitar.series.details');
