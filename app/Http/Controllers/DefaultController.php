@@ -8,6 +8,7 @@ use App\Models\Testimonial,App\Models\Instrument,App\Models\Category;
 use App\Models\GuitarSeries,App\Models\SubscriptionPlan;
 use App\Models\Transaction,App\Models\UserSubscription;
 use App\Models\UserGuitarLessionPurchase,App\Models\GuitarLession;
+use App\Models\Setting;
 
 class DefaultController extends Controller
 {
@@ -19,12 +20,6 @@ class DefaultController extends Controller
         $data->testimonial = Testimonial::where('id',1)->get();
         $data->instrument = Instrument::limit(2)->get();
         return view('welcome',compact('data'));
-    }
-
-    public function aboutus(Request $req)
-    {
-        $data = (object)[];
-        return view('front.about-us',compact('data'));
     }
 
     public function contactUsFront(Request $req)
@@ -288,21 +283,32 @@ class DefaultController extends Controller
 
     public function termsAndCondition(Request $req)
     {
-        return view('front.policy.terms_condition');
+        $term_condition = Setting::where('key','termsCondition')->first();
+        return view('front.policy.terms_condition',compact('term_condition'));
     }
 
     public function privacyPolicy(Request $req)
     {
-        return view('front.policy.privacyPolicy');
+        $privacy = Setting::where('key','privacyPolicy')->first();
+        return view('front.policy.privacyPolicy',compact('privacy'));
     }
 
     public function refundPolicy(Request $req)
     {
-        return view('front.policy.refundPolicy');
+        $refundPolicy = Setting::where('key','refundPolicy')->first();
+        return view('front.policy.refundPolicy',compact('refundPolicy'));
     }
 
     public function howItWorks(Request $req)
     {
-        return view('front.policy.howItWorks');
+        $howitworkMain = Setting::where('key','howitworkMain')->first();
+        return view('front.policy.howItWorks',compact('howitworkMain'));
+    }
+
+    public function aboutus(Request $req)
+    {
+        $data = (object)[];
+        $data->aboutus = Setting::where('key','aboutus')->first();
+        return view('front.about-us',compact('data'));
     }
 }
