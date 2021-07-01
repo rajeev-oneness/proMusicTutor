@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request,Hash,DB;
 use App\Models\User,App\Models\UserType;
 use App\Models\ContactUs,App\Models\Faq;
-use App\Models\Testimonial;
+use App\Models\Testimonial,App\Models\Setting;
 
 class CrudController extends Controller
 {
@@ -262,4 +262,105 @@ class CrudController extends Controller
         }
         return errorResponse($validator->errors()->first());
     }
+/********************************** Policy Setting ***************************************/
+    public function policyData(Request $req)
+    {
+        $policy = Setting::whereIn('key',['refundPolicy','termsCondition','privacyPolicy'])->get();
+        return view('admin.setting.policy.index',compact('policy'));
+    }
+
+    public function policyDataEdit(Request $req,$settingId)
+    {
+        $policy = Setting::where('id',$settingId)->first();
+        return view('admin.setting.policy.edit',compact('policy'));
+    }
+
+    public function policyDataUpdate(Request $req,$settingId)
+    {
+        $req->validate([
+            'settingId' => 'required|numeric|min:1|in:'.$settingId,
+            'heading' => 'required|string|max:200',
+            'description' => 'required|string',
+            'image' => '',
+        ]);
+        $setting = Setting::where('id',$req->settingId)->first();
+        if($setting){
+            $setting->heading = $req->heading;
+            $setting->description = $req->description;
+            if($req->hasFile('image')){
+                $image = $req->file('image');
+                $random = randomGenerator();
+                $image->move('upload/admin/policy/',$random.'.'.$image->getClientOriginalExtension());
+                $imageurl = url('upload/admin/policy/'.$random.'.'.$image->getClientOriginalExtension());
+                $setting->image = $imageurl;
+            }
+            $setting->save();
+            return redirect(route('admin.setting.policy'))->with('Success','Policy: '.$req->heading.' Updated SuccessFully');
+        }
+        return errorResponse('Invalid Setting Detected');
+    }
+
+    public function contactUsSetting(Request $req)
+    {
+        return view('admin.setting.contactusSetting');
+    }
+
+    public function contactUsSettingUpdate(Request $req,$contactId)
+    {
+        $req->validate([
+            'contactId' => 'required|min:1|numeric|in:'.$contactId,
+            'email' => 'required|email',
+            'facebook' => 'required|url',
+            'image' => '',
+        ]);
+        $contact = ContactUs::where('id',$contactId)->first();
+        $contact->email = $req->email;
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $random = randomGenerator();
+            $image->move('upload/admin/contactUs/',$random.'.'.$image->getClientOriginalExtension());
+            $imageurl = url('upload/admin/contactUs/'.$random.'.'.$image->getClientOriginalExtension());
+            $contact->image = $imageurl;
+        }
+        $contact->facebook = $req->facebook;
+        $contact->save();
+        return back()->with('Success','Contact us Setting Updated SuccessFully');
+    }
+
+    public function aboutUsSetting(Request $req)
+    {
+        $aboutUs = Setting::where('key','aboutus')->first();
+        return view('admin.setting.aboutusSetting',compact('aboutUs'));
+    }
+
+    public function aboutUsSettingUpdate(Request $req,$settingId)
+    {
+        $req->validate([
+            'settingId' => 'required|min:1|numeric|in:'.$settingId,
+            'heading' => 'required|string|max:200',
+            'description' => 'required',
+            'description' => 'required',
+            'description2' => 'nullable',
+            'image' => '',
+        ]);
+        $aboutUs = Setting::where('id',$settingId)->where('key','aboutus')->first();
+        $aboutUs->heading = $req->heading;
+        $aboutUs->description = $req->description;
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $random = randomGenerator();
+            $image->move('upload/admin/aboutUs/',$random.'.'.$image->getClientOriginalExtension());
+            $imageurl = url('upload/admin/aboutUs/'.$random.'.'.$image->getClientOriginalExtension());
+            $aboutUs->image = $imageurl;
+        }
+        $aboutUs->description2 = emptyCheck($req->description2);
+        $aboutUs->save();
+        return back()->with('Success','About us Setting Updated SuccessFully');
+    }
+
+    public function howItWorksSetting(Request $req)
+    {
+        return view('admin.setting.howitworkSetting');
+    }
+
 }

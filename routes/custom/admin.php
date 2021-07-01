@@ -45,10 +45,15 @@
 
 	// Setting
 	Route::group(['prefix' => 'setting'],function(){
-		// Route::get('about-us',[AdminController::class,'aboutUs'])->name('admin.setting.about_us');
-		// Route::post('about-us',[AdminController::class,'saveaboutUs'])->name('admin.setting.save_aboutUs');
-		// Route::get('how-it-works',[AdminController::class,'howItWorks'])->name('admin.setting.how_it_works');
-		// Route::get('how-it-works/{id}/delete',[AdminController::class,'deleteHowItWorks'])->name('admin.setting.howitWork.delete');
-		// Route::post('how-it-works',[AdminController::class,'updateHowItWorks'])->name('admin.setting.updatehow_it_works');
+		Route::get('policy',[CrudController::class,'policyData'])->name('admin.setting.policy');
+		Route::get('policy/{policyId}/edit',[CrudController::class,'policyDataEdit'])->name('admin.setting.policy.edit');
+		Route::post('policy/{policyId}/update',[CrudController::class,'policyDataUpdate'])->name('admin.setting.policy.update');
+
+		Route::get('contact-us',[CrudController::class,'contactUsSetting'])->name('admin.setting.contact');
+		Route::post('contact-us/{contactId}/update',[CrudController::class,'contactUsSettingUpdate'])->name('admin.setting.contact.update');
+		Route::get('about-us',[CrudController::class,'aboutUsSetting'])->name('admin.setting.aboutus');
+		Route::post('about-us/{settingId}/update',[CrudController::class,'aboutUsSettingUpdate'])->name('admin.setting.aboutus.update');
+		Route::get('how-It-Works',[CrudController::class,'howItWorksSetting'])->name('admin.setting.howitWorks');
+		Route::post('how-It-Works/{settingId}/update',[CrudController::class,'howItWorksSettingUpdate'])->name('admin.setting.howitWorks.update');
 	});
 ?>

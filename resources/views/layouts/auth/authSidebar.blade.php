@@ -43,7 +43,16 @@
                                 <a class="nav-link {{request()->routeIs('admin.faq')?'active':''}}" href="{{route('admin.faq')}}"><i class="fa fa-fw fa-user-circle"></i>Faq</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('admin.setting.policy')?'active':''}}" href="{{route('admin.faq')}}"><i class="fa fa-fw fa-user-circle"></i>Policy</a>
+                                <a class="nav-link {{request()->routeIs('admin.setting.policy')?'active':''}}" href="{{route('admin.setting.policy')}}"><i class="fa fa-fw fa-user-circle"></i>Policy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.setting.contact')?'active':''}}" href="{{route('admin.setting.contact')}}"><i class="fa fa-fw fa-user-circle"></i>Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.setting.aboutus')?'active':''}}" href="{{route('admin.setting.aboutus')}}"><i class="fa fa-fw fa-user-circle"></i>About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.setting.howitWorks')?'active':''}}" href="{{route('admin.setting.howitWorks')}}"><i class="fa fa-fw fa-user-circle"></i>How It Works</a>
                             </li>
                         <!-- Admin Sidebar End -->
                         <!-- Tutor Sidebar -->
