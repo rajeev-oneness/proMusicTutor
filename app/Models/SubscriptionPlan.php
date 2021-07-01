@@ -14,4 +14,9 @@ class SubscriptionPlan extends Model
     {
         return $this->hasMany('App\Models\SubscriptionPlanFeature','subscriptionPlanId','id');
     }
+
+    public function currency()
+    {
+        return $this->belongsTo('App\Models\Currency','currencyId','id');
+    }
 }

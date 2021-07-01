@@ -62,4 +62,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\UserType','user_type','id');
     }
+
+    public function purchase_subscription()
+    {
+        return $this->hasMany('App\Models\UserSubscription','userId','id');
+    }
+
+    public function purchase_guitar_lession()
+    {
+        return $this->hasMany('App\Models\UserGuitarLessionPurchase','userId','id');
+    }
 }

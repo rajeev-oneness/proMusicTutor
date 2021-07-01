@@ -16,7 +16,7 @@ class TutorMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->user_type == 3){
+        if(Auth::user() && Auth::user()->user_type == 2){
             return $next($request);
         }
         Session::flash('error', 'you are not authorise to move');

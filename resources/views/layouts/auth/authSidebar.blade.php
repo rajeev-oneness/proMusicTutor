@@ -2,7 +2,6 @@
     <div class="nav-left-sidebar sidebar-dark">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <!-- <a class="d-xl-none d-lg-none" href="#">Dashboard</a> -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -20,6 +19,13 @@
                         @if(Auth::user()->user_type != 1)
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('user.points')?'active':''}}" href="{{route('user.points')}}"><i class="fa fa-fw fa-user-circle"></i>Your Points</a>
+                            </li>
+                            <li class="nav-divider">Purchase History</li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('user.subscription')?'active':''}}" href="{{route('user.subscription')}}"><i class="fa fa-fw fa-user-circle"></i>Subscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('user.guitar')?'active':''}}" href="{{route('user.guitar')}}"><i class="fa fa-fw fa-user-circle"></i>Guitar Lession</a>
                             </li>
                         @endif
 

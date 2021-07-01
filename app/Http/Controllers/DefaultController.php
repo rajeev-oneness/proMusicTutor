@@ -129,6 +129,7 @@ class DefaultController extends Controller
                         $userSubscription->userId = auth()->user()->id;
                         $userSubscription->subscriptionId = $subscription->id;
                         $userSubscription->transactionId = $transaction->id;
+                        $userSubscription->valid_till = date('Y-m-d',strtotime('+'.$subscription->valid_for.' month'));
                     $userSubscription->save();
                     return redirect(route('subscription.purchase.thankyou').'?userSubscriptionId='.$userSubscription->id);
                 }else{
@@ -230,6 +231,18 @@ class DefaultController extends Controller
 
 
 /************************* Guitar Series and Their Lession Purchase END *****************************/
+
+    public function userSubscription(Request $req)
+    {
+        $user = auth()->user();
+        return view('auth.user.subscription',compact('user'));
+    }
+
+    public function userGuitarLessionPurchaseList()
+    {
+        $user = auth()->user();
+        return view('auth.user.guitarLessionPurchaseList',compact('user'));
+    }
 
 
     public function exploreTutor(Request $req,$tutorId = '')
