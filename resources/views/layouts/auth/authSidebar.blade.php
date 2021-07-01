@@ -28,6 +28,13 @@
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.users')?'active':''}}" href="{{route('admin.users')}}"><i class="fa fa-fw fa-user-circle"></i>Users</a>
                             </li>
+                            <li class="nav-divider">Features</li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.instrument')?'active':''}}" href="{{route('admin.instrument')}}"><i class="fa fa-fw fa-user-circle"></i>Instrument</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.guitar.category')?'active':''}}" href="{{route('admin.guitar.category')}}"><i class="fa fa-fw fa-user-circle"></i>Category</a>
+                            </li>
 
                             <!-- Report Section -->
                             <li class="nav-divider">Report</li>

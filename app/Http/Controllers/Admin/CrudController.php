@@ -7,6 +7,7 @@ use Illuminate\Http\Request,Hash,DB;
 use App\Models\User,App\Models\UserType;
 use App\Models\ContactUs,App\Models\Faq;
 use App\Models\Testimonial,App\Models\Setting;
+use App\Models\Instrument,App\Models\Category;
 
 class CrudController extends Controller
 {
@@ -167,14 +168,14 @@ class CrudController extends Controller
     public function deleteFaq(Request $req)
     {
         $rules = [
-            'id' => 'required',
+            'id' => 'required|numeric|min:1',
         ];
         $validator = validator()->make($req->all(),$rules);
         if(!$validator->fails()){
             $faq = Faq::find($req->id);
             if($faq){
                 $faq->delete();
-                return successResponse('Faq Deleted Success');  
+                return successResponse('Faq rfcd Success');  
             }
             return errorResponse('Invalid Faq Id');
         }
@@ -249,7 +250,7 @@ class CrudController extends Controller
     public function deleteTestimonial(Request $req)
     {
         $rules = [
-            'id' => 'required',
+            'id' => 'required|numeric|min:1',
         ];
         $validator = validator()->make($req->all(),$rules);
         if(!$validator->fails()){
@@ -363,4 +364,151 @@ class CrudController extends Controller
         return view('admin.setting.howitworkSetting');
     }
 
+/******************************* Instrument ********************************/
+    public function instrument(Request $req)
+    {
+        $instrument = Instrument::get();
+        return view('admin.feature.instrument.index',compact('instrument'));
+    }
+
+    public function instrumentCreate(Request $req)
+    {
+        return view('admin.feature.instrument.create');
+    }
+
+    public function instrumentStore(Request $req)
+    {
+        $req->validate([
+            'image' => 'required',
+            'name' => 'required|string|max:200',
+        ]);
+        $new = new Instrument();
+        $new->name = strtoupper($req->name);
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $random = randomGenerator();
+            $image->move('upload/admin/instrument/',$random.'.'.$image->getClientOriginalExtension());
+            $imageurl = url('upload/admin/instrument/'.$random.'.'.$image->getClientOriginalExtension());
+            $new->image = $imageurl;
+        }
+        $new->save();
+        return redirect(route('admin.instrument'))->with('Success','Instrument Added SuccessFully');
+    }
+
+    public function instrumentEdit(Request $req,$instrumentId)
+    {
+        $instrument = Instrument::where('id',$instrumentId)->first();
+        return view('admin.feature.instrument.edit',compact('instrument'));
+    }
+
+    public function instrumentUpdate(Request $req,$instrumentId)
+    {
+        $req->validate([
+            'instrumentId' => 'required|min:1|numeric|in:'.$instrumentId,
+            'image' => '',
+            'name' => 'required|string|max:200',
+        ]);
+        $update = Instrument::where('id',$instrumentId)->first();
+        $update->name = strtoupper($req->name);
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $random = randomGenerator();
+            $image->move('upload/admin/instrument/',$random.'.'.$image->getClientOriginalExtension());
+            $imageurl = url('upload/admin/instrument/'.$random.'.'.$image->getClientOriginalExtension());
+            $update->image = $imageurl;
+        }
+        $update->save();
+        return redirect(route('admin.instrument'))->with('Success','Instrument Updated SuccessFully');
+    }
+
+    public function instrumentDelete(Request $req)
+    {
+        $rules = [
+            'id' => 'required|numeric|min:1',
+        ];
+        $validator = validator()->make($req->all(),$rules);
+        if(!$validator->fails()){
+            $instrument = Instrument::find($req->id);
+            if($instrument){
+                $instrument->delete();
+                return successResponse('Instrument Deleted Success');  
+            }
+            return errorResponse('Invalid Instrument Id');
+        }
+        return errorResponse($validator->errors()->first());
+    }
+
+/*********************************** Guitar category ****************************/
+    public function guitarCategory(Request $req)
+    {
+        $category = Category::get();
+        return view('admin.feature.guitarCategory.index',compact('category'));
+    }
+
+    public function guitarCategoryCreate(Request $req)
+    {
+        return view('admin.feature.guitarCategory.create');
+    }
+
+    public function guitarCategoryStore(Request $req)
+    {
+        $req->validate([
+            'image' => 'required',
+            'name' => 'required|string|max:200',
+        ]);
+        $new = new Category();
+        $new->name = strtoupper($req->name);
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $random = randomGenerator();
+            $image->move('upload/admin/category/',$random.'.'.$image->getClientOriginalExtension());
+            $imageurl = url('upload/admin/category/'.$random.'.'.$image->getClientOriginalExtension());
+            $new->image = $imageurl;
+        }
+        $new->save();
+        return redirect(route('admin.guitar.category'))->with('Success','Category Added SuccessFully');
+    }
+
+    public function guitarCategoryEdit(Request $req,$guitarCategoryId)
+    {
+        $category = Category::where('id',$guitarCategoryId)->first();
+        return view('admin.feature.guitarCategory.edit',compact('category'));
+    }
+
+    public function guitarCategoryUpdate(Request $req,$guitarCategoryId)
+    {
+        $req->validate([
+            'categoryId' => 'required|min:1|numeric|in:'.$guitarCategoryId,
+            'image' => '',
+            'name' => 'required|string|max:200',
+        ]);
+        $update = Category::where('id',$guitarCategoryId)->first();
+        $update->name = strtoupper($req->name);
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $random = randomGenerator();
+            $image->move('upload/admin/category/',$random.'.'.$image->getClientOriginalExtension());
+            $imageurl = url('upload/admin/category/'.$random.'.'.$image->getClientOriginalExtension());
+            $update->image = $imageurl;
+        }
+        $update->save();
+        return redirect(route('admin.guitar.category'))->with('Success','Category Updated SuccessFully');
+    }
+
+    public function guitarCategoryDelete(Request $req)
+    {
+        $rules = [
+            'id' => 'required|numeric|min:1',
+        ];
+        $validator = validator()->make($req->all(),$rules);
+        if(!$validator->fails()){
+            $category = Category::find($req->id);
+            if($category){
+                $category->delete();
+                return successResponse('Category Deleted Success');  
+            }
+            return errorResponse('Invalid Category Id');
+        }
+        return errorResponse($validator->errors()->first());
+    }
 }

@@ -17,6 +17,26 @@
 	Route::get('referred_to/user/{userId}',[CrudController::class,'getReferredToList'])->name('admin.referral.referred_to');
 	Route::get('user/points/{userId}',[CrudController::class,'getUserPoints'])->name('admin.user.points');
 
+	// Instruments
+	Route::group(['prefix' => 'instrument'],function(){
+		Route::get('/',[CrudController::class,'instrument'])->name('admin.instrument');
+		Route::get('/create',[CrudController::class,'instrumentCreate'])->name('admin.instrument.create');
+		Route::post('/store',[CrudController::class,'instrumentStore'])->name('admin.instrument.save');
+		Route::get('/{id}/edit',[CrudController::class,'instrumentEdit'])->name('admin.instrument.edit');
+		Route::post('/{id}/update',[CrudController::class,'instrumentUpdate'])->name('admin.instrument.update');
+		Route::post('/{id}/delete',[CrudController::class,'instrumentDelete'])->name('admin.instrument.delete');
+	});
+
+	// Guitar category
+	Route::group(['prefix' => 'guitar/category'],function(){
+		Route::get('/',[CrudController::class,'guitarCategory'])->name('admin.guitar.category');
+		Route::get('/create',[CrudController::class,'guitarCategoryCreate'])->name('admin.guitar.category.create');
+		Route::post('/store',[CrudController::class,'guitarCategoryStore'])->name('admin.guitar.category.save');
+		Route::get('/{id}/edit',[CrudController::class,'guitarCategoryEdit'])->name('admin.guitar.category.edit');
+		Route::post('/{id}/update',[CrudController::class,'guitarCategoryUpdate'])->name('admin.guitar.category.update');
+		Route::post('/{id}/delete',[CrudController::class,'guitarCategoryDelete'])->name('admin.guitar.category.delete');
+	});
+
 	// Reports
 	Route::group(['prefix' => 'report'],function(){
 		Route::get('contact-us',[CrudController::class,'contactUs'])->name('admin.report.contactus');
