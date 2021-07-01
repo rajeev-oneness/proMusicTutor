@@ -1,4 +1,5 @@
 @auth
+    <?php $userType = auth()->user()->user_type; ?>
     <div class="nav-left-sidebar sidebar-dark">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -16,10 +17,17 @@
                         <li class="nav-item">
                             <a class="nav-link {{request()->routeIs('user.profile')?'active':''}}" href="{{route('user.profile')}}"><i class="fa fa-fw fa-user-circle"></i>Profile</a>
                         </li>
-                        @if(Auth::user()->user_type != 1)
+                        @if($userType != 1)
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('user.points')?'active':''}}" href="{{route('user.points')}}"><i class="fa fa-fw fa-user-circle"></i>Your Points</a>
                             </li>
+                            <!-- Tutor Sidebar -->
+                            @if($userType == 2)
+                                <li class="nav-divider">Features</li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{request()->routeIs('tutor.guitar.series')?'active':''}}" href="{{route('tutor.guitar.series')}}"><i class="fa fa-fw fa-user-circle"></i>Guitar Series</a>
+                                </li>
+                            @endif
                             <li class="nav-divider">Purchase History</li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('user.subscription')?'active':''}}" href="{{route('user.subscription')}}"><i class="fa fa-fw fa-user-circle"></i>Subscription</a>
@@ -30,7 +38,7 @@
                         @endif
 
                         <!-- Admin Sidebar -->
-                        @if(Auth::user()->user_type == 1)
+                        @if($userType == 1)
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.users')?'active':''}}" href="{{route('admin.users')}}"><i class="fa fa-fw fa-user-circle"></i>Users</a>
                             </li>
@@ -68,11 +76,6 @@
                                 <a class="nav-link {{request()->routeIs('admin.setting.howitWorks')?'active':''}}" href="{{route('admin.setting.howitWorks')}}"><i class="fa fa-fw fa-user-circle"></i>How It Works</a>
                             </li>
                         <!-- Admin Sidebar End -->
-                        <!-- Tutor Sidebar -->
-                        @elseif(Auth::user()->user_type == 2)
-                        <!-- Tutor Sidebar End-->
-                        <!-- User Sidebar -->
-                        @elseif(Auth::user()->user_type == 3)
                         @endif
                     </ul>
                 </div>

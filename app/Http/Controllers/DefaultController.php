@@ -228,8 +228,6 @@ class DefaultController extends Controller
         return response()->json(['error' => true,'message' => 'Invalid Request Found']);
     }
 
-
-
 /************************* Guitar Series and Their Lession Purchase END *****************************/
 
     public function userSubscription(Request $req)
