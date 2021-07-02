@@ -16,12 +16,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index()
     {
         switch (Auth::user()->user_type) {
@@ -63,11 +58,8 @@ class HomeController extends Controller
         $user->name = $req->name;
         $user->email = $req->email;
         if($req->hasFile('image')){
-            $random = randomGenerator();
             $image = $req->file('image');
-            $image->move('upload/users/image/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/users/image/'.$random.'.'.$image->getClientOriginalExtension());
-            $user->image = $imageurl;
+            $user->image = imageUpload($image,'users/image');
         }
         $user->mobile = emptyCheck($req->mobile);
         $user->gender = emptyCheck($req->gender);

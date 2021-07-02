@@ -23,6 +23,14 @@
                 </script>
             </form>";
 	}
+
+	function imageUpload($image,$folder='image')
+	{
+		$random = randomGenerator();
+		$image->move('upload/'.$folder.'/',$random.'.'.$image->getClientOriginalExtension());
+        $imageurl = 'upload/'.$folder.'/'.$random.'.'.$image->getClientOriginalExtension();
+        return $imageurl;
+	}
 	
 	function successResponse($msg='',$data=[],$status=200)
 	{

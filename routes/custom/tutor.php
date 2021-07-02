@@ -6,6 +6,7 @@
       return view('tutor.dashboard');
     })->name('home');
 
+    // Guitar Series and Their Lession
     Route::group(['prefix' => 'guitar/series'],function(){
         Route::get('/',[TutorController::class,'guitarSeriesView'])->name('tutor.guitar.series');
         Route::get('/create',[TutorController::class,'guitarSeriesCreate'])->name('tutor.guitar.series.create');
@@ -16,6 +17,11 @@
 
         Route::group(['prefix' => 'guitar/series/{guitarSeriesId}/lession'],function(){
             Route::get('/',[TutorController::class,'guitarSeriesLessionView'])->name('tutor.guitar.series.lession');
+            Route::get('/create',[TutorController::class,'guitarSeriesLessionCreate'])->name('tutor.guitar.series.lession.create');
+            Route::post('/save',[TutorController::class,'guitarSeriesLessionSave'])->name('tutor.guitar.series.lession.save');
+            Route::get('/{id}/edit',[TutorController::class,'guitarSeriesLessionEdit'])->name('tutor.guitar.series.lession.edit');
+            Route::post('/{id}/update',[TutorController::class,'guitarSeriesLessionUpdate'])->name('tutor.guitar.series.lession.update');
+            Route::post('/{id}/delete',[TutorController::class,'guitarSeriesLessionDelete'])->name('tutor.guitar.series.lession.delete');
         });
     });
 ?>

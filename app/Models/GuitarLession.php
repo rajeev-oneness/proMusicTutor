@@ -14,4 +14,9 @@ class GuitarLession extends Model
     {
         return $this->belongsTo('App\Models\Currency','currencyId','id');
     }
+
+    public function guitar_series()
+    {
+        return $this->belongsTo('App\Models\GuitarSeries','guitarSeriesId','id');
+    }
 }

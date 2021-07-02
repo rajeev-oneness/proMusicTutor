@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title','Guitar Series')
 @section('content')
-    <section class="banner guitar_banner">
+    <!-- <section class="banner guitar_banner">
         <div class="container">
             <div class="row m-0">
                 <div class="col-12 col-md-5">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     @if(count($data->category) > 0)
         <section class="pt-5 pb-5">

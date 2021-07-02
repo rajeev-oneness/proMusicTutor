@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title','Subscription')
 @section('content')
-    <section class="banner series_details subsscription">
+<!--     <section class="banner series_details subsscription">
         <div class="container">
             <div class="row m-0">
                 <div class="col-12 col-md-5">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     @if(count($data->subscription) > 0)
         <section class="pt-5 pb-5">

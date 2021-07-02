@@ -30,8 +30,8 @@
                                         <td><img src="{{asset($subscriptionPlan->image)}}" height="200" width="200"></td>
                                         <td>{{$subscriptionPlan->title}}</td>
                                         <td>{{$subscriptionPlan->currency->symbol}} {{$transaction->amount / 100}}</td>
-                                        <td>{{$purchase_sub->created_at}}</td>
-                                        <td>{{$purchase_sub->valid_till}}</td>
+                                        <td>{{date('M, d Y, H:i:s',strtotime($purchase_sub->created_at))}}</td>
+                                        <td>{{date('M, d Y',strtotime($purchase_sub->valid_till))}}</td>
                                         <td>{{$transaction->transactionId}}</td>
                                     </tr>
                             	@endforeach

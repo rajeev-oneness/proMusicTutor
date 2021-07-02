@@ -37,6 +37,14 @@
 		Route::post('/{id}/delete',[CrudController::class,'guitarCategoryDelete'])->name('admin.guitar.category.delete');
 	});
 
+	// Guitar Series and Their Lession
+	Route::group(['prefix' => 'guitar/series'],function(){
+		Route::get('/list',[AdminController::class,'guitarSeriesList'])->name('admin.guitar.series.view');
+		Route::group(['prefix' => '{seriesId}/lession'],function(){
+			Route::get('/list',[AdminController::class,'guitarLessionList'])->name('admin.guitar.series.lession.view');
+		});
+	});
+
 	// Reports
 	Route::group(['prefix' => 'report'],function(){
 		Route::get('contact-us',[CrudController::class,'contactUs'])->name('admin.report.contactus');

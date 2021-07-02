@@ -1774,6 +1774,78 @@ footer{
   background-position-y: top;
 }
 
+/**************** Thank You   *********************/
+
+.thank-you 
+{
+  background: url('../img/thank-you-image.jpg') no-repeat center;
+  background-size: cover;
+  padding: 150px 0;
+}
+
+.thamk-youmiddle {
+    width: 670px;
+    margin: 0 auto;
+}
+
+.area-thank h2  
+{
+  font-size: 90px;
+  color: #161e1e;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.area-thank h3 {
+    font-size: 68px;
+    color: #161e1e;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.area-thank h3 span 
+{
+  color: #f43600;
+  font-weight: bold;
+}
+
+.area-thank  
+{
+  padding-left: 20px;
+  border-left: 5px solid #f43600;
+  margin: 40px 0;
+}
+
+
+.client-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex: 0 0 60px;
+}
+
+.client-pic img 
+{
+  width: 100%;
+}
+
+
+.client-details 
+{
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+
+.client-details h4 {
+    color: #FFF;
+    font-size: 22px;
+    text-transform: capitalize;
+    padding-left: 15px;
+}
+
 
 
 

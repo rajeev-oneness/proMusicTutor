@@ -7,10 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">Guitar Lession List ({{$guitarSeries->title}})
-                            <a class="headerbuttonforAdd" href="{{route('tutor.guitar.series')}}"><i class="fa fa-step-backward" aria-hidden="true"></i>BACK</a>
-                            <a class="headerbuttonforAdd" href="{{route('tutor.guitar.series.lession.create',$guitarSeries->id)}}">
-                                <i class="fa fa-plus" aria-hidden="true"></i>Add Lession
-                            </a>
+                            <a class="headerbuttonforAdd" href="{{route('admin.guitar.series.view')}}"><i class="fa fa-step-backward" aria-hidden="true"></i>BACK</a>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -22,17 +19,23 @@
                                         <th>Title</th>
                                         <th>Price</th>
                                         <th>Description</th>
-                                        <th>Action</th>
+                                        <th>Author</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $author = $guitarSeries->author;?>
                                     @foreach($guitarSeries->lession as $key => $lession)
                                         <tr>
                                             <td><img src="{{asset($lession->image)}}" height="200" width="200"></td>
                                             <td>{{$lession->title}}</td>
                                             <td>£{{$lession->price}}</td>
                                             <td>{!! $lession->description !!}</td>
-                                            <td><a href="{{route('tutor.guitar.series.lession.edit',[$guitarSeries->id,$lession->id])}}">Edit</a> | <a href="javascript:void(0)" class="text-danger seriesLessionDelete" data-id="{{$lession->id}}">Delete</a></td>
+                                            <td>
+                                                <ul>
+                                                    <li>Name: {{$author->name}}</li>
+                                                    <li>Email: {{$author->email}}</li>
+                                                </ul>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

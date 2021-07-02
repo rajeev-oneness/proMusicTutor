@@ -69,9 +69,7 @@ class CrudController extends Controller
             $user->mobile = $req->mobile;
             if($req->hasFile('image')){
                 $image = $req->file('image');
-                $image->move('upload/users/image/',$random.'.'.$image->getClientOriginalExtension());
-                $imageurl = url('upload/users/image/'.$random.'.'.$image->getClientOriginalExtension());
-                $user->image = $imageurl;
+                $user->image = imageUpload($image);
             }
             $user->password = Hash::make($random);
             $user->save();
@@ -208,10 +206,7 @@ class CrudController extends Controller
         $testimonial->address = $req->address;
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/testimonial/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/testimonial/'.$random.'.'.$image->getClientOriginalExtension());
-            $testimonial->image = $imageurl;
+            $testimonial->image = imageUpload($image);;
         }
         $testimonial->save();
         return redirect(route('admin.testimonial'))->with('Success','Testimonial Added SuccessFully');
@@ -238,10 +233,7 @@ class CrudController extends Controller
         $testimonial->address = $req->address;
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/testimonial/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/testimonial/'.$random.'.'.$image->getClientOriginalExtension());
-            $testimonial->image = $imageurl;
+            $testimonial->image = imageUpload($image);
         }
         $testimonial->save();
         return redirect(route('admin.testimonial'))->with('Success','Testimonial Updated SuccessFully');
@@ -290,10 +282,7 @@ class CrudController extends Controller
             $setting->description = $req->description;
             if($req->hasFile('image')){
                 $image = $req->file('image');
-                $random = randomGenerator();
-                $image->move('upload/admin/policy/',$random.'.'.$image->getClientOriginalExtension());
-                $imageurl = url('upload/admin/policy/'.$random.'.'.$image->getClientOriginalExtension());
-                $setting->image = $imageurl;
+                $setting->image = imageUpload($image);
             }
             $setting->save();
             return redirect(route('admin.setting.policy'))->with('Success','Policy: '.$req->heading.' Updated SuccessFully');
@@ -318,10 +307,7 @@ class CrudController extends Controller
         $contact->email = $req->email;
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/contactUs/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/contactUs/'.$random.'.'.$image->getClientOriginalExtension());
-            $contact->image = $imageurl;
+            $contact->image = imageUpload($image);
         }
         $contact->facebook = $req->facebook;
         $contact->save();
@@ -349,10 +335,7 @@ class CrudController extends Controller
         $aboutUs->description = $req->description;
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/aboutUs/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/aboutUs/'.$random.'.'.$image->getClientOriginalExtension());
-            $aboutUs->image = $imageurl;
+            $aboutUs->image = imageUpload($image);
         }
         $aboutUs->description2 = emptyCheck($req->description2);
         $aboutUs->save();
@@ -386,10 +369,7 @@ class CrudController extends Controller
         $new->name = strtoupper($req->name);
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/instrument/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/instrument/'.$random.'.'.$image->getClientOriginalExtension());
-            $new->image = $imageurl;
+            $new->image = imageUpload($image);
         }
         $new->save();
         return redirect(route('admin.instrument'))->with('Success','Instrument Added SuccessFully');
@@ -412,10 +392,7 @@ class CrudController extends Controller
         $update->name = strtoupper($req->name);
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/instrument/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/instrument/'.$random.'.'.$image->getClientOriginalExtension());
-            $update->image = $imageurl;
+            $update->image = imageUpload($image);
         }
         $update->save();
         return redirect(route('admin.instrument'))->with('Success','Instrument Updated SuccessFully');
@@ -460,10 +437,7 @@ class CrudController extends Controller
         $new->name = strtoupper($req->name);
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/category/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/category/'.$random.'.'.$image->getClientOriginalExtension());
-            $new->image = $imageurl;
+            $new->image = imageUpload($image);
         }
         $new->save();
         return redirect(route('admin.guitar.category'))->with('Success','Category Added SuccessFully');
@@ -486,10 +460,7 @@ class CrudController extends Controller
         $update->name = strtoupper($req->name);
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $random = randomGenerator();
-            $image->move('upload/admin/category/',$random.'.'.$image->getClientOriginalExtension());
-            $imageurl = url('upload/admin/category/'.$random.'.'.$image->getClientOriginalExtension());
-            $update->image = $imageurl;
+            $update->image = imageUpload($image);
         }
         $update->save();
         return redirect(route('admin.guitar.category'))->with('Success','Category Updated SuccessFully');

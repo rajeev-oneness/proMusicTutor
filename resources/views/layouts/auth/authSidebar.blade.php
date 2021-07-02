@@ -50,6 +50,10 @@
                                 <a class="nav-link {{request()->routeIs('admin.guitar.category')?'active':''}}" href="{{route('admin.guitar.category')}}"><i class="fa fa-fw fa-user-circle"></i>Category</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.guitar.series.*')?'active':''}}" href="{{route('admin.guitar.series.view')}}"><i class="fa fa-fw fa-user-circle"></i>Guitar Series</a>
+                            </li>
+
                             <!-- Report Section -->
                             <li class="nav-divider">Report</li>
                             <li class="nav-item">
@@ -63,17 +67,25 @@
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.faq')?'active':''}}" href="{{route('admin.faq')}}"><i class="fa fa-fw fa-user-circle"></i>Faq</a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('admin.setting.policy')?'active':''}}" href="{{route('admin.setting.policy')}}"><i class="fa fa-fw fa-user-circle"></i>Policy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('admin.setting.contact')?'active':''}}" href="{{route('admin.setting.contact')}}"><i class="fa fa-fw fa-user-circle"></i>Contact Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('admin.setting.aboutus')?'active':''}}" href="{{route('admin.setting.aboutus')}}"><i class="fa fa-fw fa-user-circle"></i>About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('admin.setting.howitWorks')?'active':''}}" href="{{route('admin.setting.howitWorks')}}"><i class="fa fa-fw fa-user-circle"></i>How It Works</a>
+                                <a class="nav-link" href="javascript:void(0)" data-toggle="collapse" aria-expanded="{{request()->routeIs('admin.setting.*')?'true':'false'}}" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i>Front Settings </a>
+                                <div id="submenu-6" class="collapse submenu {{request()->routeIs('admin.setting.*')?'show':''}}">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link {{request()->routeIs('admin.setting.policy')?'active':''}}" href="{{route('admin.setting.policy')}}"><i class="fa fa-fw fa-user-circle"></i>Policy</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {{request()->routeIs('admin.setting.contact')?'active':''}}" href="{{route('admin.setting.contact')}}"><i class="fa fa-fw fa-user-circle"></i>Contact Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {{request()->routeIs('admin.setting.aboutus')?'active':''}}" href="{{route('admin.setting.aboutus')}}"><i class="fa fa-fw fa-user-circle"></i>About Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {{request()->routeIs('admin.setting.howitWorks')?'active':''}}" href="{{route('admin.setting.howitWorks')}}"><i class="fa fa-fw fa-user-circle"></i>How It Works</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         <!-- Admin Sidebar End -->
                         @endif
