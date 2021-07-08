@@ -344,7 +344,36 @@ class CrudController extends Controller
 
     public function howItWorksSetting(Request $req)
     {
-        return view('admin.setting.howitworkSetting');
+        $howitswork = Setting::whereIn('key',['howitworkMain','howitworkChild'])->get();
+        return view('admin.setting.howitswork.index',compact('howitswork'));
+    }
+
+    public function howItWorksDataEdit(Request $req,$settingId)
+    {
+        $howitswork = Setting::where('id',$settingId)->first();
+        return view('admin.setting.howitswork.edit',compact('howitswork'));
+    }
+
+    public function howItWorksSettingUpdate(Request $req,$settingId)
+    {
+        $req->validate([
+            'settingId' => 'required|numeric|min:1|in:'.$settingId,
+            'heading' => 'required|string|max:200',
+            'description' => 'required|string',
+            'image' => '',
+        ]);
+        $setting = Setting::where('id',$req->settingId)->first();
+        if($setting){
+            $setting->heading = $req->heading;
+            $setting->description = $req->description;
+            if($req->hasFile('image')){
+                $image = $req->file('image');
+                $setting->image = imageUpload($image);
+            }
+            $setting->save();
+            return redirect(route('admin.setting.howitWorks'))->with('Success','How-its-work: '.$req->heading.' Updated SuccessFully');
+        }
+        return errorResponse('Invalid Setting Detected');
     }
 
 /******************************* Instrument ********************************/
