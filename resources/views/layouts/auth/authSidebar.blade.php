@@ -27,6 +27,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{request()->routeIs('tutor.guitar.series')?'active':''}}" href="{{route('tutor.guitar.series')}}"><i class="fa fa-fw fa-user-circle"></i>Guitar Series</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{request()->routeIs('tutor.sax.series')?'active':''}}" href="{{route('tutor.sax.series')}}"><i class="fa fa-fw fa-user-circle"></i>Sax Series</a>
+                                </li>
                             @endif
                             <li class="nav-divider">Purchase History</li>
                             <li class="nav-item">

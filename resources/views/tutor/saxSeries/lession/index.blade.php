@@ -1,14 +1,14 @@
 @extends('layouts.auth.authMaster')
-@section('title','Guitar Lession')
+@section('title','Sax Lession')
 @section('content')
     <div class="container-fluid dashboard-content">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">Guitar Lession List ({{$guitarSeries->title}})
-                            <a class="headerbuttonforAdd" href="{{route('tutor.guitar.series')}}"><i class="fa fa-step-backward" aria-hidden="true"></i>BACK</a>
-                            <a class="headerbuttonforAdd" href="{{route('tutor.guitar.series.lession.create',$guitarSeries->id)}}">
+                        <h5 class="mb-0">Sax Lession List ({{$saxSeries->title}})
+                            <a class="headerbuttonforAdd" href="{{route('tutor.sax.series')}}"><i class="fa fa-step-backward" aria-hidden="true"></i>BACK</a>
+                            <a class="headerbuttonforAdd" href="{{route('tutor.sax.series.lession.create',$saxSeries->id)}}">
                                 <i class="fa fa-plus" aria-hidden="true"></i>Add Lession
                             </a>
                         </h5>
@@ -34,7 +34,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($guitarSeries->lession as $key => $lession)
+                                    @foreach($saxSeries->lession as $key => $lession)
                                         <tr>
                                             <td><img src="{{asset($lession->image)}}" height="200" width="200"></td>
                                             <td>{{$lession->title}}</td>
@@ -48,7 +48,7 @@
                                             <td>{{$lession->product_code}}</td>
                                             <td>{!! $lession->description !!}</td>
                                             {{-- <td>{{$lession->status}}</td> --}}
-                                            <td><a href="{{route('tutor.guitar.series.lession.edit',[$guitarSeries->id,$lession->id])}}">Edit</a> | <a href="javascript:void(0)" class="text-danger seriesLessionDelete" data-id="{{$lession->id}}">Delete</a></td>
+                                            <td><a href="{{route('tutor.sax.series.lession.edit',[$saxSeries->id,$lession->id])}}">Edit</a> | <a href="javascript:void(0)" class="text-danger seriesLessionDelete" data-id="{{$lession->id}}">Delete</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -79,12 +79,12 @@
                     $.ajax({
                         type:'POST',
                         dataType:'JSON',
-                        url:"{{route('tutor.guitar.series.lession.delete',[$guitarSeries->id,"+seriesLessionId+"])}}",
+                        url:"{{route('tutor.sax.series.lession.delete',[$saxSeries->id,"+seriesLessionId+"])}}",
                         data: {id:seriesLessionId,'_token': $('input[name=_token]').val()},
                         success:function(data){
                             if(data.error == false){
                                 seriesLessionDelete.closest('tr').remove();
-                                swal('Success',"Poof! Your Guitar Series Lession has been deleted!");
+                                swal('Success',"Poof! Your Sax Series Lession has been deleted!");
                             }else{
                                 swal('Error',data.message);
                             }

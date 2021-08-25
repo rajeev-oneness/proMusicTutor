@@ -24,4 +24,25 @@
             Route::post('/{id}/delete',[TutorController::class,'guitarSeriesLessionDelete'])->name('tutor.guitar.series.lession.delete');
         });
     });
+
+
+
+    // Sax Series and Their Lession
+    Route::group(['prefix' => 'sax/series'],function(){
+        Route::get('/',[TutorController::class,'saxSeriesView'])->name('tutor.sax.series');
+        Route::get('/create',[TutorController::class,'saxSeriesCreate'])->name('tutor.sax.series.create');
+        Route::post('/save',[TutorController::class,'saxSeriesSave'])->name('tutor.sax.series.save');
+        Route::get('/{id}/edit',[TutorController::class,'saxSeriesEdit'])->name('tutor.sax.series.edit');
+        Route::post('/{id}/update',[TutorController::class,'saxSeriesUpdate'])->name('tutor.sax.series.update');
+        Route::post('/{id}/delete',[TutorController::class,'saxSeriesDelete'])->name('tutor.sax.series.delete');
+
+        Route::group(['prefix' => 'sax/series/{saxSeriesId}/lession'],function(){
+            Route::get('/',[TutorController::class,'saxSeriesLessionView'])->name('tutor.sax.series.lession');
+            Route::get('/create',[TutorController::class,'saxSeriesLessionCreate'])->name('tutor.sax.series.lession.create');
+            Route::post('/save',[TutorController::class,'saxSeriesLessionSave'])->name('tutor.sax.series.lession.save');
+            Route::get('/{id}/edit',[TutorController::class,'saxSeriesLessionEdit'])->name('tutor.sax.series.lession.edit');
+            Route::post('/{id}/update',[TutorController::class,'saxSeriesLessionUpdate'])->name('tutor.sax.series.lession.update');
+            Route::post('/{id}/delete',[TutorController::class,'saxSeriesLessionDelete'])->name('tutor.sax.series.lession.delete');
+        });
+    });
 ?>
