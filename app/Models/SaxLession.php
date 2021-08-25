@@ -15,7 +15,7 @@ class SaxLession extends Model
         return $this->belongsTo('App\Models\Currency','currencyId','id');
     }
 
-    public function guitar_series()
+    public function sax_series()
     {
         return $this->belongsTo('App\Models\SaxSeries','saxSeriesId','id');
     }

@@ -9,7 +9,7 @@
                         <h5 class="mb-0">Sax Lession List ({{$saxSeries->title}})
                             <a class="headerbuttonforAdd" href="{{route('tutor.sax.series')}}"><i class="fa fa-step-backward" aria-hidden="true"></i>BACK</a>
                             <a class="headerbuttonforAdd" href="{{route('tutor.sax.series.lession.create',$saxSeries->id)}}">
-                                <i class="fa fa-plus" aria-hidden="true"></i>Add Lession
+                                <i class="fa fa-plus" aria-hidden="true"></i>Add Lesson
                             </a>
                         </h5>
                     </div>
@@ -70,7 +70,7 @@
             var seriesLessionId = $(this).attr('data-id');
             swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this Guitar Lession!",
+                text: "Once deleted, you will not be able to recover this Sax Lesson!",
                 buttons: true,
                 dangerMode: true,
             })
@@ -84,7 +84,7 @@
                         success:function(data){
                             if(data.error == false){
                                 seriesLessionDelete.closest('tr').remove();
-                                swal('Success',"Poof! Your Sax Series Lession has been deleted!");
+                                swal('Success',"Poof! Your Sax Series Lesson has been deleted!");
                             }else{
                                 swal('Error',data.message);
                             }

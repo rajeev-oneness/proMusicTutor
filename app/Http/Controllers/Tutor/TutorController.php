@@ -300,8 +300,10 @@ class TutorController extends Controller
      /****************************** Sax Series Lession *******************************/
      public function saxSeriesLessionView(Request $req,$seriesId)
      {
+         
          $user = auth()->user();
          $saxSeries = SaxSeries::where('id',$seriesId)->where('createdBy',$user->id)->first();
+        //  print_r($saxSeries);exit;
          return view('tutor.saxSeries.lession.index',compact('saxSeries'));
      }
  

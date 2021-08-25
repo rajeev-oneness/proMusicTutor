@@ -17,7 +17,7 @@ class SaxSeries extends Model
 
     public function lession()
     {
-        return $this->hasMany('App\Models\GuitarLession','guitarSeriesId','id');
+        return $this->hasMany('App\Models\SaxLession','saxSeriesId','id');
     }
 
     public function author()
