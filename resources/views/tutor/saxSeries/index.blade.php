@@ -20,7 +20,7 @@
                                     <th>Category</th>
                                     <th>Image</th>
                                     <th>Series Name</th>
-                                    <th>Series Lession</th>
+                                    <th>Series Lesson</th>
                                     <th>Description</th>
                                     <th>Media</th>
                                     <th>Action</th>
