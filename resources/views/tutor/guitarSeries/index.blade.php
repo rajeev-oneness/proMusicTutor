@@ -21,6 +21,17 @@
                                     <th>Image</th>
                                     <th>Series Name</th>
                                     <th>Series Lesson</th>
+                                    
+                                    <th>price</th>
+                                    <th>GBP</th>
+                                    <th>USD</th>
+                                    <th>Euro</th>
+                                    <th>Genre</th>
+                                    <th>Difficulty</th>
+                                    <th>Item Clean Url</th>
+                                    <th>SEO-meta Description</th>
+                                    <th>SEO-meta Keywords</th>
+                                    <th>Related Series</th>
                                     <th>Description</th>
                                     <th>Media</th>
                                     <th>Action</th>
@@ -37,7 +48,17 @@
                                         <td><img src="{{asset($series->image)}}" height="200" width="200"></td>
                                         <td>{{ $series->title }}</td>
                                         <td><a href="{{route('tutor.guitar.series.lession',$series->id)}}">{{count($lession)}}</a></td>
-                                        <td>{!! $series->description !!}</td>
+                                        <td>{{ $series->price }}</td>
+                                        <td>{{ $series->gbp }}</td>
+                                        <td>{{ $series->usd }}</td>
+                                        <td>{{ $series->euro }}</td>
+                                        <td>{{ $series->genre }}</td>
+                                        <td>{{ $series->difficulty }}</td>
+                                        <td>{{ $series->item_clean_url }}</td>
+                                        <td>{{ $series->seo_meta_description }}</td>
+                                        <td>{{ $series->seo_meta_keywords }}</td>
+                                        <td>{{ $series->related_series }}</td>
+                                        <td>{!! substr($series->description, 0, 100). '.....' !!}</td>
                                         <td><a href="{{$series->video_url}}" target="_blank">Link</a></td>
                                         <td><a href="{{route('tutor.guitar.series.edit',$series->id)}}">Edit</a> | <a href="javascript:void(0)" class="text-danger seriesDelete" data-id="{{$series->id}}">Delete</a></td>
                                     </tr>

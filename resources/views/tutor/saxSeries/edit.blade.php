@@ -49,6 +49,61 @@
                                 <input type="text" class="form-control @error('media_link') is-invalid @enderror" id="media_link" name="media_link" placeholder="Video Media Link" value="{{$saxSeries->video_url}}">
                                 @error('media_link')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Price" value="{{$saxSeries->price}}"  onkeypress="return isNumberKey(event)" maxlength="5">
+                                @error('price')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="gbp" class="col-form-label">GBP:</label>
+                                <input type="text" class="form-control @error('gbp') is-invalid @enderror" id="gbp" name="gbp" placeholder="GBP" value="{{$saxSeries->gbp}}"  onkeypress="return isNumberKey(event)" maxlength="5">
+                                @error('gbp')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="usd" class="col-form-label">USD:</label>
+                                <input type="text" class="form-control @error('usd') is-invalid @enderror" id="usd" name="usd" placeholder="USD" value="{{$saxSeries->usd}}"  onkeypress="return isNumberKey(event)" maxlength="5">
+                                @error('usd')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="euro" class="col-form-label">Euro:</label>
+                                <input type="text" class="form-control @error('euro') is-invalid @enderror" id="euro" name="euro" placeholder="Euro" value="{{$saxSeries->euro}}"  onkeypress="return isNumberKey(event)" maxlength="5">
+                                @error('euro')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="genre" class="col-form-label">Genre:</label>
+                                <input type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" name="genre" placeholder="Genre" value="{{$saxSeries->genre}}">
+                                @error('genre')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="difficulty" class="col-form-label">Difficulty:</label>
+                                <input type="text" class="form-control @error('difficulty') is-invalid @enderror" id="difficulty" name="difficulty" placeholder="Difficulty" value="{{$saxSeries->difficulty}}">
+                                @error('difficulty')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="seo_meta_description" class="col-form-label">SEO-Meta Description:</label>
+                                <input type="text" class="form-control @error('seo_meta_description') is-invalid @enderror" id="seo_meta_description" name="seo_meta_description" placeholder="SEO-Meta Description" value="{{$saxSeries->seo_meta_description}}">
+                                @error('seo_meta_description')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="seo_meta_keywords" class="col-form-label">SEO-Meta Keywords:</label>
+                                <input type="text" class="form-control @error('seo_meta_keywords') is-invalid @enderror" id="seo_meta_keywords" name="seo_meta_keywords" placeholder="SEO-Meta Keywords" value="{{$saxSeries->seo_meta_keywords}}">
+                                @error('seo_meta_keywords')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="related_series" class="col-form-label">Related Series:</label>
+                                <input type="text" class="form-control @error('related_series') is-invalid @enderror" id="related_series" name="related_series" placeholder="Related Series" value="{{$saxSeries->related_series}}">
+                                @error('related_series')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
                         </div>
 
                         <div class="form-group">

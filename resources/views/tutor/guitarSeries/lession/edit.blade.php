@@ -32,32 +32,33 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="price" class="col-form-label">Price:</label>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Price" value="{{$guitarLession->price}}">
-                                @error('price')<span class="text-danger" role="alert">{{$message}}</span>@enderror
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label for="media_link" class="col-form-label">Media Link:</label>
                                 <input type="text" class="form-control @error('media_link') is-invalid @enderror" id="media_link" name="media_link" placeholder="Media Link" value="{{$guitarLession->video_url}}">
                                 @error('media_link')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Price" value="{{$guitarLession->price}}" onkeypress="return isNumberKey(event)" maxlength="5">
+                                @error('price')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
 
                             <div class="form-group col-md-4">
                                 <label for="gbp" class="col-form-label">GBP:</label>
-                                <input type="text" class="form-control @error('gbp') is-invalid @enderror" id="gbp" name="gbp" placeholder="GBP" value="{{$guitarLession->gbp}}">
+                                <input type="text" class="form-control @error('gbp') is-invalid @enderror" id="gbp" name="gbp" placeholder="GBP" value="{{$guitarLession->gbp}}" onkeypress="return isNumberKey(event)" maxlength="5">
                                 @error('gbp')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="usd" class="col-form-label">USD:</label>
-                                <input type="text" class="form-control @error('usd') is-invalid @enderror" id="usd" name="usd" placeholder="USD" value="{{$guitarLession->usd}}">
+                                <input type="text" class="form-control @error('usd') is-invalid @enderror" id="usd" name="usd" placeholder="USD" value="{{$guitarLession->usd}}" onkeypress="return isNumberKey(event)" maxlength="5">
                                 @error('usd')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="euro" class="col-form-label">Euro:</label>
-                                <input type="text" class="form-control @error('euro') is-invalid @enderror" id="euro" name="euro" placeholder="Euro" value="{{$guitarLession->euro}}">
+                                <input type="text" class="form-control @error('euro') is-invalid @enderror" id="euro" name="euro" placeholder="Euro" value="{{$guitarLession->euro}}" onkeypress="return isNumberKey(event)" maxlength="5">
                                 @error('euro')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
