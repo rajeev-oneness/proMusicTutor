@@ -102,25 +102,35 @@
                             <div class="form-group col-md-4">
                                 <label for="product_code" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
+                                    {{-- <option value="1">Active</option>
+                                    <option value="0">Inactive</option> --}}
+                                    <option value="1" <?=$guitarLession->status  == '1' ? ' selected="selected"' : '';?> >Active</option>
+                            <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
                                 </select>
                             </div>
 
+
+                            {{-- <option value="">Select Currency</option>
+                            <option value="1" <?=$guitarLession->status == '1' ? ' selected="selected"' : '';?> >Active</option>
+                            <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
+                            <option value="pounds"  <?=$selected_currency == 'pounds' ? ' selected="selected"' : '';?> >POUNDS</option>
+                            <option value="dirham"  <?=$selected_currency == 'dirham' ? ' selected="selected"' : '';?> >DRHM</option>
+                         </select> --}}
                             {{-- <div class="form-group col-md-4"> 
                                 <label for="product_code" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status">   
-                                    @if($guitarLession->status == 1)
-                                    <option value="{{$guitarLession->status}}" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Active </option>
-                                    @else
-                                    <option value="{{$guitarLession->status}}" {{(old('status', $guitarLession->status) == $categguitarLessionory->status ? 'selected' : '')}} > Inactive </option>
-                                    @endif
+                                    
+                                    <option value="1" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Active </option>
+                                    
+                                    <option value="0" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Inactive </option>
+                                   
+                                    
                                 </select>
                             </div> --}}
                             
                             <div class="form-group col-md-4">
                                 <label for="item_clean_url" class="col-form-label">Item Clean Url:</label>
-                                <input type="text" class="form-control @error('item_clean_url') is-invalid @enderror" id="item_clean_url" name="item_clean_url" placeholder="Item Clean Url" value="{{$guitarLession->product_code}}">
+                                <input type="text" class="form-control @error('item_clean_url') is-invalid @enderror" id="item_clean_url" name="item_clean_url" placeholder="Item Clean Url" value="{{$guitarLession->item_clean_url}}">
                                 @error('item_clean_url')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
