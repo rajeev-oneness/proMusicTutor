@@ -27,6 +27,7 @@
                                         <th>Euro</th>
                                         <th>Keyword</th>
                                         <th>Gener</th>
+                                        <th>Item Clean Url</th>
                                         <th>Product Code</th>
                                         <th>Description</th>
                                         {{-- <th>Status</th> --}}
@@ -45,8 +46,9 @@
                                             <td>{{$lession->euro}}</td>
                                             <td>{{$lession->keywords}}</td>
                                             <td>{{$lession->genre}}</td>
+                                            <td>{{$lession->item_clean_url}}</td>
                                             <td>{{$lession->product_code}}</td>
-                                            <td>{!! $lession->description !!}</td>
+                                            <td>{!! substr($lession->description, 0, 100). '.....' !!}</td>
                                             {{-- <td>{{$lession->status}}</td> --}}
                                             <td><a href="{{route('tutor.guitar.series.lession.edit',[$guitarSeries->id,$lession->id])}}">Edit</a> | <a href="javascript:void(0)" class="text-danger seriesLessionDelete" data-id="{{$lession->id}}">Delete</a></td>
                                         </tr>

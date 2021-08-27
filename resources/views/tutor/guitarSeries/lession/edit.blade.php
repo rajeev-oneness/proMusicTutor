@@ -32,32 +32,33 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="price" class="col-form-label">Price:</label>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Price" value="{{$guitarLession->price}}">
-                                @error('price')<span class="text-danger" role="alert">{{$message}}</span>@enderror
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label for="media_link" class="col-form-label">Media Link:</label>
                                 <input type="text" class="form-control @error('media_link') is-invalid @enderror" id="media_link" name="media_link" placeholder="Media Link" value="{{$guitarLession->video_url}}">
                                 @error('media_link')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Price" value="{{$guitarLession->price}}" onkeypress="return isNumberKey(event)" maxlength="5">
+                                @error('price')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
 
                             <div class="form-group col-md-4">
                                 <label for="gbp" class="col-form-label">GBP:</label>
-                                <input type="text" class="form-control @error('gbp') is-invalid @enderror" id="gbp" name="gbp" placeholder="GBP" value="{{$guitarLession->gbp}}">
+                                <input type="text" class="form-control @error('gbp') is-invalid @enderror" id="gbp" name="gbp" placeholder="GBP" value="{{$guitarLession->gbp}}" onkeypress="return isNumberKey(event)" maxlength="5">
                                 @error('gbp')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="usd" class="col-form-label">USD:</label>
-                                <input type="text" class="form-control @error('usd') is-invalid @enderror" id="usd" name="usd" placeholder="USD" value="{{$guitarLession->usd}}">
+                                <input type="text" class="form-control @error('usd') is-invalid @enderror" id="usd" name="usd" placeholder="USD" value="{{$guitarLession->usd}}" onkeypress="return isNumberKey(event)" maxlength="5">
                                 @error('usd')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="euro" class="col-form-label">Euro:</label>
-                                <input type="text" class="form-control @error('euro') is-invalid @enderror" id="euro" name="euro" placeholder="Euro" value="{{$guitarLession->euro}}">
+                                <input type="text" class="form-control @error('euro') is-invalid @enderror" id="euro" name="euro" placeholder="Euro" value="{{$guitarLession->euro}}" onkeypress="return isNumberKey(event)" maxlength="5">
                                 @error('euro')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
@@ -67,16 +68,70 @@
                                 @error('keywords')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
-                            <div class="form-group col-md-4">
+                            {{-- <div class="form-group col-md-4">
                                 <label for="genre" class="col-form-label">Genre:</label>
                                 <input type="text" class="form-control @error('genre') is-invalid @enderror" id="genre" name="genre" placeholder="Genre" value="{{$guitarLession->genre}}">
                                 @error('genre')<span class="text-danger" role="alert">{{$message}}</span>@enderror
-                            </div>
+                            </div> --}}
 
                             <div class="form-group col-md-4">
                                 <label for="product_code" class="col-form-label">Product Code:</label>
                                 <input type="text" class="form-control @error('product_code') is-invalid @enderror" id="product_code" name="product_code" placeholder="Product Code" value="{{$guitarLession->product_code}}">
                                 @error('product_code')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="genre" class="col-form-label">Genre:</label>
+                                <select  class="form-control genre-select select2-offscreen " id="genre" name="genre" multiple tabindex="-1" >
+                                    <option value="Guitar - Rock">Guitar - Rock</option>
+                                    <option value="Guitar - Blues">Guitar - Blues</option>
+                                    <option value="Sax - Blues">Sax - Blues</option>
+                                    <option value="Guitar - Funk">Guitar - Funk</option>
+                                    <option value="Sax - Funk">Sax - Funk</option>
+                                    <option value="Guitar - Jazz">Guitar - Jazz</option>
+                                    <option value="Sax - Jazz">Sax - Jazz</option>
+                                    <option value="Guitar - Country">Guitar - Country</option>
+                                    <option value="Sax - Latin">Sax - Latin</option>
+                                    <option value="Guitar - Metal">Guitar - Metal</option>
+                                    <option value="Guitar - Soul">Guitar - Soul</option>
+                                    <option value="Guitar - Fusion">Guitar - Fusion</option>
+                                </select>
+                                @error('genre')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="product_code" class="col-form-label">Status:</label>
+                                <select class="form-control" name="status">
+                                    {{-- <option value="1">Active</option>
+                                    <option value="0">Inactive</option> --}}
+                                    <option value="1" <?=$guitarLession->status  == '1' ? ' selected="selected"' : '';?> >Active</option>
+                            <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
+                                </select>
+                            </div>
+
+
+                            {{-- <option value="">Select Currency</option>
+                            <option value="1" <?=$guitarLession->status == '1' ? ' selected="selected"' : '';?> >Active</option>
+                            <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
+                            <option value="pounds"  <?=$selected_currency == 'pounds' ? ' selected="selected"' : '';?> >POUNDS</option>
+                            <option value="dirham"  <?=$selected_currency == 'dirham' ? ' selected="selected"' : '';?> >DRHM</option>
+                         </select> --}}
+                            {{-- <div class="form-group col-md-4"> 
+                                <label for="product_code" class="col-form-label">Status:</label>
+                                <select class="form-control" name="status">   
+                                    
+                                    <option value="1" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Active </option>
+                                    
+                                    <option value="0" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Inactive </option>
+                                   
+                                    
+                                </select>
+                            </div> --}}
+                            
+                            <div class="form-group col-md-4">
+                                <label for="item_clean_url" class="col-form-label">Item Clean Url:</label>
+                                <input type="text" class="form-control @error('item_clean_url') is-invalid @enderror" id="item_clean_url" name="item_clean_url" placeholder="Item Clean Url" value="{{$guitarLession->item_clean_url}}">
+                                @error('item_clean_url')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
 
                         </div>
