@@ -93,12 +93,6 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="item_clean_url" class="col-form-label">Item Clean Url:</label>
-                                <input type="text" class="form-control @error('item_clean_url') is-invalid @enderror" id="item_clean_url" name="item_clean_url" placeholder="Item Clean Url" value="{{old('item_clean_url')}}" >
-                                @error('item_clean_url')<span class="text-danger" role="alert">{{$message}}</span>@enderror
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label for="keywords" class="col-form-label">Keywords:</label>
                                 <input type="text" class="form-control @error('keywords') is-invalid @enderror" id="keywords" name="keywords" placeholder="Keywords" value="{{old('keywords')}}">
                                 @error('keywords')<span class="text-danger" role="alert">{{$message}}</span>@enderror

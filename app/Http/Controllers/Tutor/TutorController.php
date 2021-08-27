@@ -96,6 +96,7 @@ class TutorController extends Controller
             'related_series' => 'required|string',
             'difficulty' => 'required|string',
             'description' => 'required|string',
+            'item_clean_url' => 'required|url',
         ]);
         $updateSeries = GuitarSeries::where('id',$seriesId)->first();
         $updateSeries->categoryId = $req->category;
@@ -115,6 +116,7 @@ class TutorController extends Controller
         $updateSeries->seo_meta_description = $req->seo_meta_description;
         $updateSeries->seo_meta_description = $req->seo_meta_description;
         $updateSeries->related_series = $req->related_series;
+        $updateSeries->item_clean_url = $req->item_clean_url;
         // {{-- $table->dropColumn('price');
         //     $table->dropColumn('gbp');
         //     $table->dropColumn('usd');
@@ -225,6 +227,9 @@ class TutorController extends Controller
             'usd' => 'required|numeric|min:1',
             'euro' => 'required|numeric|min:1',
             'keywords' => 'required',
+            'genre' => 'required',
+            'item_clean_url' => 'required|url',
+            'status' => 'required',
         ]);
             
         $updateLession = GuitarLession::where('id',$lessionId)->where('guitarSeriesId',$seriesId)->first();
@@ -242,6 +247,8 @@ class TutorController extends Controller
             $updateLession->keywords = $req->keywords;
             $updateLession->genre = $req->genre;
             $updateLession->product_code = $req->product_code;
+            $updateLession->item_clean_url = $req->item_clean_url;
+            $updateLession->status = $req->status;
         $updateLession->save();
         return redirect(route('tutor.guitar.series.lession',$seriesId))->with('Success','Guitar Lession Updated SuccessFully');
     }
@@ -335,6 +342,15 @@ class TutorController extends Controller
             'title' => 'required|string|max:200',
             'media_link' => 'required|url',
             'description' => 'required|string',
+            'item_clean_url' => 'required|url',
+            'price' => 'required|numeric|min:1',
+            'usd' => 'required|numeric|min:1',
+            'euro' => 'required|numeric|min:1',
+            'genre' => 'required|string',
+            'seo_meta_description' => 'required|string',
+            'seo_meta_keywords' => 'required|string',
+            'related_series' => 'required|string',
+            'difficulty' => 'required|string',
         ]);
         $updateSeries = SaxSeries::where('id',$seriesId)->first();
         $updateSeries->categoryId = $req->category;
@@ -345,6 +361,15 @@ class TutorController extends Controller
             $updateSeries->image = imageUpload($image);
         }
         $updateSeries->video_url = $req->media_link;
+        $updateSeries->item_clean_url = $req->item_clean_url;
+        $updateSeries->price = $req->price;
+        $updateSeries->usd = $req->usd;
+        $updateSeries->euro = $req->euro;
+        $updateSeries->genre = $req->genre;
+        $updateSeries->seo_meta_description = $req->seo_meta_description;
+        $updateSeries->seo_meta_keywords = $req->seo_meta_keywords;
+        $updateSeries->related_series = $req->related_series;
+        $updateSeries->difficulty = $req->difficulty;
         $updateSeries->save();
         return redirect(route('tutor.sax.series'))->with('Success','Sax Series Updated SuccessFully');
     }
@@ -445,11 +470,14 @@ class TutorController extends Controller
             'price' => 'required|numeric|min:1',
             'description' => 'required|string',
             'image' => 'nullable|image',
-            'media_link' => 'nullable|url',
+            'media_link' => 'required|url',
             'gbp' => 'required|numeric|min:1',
             'usd' => 'required|numeric|min:1',
             'euro' => 'required|numeric|min:1',
             'keywords' => 'required',
+            'item_clean_url' => 'required|url',
+            'status' => 'required',
+            'genre' => 'required',
         ]);
             
         $updateLession = SaxLession::where('id',$lessionId)->where('saxSeriesId',$seriesId)->first();
@@ -467,6 +495,8 @@ class TutorController extends Controller
             $updateLession->keywords = $req->keywords;
             $updateLession->genre = $req->genre;
             $updateLession->product_code = $req->product_code;
+            $updateLession->item_clean_url = $req->item_clean_url;
+            $updateLession->status = $req->status;
         $updateLession->save();
         return redirect(route('tutor.sax.series.lession',$seriesId))->with('Success','Sax Lession Updated SuccessFully');
     }
