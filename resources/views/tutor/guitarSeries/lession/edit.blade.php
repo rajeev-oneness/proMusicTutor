@@ -83,8 +83,20 @@
                             <div class="form-group col-md-4">
                                 <label for="genre" class="col-form-label">Genre:</label>
                                 <select  class="form-control genre-select select2-offscreen " id="genre" name="genre" multiple tabindex="-1" >
-                                    <option value="Guitar - Rock">Guitar - Rock</option>
-                                    <option value="Guitar - Blues">Guitar - Blues</option>
+                                    <option value="Guitar - Rock" <?=$guitarLession->genre  == 'Guitar - Rock' ? ' selected="selected"' : '';?> >Guitar - Rock </option>
+                                    <option value="Guitar - Blues" <?=$guitarLession->genre  == 'Guitar - Blues' ? ' selected="selected"' : '';?> >Guitar - Blues </option>
+                                    <option value="Sax - Blues" <?=$guitarLession->genre  == 'Sax - Blues' ? ' selected="selected"' : '';?> >Sax - Blues </option>
+                                    <option value="Guitar - Funk" <?=$guitarLession->genre  == 'Guitar - Funk' ? ' selected="selected"' : '';?> >Guitar - Funk </option>
+                                    <option value="Sax - Funk" <?=$guitarLession->genre  == 'Sax - Funk' ? ' selected="selected"' : '';?> >Sax - Funk </option>
+                                    <option value="Guitar - Jazz" <?=$guitarLession->genre  == 'Guitar - Jazz' ? ' selected="selected"' : '';?> >Guitar - Jazz </option>
+                                    <option value="Sax - Jazz" <?=$guitarLession->genre  == 'Sax - Jazz' ? ' selected="selected"' : '';?> >Sax - Jazz </option>
+                                    <option value="Guitar - Country" <?=$guitarLession->genre  == 'Guitar - Country' ? ' selected="selected"' : '';?> >Guitar - Country </option>
+                                    <option value="Sax - Latin" <?=$guitarLession->genre  == 'Sax - Latin' ? ' selected="selected"' : '';?> >Sax - Latin </option>
+                                    <option value="Guitar - Metal" <?=$guitarLession->genre  == 'Guitar - Metal' ? ' selected="selected"' : '';?> >Guitar - Metal </option>
+                                    <option value="Guitar - Soul" <?=$guitarLession->genre  == 'Guitar - Soul' ? ' selected="selected"' : '';?> >Guitar - Soul </option>
+                                    <option value="Guitar - Fusion" <?=$guitarLession->genre  == 'Guitar - Fusion' ? ' selected="selected"' : '';?> >Guitar - Fusion </option>
+                                    {{-- <option value="Guitar - Rock">Guitar - Rock</option> --}}
+                                    {{-- <option value="Guitar - Blues">Guitar - Blues</option>
                                     <option value="Sax - Blues">Sax - Blues</option>
                                     <option value="Guitar - Funk">Guitar - Funk</option>
                                     <option value="Sax - Funk">Sax - Funk</option>
@@ -94,7 +106,7 @@
                                     <option value="Sax - Latin">Sax - Latin</option>
                                     <option value="Guitar - Metal">Guitar - Metal</option>
                                     <option value="Guitar - Soul">Guitar - Soul</option>
-                                    <option value="Guitar - Fusion">Guitar - Fusion</option>
+                                    <option value="Guitar - Fusion">Guitar - Fusion</option> --}}
                                 </select>
                                 @error('genre')<span class="text-danger" role="alert">{{$message}}</span>@enderror
                             </div>
@@ -102,31 +114,10 @@
                             <div class="form-group col-md-4">
                                 <label for="product_code" class="col-form-label">Status:</label>
                                 <select class="form-control" name="status">
-                                    {{-- <option value="1">Active</option>
-                                    <option value="0">Inactive</option> --}}
                                     <option value="1" <?=$guitarLession->status  == '1' ? ' selected="selected"' : '';?> >Active</option>
-                            <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
+                                    <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
                                 </select>
                             </div>
-
-
-                            {{-- <option value="">Select Currency</option>
-                            <option value="1" <?=$guitarLession->status == '1' ? ' selected="selected"' : '';?> >Active</option>
-                            <option value="0"  <?=$guitarLession->status  == '0' ? ' selected="selected"' : '';?> >Inactive</option>
-                            <option value="pounds"  <?=$selected_currency == 'pounds' ? ' selected="selected"' : '';?> >POUNDS</option>
-                            <option value="dirham"  <?=$selected_currency == 'dirham' ? ' selected="selected"' : '';?> >DRHM</option>
-                         </select> --}}
-                            {{-- <div class="form-group col-md-4"> 
-                                <label for="product_code" class="col-form-label">Status:</label>
-                                <select class="form-control" name="status">   
-                                    
-                                    <option value="1" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Active </option>
-                                    
-                                    <option value="0" {{(old('status', $guitarLession->status) == $guitarLession->status ? 'selected' : '')}} > Inactive </option>
-                                   
-                                    
-                                </select>
-                            </div> --}}
                             
                             <div class="form-group col-md-4">
                                 <label for="item_clean_url" class="col-form-label">Item Clean Url:</label>

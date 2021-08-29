@@ -113,7 +113,7 @@ class TutorController extends Controller
         $updateSeries->euro = $req->euro;
         $updateSeries->genre = $req->genre;
         $updateSeries->difficulty = $req->difficulty;
-        $updateSeries->seo_meta_description = $req->seo_meta_description;
+        $updateSeries->seo_meta_keywords = $req->seo_meta_keywords;
         $updateSeries->seo_meta_description = $req->seo_meta_description;
         $updateSeries->related_series = $req->related_series;
         $updateSeries->item_clean_url = $req->item_clean_url;
@@ -366,6 +366,7 @@ class TutorController extends Controller
         $updateSeries->usd = $req->usd;
         $updateSeries->euro = $req->euro;
         $updateSeries->genre = $req->genre;
+        $updateSeries->gbp = $req->gbp;
         $updateSeries->seo_meta_description = $req->seo_meta_description;
         $updateSeries->seo_meta_keywords = $req->seo_meta_keywords;
         $updateSeries->related_series = $req->related_series;
