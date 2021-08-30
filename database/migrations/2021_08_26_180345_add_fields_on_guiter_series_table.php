@@ -15,7 +15,7 @@ class AddFieldsOnGuiterSeriesTable extends Migration
     {
         Schema::table('guitar_series', function (Blueprint $table) {
             $table->string('genre')->after('euro');
-            $table->enum('difficulty', ['Medium', 'Easy', 'Other'])->after('genre');
+            $table->tinyInteger('difficulty')->after('genre');
         });
     }
 

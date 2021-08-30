@@ -26,8 +26,8 @@ class ChangeFieldsOnGuitarSeriesTable extends Migration
     public function down()
     {
         Schema::table('guitar_series', function (Blueprint $table) {
-            $table->enum('genre', ['Rock', 'Blue', 'Funk', 'Jazz', 'Country', 'Latin', 'Metal','Soul', 'Fusion'])->after('euro');
-            $table->enum('difficulty', ['Medium', 'Easy', 'Outher'])->after('genre');
+            $table->tinyInteger('genre')->after('euro');
+            $table->tinyInteger('difficulty', ['Medium', 'Easy', 'Outher'])->after('genre');
         });
     }
 }

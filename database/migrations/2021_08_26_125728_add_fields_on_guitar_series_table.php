@@ -14,8 +14,8 @@ class AddFieldsOnGuitarSeriesTable extends Migration
     public function up()
     {
         Schema::table('guitar_series', function (Blueprint $table) {
-            $table->float('price',8,2)->after('description');
-            $table->float('gbp',8,2)->after('price')->nullable();
+            // $table->float('price',8,2)->after('description');
+            $table->float('gbp',8,2)->after('description')->nullable();
             $table->float('usd',8,2)->after('gbp');
             $table->float('euro',8,2)->after('usd');
             $table->string('genre')->after('euro')->nullable();
@@ -24,57 +24,19 @@ class AddFieldsOnGuitarSeriesTable extends Migration
             $table->string('seo_meta_keywords')->after('seo_meta_description')->nullable();
             $table->string('related_series')->after('seo_meta_keywords')->nullable();
         });
-        $data = [
-            [
-                'price' => rand(5,9).'.99',
+
+        $series = DB::table('sax_series')->get();
+        foreach ($series as $key => $value) {
+            DB::table('sax_series')->where('id',$value->id)->update( [
+                // 'price' => rand(5,9).'.99',
                 'usd' => rand(5,9).'.99',
                 'euro' => rand(5,9).'.99',
                 'difficulty' => 'true',
                 'seo_meta_description' => 'Acoustic Series 1',
                 'seo_meta_keywords' => 'Acoustic Series 1',
-            ],
-            [
-                'price' => rand(5,9).'.99',
-                'usd' => rand(5,9).'.99',
-                'euro' => rand(5,9).'.99',
-                'difficulty' => 'true',
-                'seo_meta_description' => 'Acoustic Series 1',
-                'seo_meta_keywords' => 'Acoustic Series 1',
-            ],
-            [
-                'price' => rand(5,9).'.99',
-                'usd' => rand(5,9).'.99',
-                'euro' => rand(5,9).'.99',
-                'difficulty' => 'true',
-                'seo_meta_description' => 'Acoustic Series 1',
-                'seo_meta_keywords' => 'Acoustic Series 1',
-            ],
-            [
-                'price' => rand(5,9).'.99',
-                'usd' => rand(5,9).'.99',
-                'euro' => rand(5,9).'.99',
-                'difficulty' => 'true',
-                'seo_meta_description' => 'Acoustic Series 1',
-                'seo_meta_keywords' => 'Acoustic Series 1',
-            ],
-            [
-                'price' => rand(5,9).'.99',
-                'usd' => rand(5,9).'.99',
-                'euro' => rand(5,9).'.99',
-                'difficulty' => 'true',
-                'seo_meta_description' => 'Acoustic Series 1',
-                'seo_meta_keywords' => 'Acoustic Series 1',
-            ],
-            [
-                'price' => rand(5,9).'.99',
-                'usd' => rand(5,9).'.99',
-                'euro' => rand(5,9).'.99',
-                'difficulty' => 'true',
-                'seo_meta_description' => 'Acoustic Series 1',
-                'seo_meta_keywords' => 'Acoustic Series 1',
-            ],
-        ];
-        DB::table('guitar_series')->insert($data);
+            ]);
+        }
+       
     }
 
     /**
@@ -85,7 +47,7 @@ class AddFieldsOnGuitarSeriesTable extends Migration
     public function down()
     {
         Schema::table('guitar_series', function (Blueprint $table) {
-            $table->dropColumn('price');
+            // $table->dropColumn('price');
             $table->dropColumn('gbp');
             $table->dropColumn('usd');
             $table->dropColumn('euro');

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Genre;
+use App\Models\Difficulty;
+use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request,Hash,DB;
-use App\Models\User,App\Models\UserType;
 use App\Models\ContactUs,App\Models\Faq;
-use App\Models\Testimonial,App\Models\Setting;
+use App\Models\User,App\Models\UserType;
 use App\Models\Instrument,App\Models\Category;
+use App\Models\Testimonial,App\Models\Setting;
 
 class CrudController extends Controller
 {
@@ -375,7 +378,38 @@ class CrudController extends Controller
         }
         return errorResponse('Invalid Setting Detected');
     }
+    
 
+    // terms-and-conditions
+    public function termsAndConditionsSetting(Request $req)
+    {
+        $termsAndConditions = TermsAndCondition::get();
+        return view('admin.setting.TermsAndConditions.index',compact('termsAndConditions'));
+    }
+
+    public function termsAndConditionsDataEdit(Request $req,$termsAndConditionId)
+    {
+        $termsandCondition = TermsAndCondition::where('id',$termsAndConditionId)->first();
+        return view('admin.setting.TermsAndConditions.edit',compact('termsandCondition'));
+    }
+
+    public function termsAndConditionsSettingUpdate(Request $req,$settingId)
+    {
+        $req->validate([
+            'settingId' => 'required|numeric|min:1|in:'.$settingId,
+            'title' => 'required|string|max:200',
+            'description' => 'required|string',
+        ]);
+        $setting = TermsAndCondition::where('id',$req->settingId)->first();
+        if($setting){
+            $setting->title = $req->title;
+            $setting->description = $req->description;
+            $setting->page_cleane_url = $req->page_cleane_url;
+            $setting->save();
+            return redirect(route('admin.setting.termsandConditions'))->with('Success','Terms & Conditions Updated SuccessFully');
+        }
+        return errorResponse('Invalid Setting Detected');
+    }
 /******************************* Instrument ********************************/
     public function instrument(Request $req)
     {
@@ -464,10 +498,12 @@ class CrudController extends Controller
         ]);
         $new = new Category();
         $new->name = strtoupper($req->name);
+        $new->video_url = $req->media_link;
         if($req->hasFile('image')){
             $image = $req->file('image');
             $new->image = imageUpload($image);
         }
+
         $new->save();
         return redirect(route('admin.guitar.category'))->with('Success','Category Added SuccessFully');
     }
@@ -484,6 +520,7 @@ class CrudController extends Controller
             'categoryId' => 'required|min:1|numeric|in:'.$guitarCategoryId,
             'image' => '',
             'name' => 'required|string|max:200',
+            'media_link' => 'nullable|url',
         ]);
         $update = Category::where('id',$guitarCategoryId)->first();
         $update->name = strtoupper($req->name);
@@ -491,6 +528,7 @@ class CrudController extends Controller
             $image = $req->file('image');
             $update->image = imageUpload($image);
         }
+        $update->video_url = $req->media_link;
         $update->save();
         return redirect(route('admin.guitar.category'))->with('Success','Category Updated SuccessFully');
     }
@@ -508,6 +546,184 @@ class CrudController extends Controller
                 return successResponse('Category Deleted Success');  
             }
             return errorResponse('Invalid Category Id');
+        }
+        return errorResponse($validator->errors()->first());
+    }
+
+    // -------------Genre-------------------
+
+    public function genre(Request $req)
+    {
+        $genre = Genre::get();
+        return view('admin.feature.genre.index',compact('genre'));
+    }
+    public function genreCreate(Request $req)
+    {
+        $category = Category::get();
+        // dd($category);
+        $genre = Genre::get();
+        return view('admin.feature.genre.create',compact('genre','category'));
+    }
+
+    public function genreStore(Request $req)
+    {
+        // echo 'gghgh';exit;
+        $req->validate([
+            'name' => 'required|max:200',
+            'image' => 'required',
+            // 'description' => 'required',
+            // 'categoryId' => 'required',
+            'status' => 'required',
+            'slug' => 'required',
+        ]);
+        $genre = new Genre();
+        // $genre->categoryId = $req->categoryId;
+        $genre->category = $req->category;
+        $genre->title = $req->name;
+        $genre->description = $req->description;
+        $genre->status = $req->status;
+        $genre->slug = $req->slug;
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $genre->image = imageUpload($image,'genre');
+        }
+        $genre->save();
+
+        return redirect(route('admin.genre.view'))->with('Success','Genre Added SuccessFully');
+    }
+    public function genreEdit(Request $req,$genreId)
+    {
+        $category = Category::get();
+        $genre = Genre::where('id',$genreId)->first();
+        return view('admin.feature.genre.edit',compact('genre','category'));
+    }
+
+    public function genreUpdate(Request $req,$guitarCategoryId)
+    {
+        $req->validate([
+            'name' => 'required|max:200',
+            'image' => 'nullable',
+            // 'description' => 'required',
+            // 'categoryId' => 'required',
+            'status' => 'required',
+            'slug' => 'required',
+        ]);
+        $update = Genre::where('id',$guitarCategoryId)->first();
+        $update->category = $req->category;
+        $update->title = $req->name;
+        $update->description = $req->description;
+        $update->status = $req->status;
+        $update->slug = $req->slug;
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $update->image = imageUpload($image);
+        }
+        $update->save();
+        return redirect(route('admin.genre.view'))->with('Success','Category Updated SuccessFully');
+    }
+
+    public function genreDelete(Request $req)
+    {
+        $rules = [
+            'id' => 'required|numeric|min:1',
+        ];
+        $validator = validator()->make($req->all(),$rules);
+        if(!$validator->fails()){
+            $genre = Genre::find($req->id);
+            if($genre){
+                $genre->delete();
+                return successResponse('Genre Deleted Success');  
+            }
+            return errorResponse('Invalid Genre Id');
+        }
+        return errorResponse($validator->errors()->first());
+    }
+
+    // ---------Difficulty------------//
+
+    public function difficulty(Request $req)
+    {
+        $difficulty = Difficulty::get();
+        return view('admin.feature.difficulty.index',compact('difficulty'));
+    }
+    public function difficultyCreate(Request $req)
+    {
+        $category = Category::get();
+        // dd($category);
+        $difficulty = Difficulty::get();
+        return view('admin.feature.difficulty.create',compact('difficulty','category'));
+    }
+
+    public function difficultyStore(Request $req)
+    {
+        // echo 'gghgh';exit;
+        $req->validate([
+            'name' => 'required|max:200',
+            'image' => 'required',
+            // 'description' => 'required',
+            // 'categoryId' => 'required',
+            'status' => 'required',
+            'slug' => 'required',
+        ]);
+        $genre = new Difficulty();
+        // $genre->categoryId = $req->categoryId;
+        $genre->category = $req->category;
+        $genre->title = $req->name;
+        $genre->description = $req->description;
+        $genre->status = $req->status;
+        $genre->slug = $req->slug;
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $genre->image = imageUpload($image,'genre');
+        }
+        $genre->save();
+
+        return redirect(route('admin.difficulty.view'))->with('Success','Difficulty Added SuccessFully');
+    }
+    public function difficultyEdit(Request $req,$difficultyId)
+    {
+        $category = Category::get();
+        $difficulty = Difficulty::where('id',$difficultyId)->first();
+        return view('admin.feature.difficulty.edit',compact('difficulty','category'));
+    }
+
+    public function difficultyUpdate(Request $req,$difficultyId)
+    {
+        $req->validate([
+            'name' => 'required|max:200',
+            'image' => 'nullable',
+            // 'description' => 'required',
+            // 'categoryId' => 'required',
+            'status' => 'required',
+            'slug' => 'required',
+        ]);
+        $update = Difficulty::where('id',$difficultyId)->first();
+        $update->category = $req->category;
+        $update->title = $req->name;
+        $update->description = $req->description;
+        $update->status = $req->status;
+        $update->slug = $req->slug;
+        if($req->hasFile('image')){
+            $image = $req->file('image');
+            $update->image = imageUpload($image);
+        }
+        $update->save();
+        return redirect(route('admin.difficulty.view'))->with('Success','Difficulty Updated SuccessFully');
+    }
+
+    public function difficultyDelete(Request $req)
+    {
+        $rules = [
+            'id' => 'required|numeric|min:1',
+        ];
+        $validator = validator()->make($req->all(),$rules);
+        if(!$validator->fails()){
+            $difficulty = Difficulty::find($req->id);
+            if($difficulty){
+                $difficulty->delete();
+                return successResponse('Difficulty Deleted Success');  
+            }
+            return errorResponse('Invalid Genre Id');
         }
         return errorResponse($validator->errors()->first());
     }

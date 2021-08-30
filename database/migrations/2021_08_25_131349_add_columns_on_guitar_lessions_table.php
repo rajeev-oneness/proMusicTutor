@@ -22,24 +22,19 @@ class AddColumnsOnGuitarLessionsTable extends Migration
             $table->string('keywords')->nullable()->after('euro');
             $table->string('genre')->nullable()->after('keywords');
             $table->string('product_code')->after('genre');
-            $table->enum('status', [0, 1])->default(1)->comment('1=Active,0=Inactive')->after('product_code');
+            $table->tinyInteger('status')->default(1)->comment('1=Active,0=Inactive')->after('product_code');
            
         });
-        $data = [];
-        for ($i=0; $i < 3; $i++) {
-            for ($j=0; $j < 6; $j++) {
-                for ($k=0; $k < 3 ; $k++) {
-                    $data[] = [
-                        'video_url' => 'https://player.vimeo.com/video/137857207',
-                        'gbp' => rand(5,9).'.99',
-                        'usd' => rand(5,9).'.99',
-                        'euro' => rand(5,9).'.99',
-                        'product_code' => 'MM-ACS1-',
-                    ];
-                }
-            }
+        $series = DB::table('guitar_lessions')->get();
+        foreach ($series as $key => $value) {
+            DB::table('guitar_lessions')->where('id',$value->id)->update( [
+                'video_url' => 'https://player.vimeo.com/video/137857207',
+                'gbp' => rand(5,9).'.99',
+                'usd' => rand(5,9).'.99',
+                'euro' => rand(5,9).'.99',
+                'product_code' => 'MM-ACS1-'.$key,
+            ]);
         }
-        DB::table('guitar_lessions')->insert($data);
     }
 
     /**

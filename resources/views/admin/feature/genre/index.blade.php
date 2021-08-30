@@ -1,14 +1,14 @@
 @extends('layouts.auth.authMaster')
-@section('title','Category')
+@section('title','Genre')
 @section('content')
 <div class="container-fluid dashboard-content">
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Category List
-                        <a class="headerbuttonforAdd" href="{{route('admin.guitar.category.create')}}">
-                            <i class="fa fa-plus" aria-hidden="true"></i>Add Category
+                    <h5 class="mb-0">Genre List
+                        <a class="headerbuttonforAdd" href="{{route('admin.genre.create')}}">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Add Genre
                         </a>
                     </h5>
                 </div>
@@ -17,19 +17,26 @@
                         <table id="example4" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                	<th>Image</th>
+                                	{{-- <th>Image</th> --}}
                                     <th>Name</th>
-                                    <th>Media Link</th>
+                                    <th>Date</th>
+                                    {{-- <th>Status</th>
+                                    <th>Category</th>
+                                    <th>Slug</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	@foreach($category as $key => $cat)
+                            	@foreach($genre as $key => $gen)
                             		<tr>
-                            			<td><img src="{{asset($cat->image)}}" height="200" width="200"></td>
-                            			<td>{{$cat->name}}</td>
-                                        <td>{{$cat->video_url}}</td>
-                            			<td><a href="{{route('admin.guitar.category.edit',$cat->id)}}">Edit</a> | <a href="javascript:void(0)" class="text-danger categoryDelete" data-id="{{$cat->id}}">Delete</a></td>
+                            			{{-- <td><img src="{{asset($gen->image)}}" height="200" width="200"></td> --}}
+                            			<td>{{$gen->title}}</td>
+                                        <td>{{$gen->created_at}}</td>
+                                        {{-- <td>{{$gen->status}}</td> --}}
+                                        {{-- <td>{{$gen->category}}</td> --}}
+                                        {{-- <td>{{$gen->category->name}}</td> --}}
+                                        {{-- <td>{{$gen->slug}}</td> --}}
+                            			<td><a href="{{route('admin.genre.edit',$gen->id)}}">Edit</a> | <a href="javascript:void(0)" class="text-danger genreDelete" data-id="{{$gen->id}}">Delete</a></td>
                             		</tr>
                             	@endforeach
                             </tbody>
@@ -46,12 +53,12 @@
             $('#example4').DataTable();
         });
 
-        $(document).on('click','.categoryDelete',function(){
-            var categoryDelete = $(this);
-            var categoryId = $(this).attr('data-id');
+        $(document).on('click','.genreDelete',function(){
+            var genreDelete = $(this);
+            var genreId = $(this).attr('data-id');
             swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this category!",
+                text: "Once deleted, you will not be able to recover this genre!",
                 buttons: true,
                 dangerMode: true,
             })
@@ -60,12 +67,12 @@
                     $.ajax({
                         type:'POST',
                         dataType:'JSON',
-                        url:"{{route('admin.guitar.category.delete',"+categoryId+")}}",
-                        data: {id:categoryId,'_token': $('input[name=_token]').val()},
+                        url:"{{route('admin.genre.delete',"+genreId+")}}",
+                        data: {id:genreId,'_token': $('input[name=_token]').val()},
                         success:function(data){
                             if(data.error == false){
-                                categoryDelete.closest('tr').remove();
-                                swal('Success',"Poof! Your Category has been deleted!");
+                                genreDelete.closest('tr').remove();
+                                swal('Success',"Poof! Your genre has been deleted!");
                             }else{
                                 swal('Error',data.message);
                             }

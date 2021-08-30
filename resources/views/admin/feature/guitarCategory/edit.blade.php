@@ -27,6 +27,12 @@
                             @enderror
                         </div>
 
+                        <div class="form-group col-md-4">
+                            <label for="media_link" class="col-form-label">Media Link:</label>
+                            <input type="text" class="form-control @error('media_link') is-invalid @enderror" id="media_link" name="media_link" placeholder="Media Link" value="{{$category->video_url}}">
+                            @error('media_link')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                        </div>
+                        
                         <div class="form-group">
                             <label for="image" class="col-form-label">Instrument Name:</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="image" name="name" value="{{$category->name}}" placeholder="Instrument Name">

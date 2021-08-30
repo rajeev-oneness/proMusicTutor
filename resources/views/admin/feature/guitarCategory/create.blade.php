@@ -30,6 +30,12 @@
                                 <span class="text-danger" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="media_link" class="col-form-label">Media Link:</label>
+                            <input type="text" class="form-control @error('media_link') is-invalid @enderror" id="media_link" name="media_link" placeholder="Video Media Link" value="{{old('media_link')}}">
+                            @error('media_link')<span class="text-danger" role="alert">{{$message}}</span>@enderror
+                        </div>
                         
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create</button>

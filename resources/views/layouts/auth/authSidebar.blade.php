@@ -52,9 +52,18 @@
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.guitar.category')?'active':''}}" href="{{route('admin.guitar.category')}}"><i class="fa fa-fw fa-user-circle"></i>Category</a>
                             </li>
+                            
 
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('admin.guitar.series.*')?'active':''}}" href="{{route('admin.guitar.series.view')}}"><i class="fa fa-fw fa-user-circle"></i>Guitar Series</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.genre')?'active':''}}" href="{{route('admin.genre.view')}}"><i class="fa fa-fw fa-user-circle"></i>Genre</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('admin.difficulty')?'active':''}}" href="{{route('admin.difficulty.view')}}"><i class="fa fa-fw fa-user-circle"></i>Difficulty</a>
                             </li>
 
                             <!-- Report Section -->
@@ -84,6 +93,11 @@
                                         <li class="nav-item">
                                             <a class="nav-link {{request()->routeIs('admin.setting.aboutus')?'active':''}}" href="{{route('admin.setting.aboutus')}}"><i class="fa fa-fw fa-user-circle"></i>About Us</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link {{request()->routeIs('admin.setting.termsandConditions')?'active':''}}" href="{{route('admin.setting.termsandConditions')}}"><i class="fa fa-fw fa-user-circle"></i>Terms & Conditions</a>
+                                        </li>
+                                        
                                         <li class="nav-item">
                                             <a class="nav-link {{request()->routeIs('admin.setting.howitWorks')?'active':''}}" href="{{route('admin.setting.howitWorks')}}"><i class="fa fa-fw fa-user-circle"></i>How It Works</a>
                                         </li>

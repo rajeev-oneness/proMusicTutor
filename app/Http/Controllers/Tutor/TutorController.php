@@ -43,11 +43,6 @@ class TutorController extends Controller
             'description' => 'required|string',
             'item_clean_url' => 'required|url',
         ]);
-        // {{-- $table->string('difficulty');
-        //     $table->string('seo_meta_description');
-        //     $table->string('seo_meta_keywords')->nullable();
-        //     $table->string('related_series');
-        // }); --}}
         $newSeries = new GuitarSeries();
         $newSeries->categoryId = $req->category;
         $newSeries->title = $req->title;
@@ -57,7 +52,7 @@ class TutorController extends Controller
             $newSeries->image = imageUpload($image);
         }
         $newSeries->video_url = $req->media_link;
-        $newSeries->price = $req->price;
+        // $newSeries->price = $req->price;
         $newSeries->gbp = $req->gbp;
         $newSeries->usd = $req->usd;
         $newSeries->euro = $req->euro;
@@ -87,7 +82,7 @@ class TutorController extends Controller
             'image' => 'nullable|image',
             'title' => 'required|string|max:200',
             'media_link' => 'nullable|url',
-            'price' => 'required|numeric|min:1',
+            // 'price' => 'required|numeric|min:1',
             'usd' => 'required|numeric|min:1',
             'euro' => 'required|numeric|min:1',
             'genre' => 'required|string',
@@ -107,7 +102,7 @@ class TutorController extends Controller
             $updateSeries->image = imageUpload($image);
         }
         $updateSeries->video_url = $req->media_link;
-        $updateSeries->price = $req->price;
+        // $updateSeries->price = $req->price;
         $updateSeries->gbp = $req->gbp;
         $updateSeries->usd = $req->usd;
         $updateSeries->euro = $req->euro;
@@ -117,15 +112,6 @@ class TutorController extends Controller
         $updateSeries->seo_meta_description = $req->seo_meta_description;
         $updateSeries->related_series = $req->related_series;
         $updateSeries->item_clean_url = $req->item_clean_url;
-        // {{-- $table->dropColumn('price');
-        //     $table->dropColumn('gbp');
-        //     $table->dropColumn('usd');
-        //     $table->dropColumn('euro');
-        //     $table->dropColumn('genre');
-        //     $table->dropColumn('difficulty');
-        //     $table->dropColumn('seo_meta_description');
-        //     $table->dropColumn('seo_meta_keywords');
-        //     $table->dropColumn('related_series'); --}}
         $updateSeries->save();
         return redirect(route('tutor.guitar.series'))->with('Success','Guitar Series Updated SuccessFully');
     }
@@ -308,7 +294,7 @@ class TutorController extends Controller
         $newSeries->description = $req->description;
         if($req->hasFile('image')){
             $image = $req->file('image');
-            $newSeries->image = imageUpload($image);
+            $newSeries->image = imageUpload($image,'tutor/sax');
         }
         $newSeries->video_url = $req->media_link;
         $newSeries->price = $req->price;

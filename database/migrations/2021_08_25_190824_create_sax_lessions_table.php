@@ -31,7 +31,7 @@ class CreateSaxLessionsTable extends Migration
             $table->string('genre')->nullable();
             $table->string('product_code');
             $table->bigInteger('createdBy');
-            $table->enum('status', [0, 1])->default(1)->comment('1=Active,0=Inactive');
+            $table->tinyInteger('status')->default(1)->comment('1=Active,0=Inactive');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

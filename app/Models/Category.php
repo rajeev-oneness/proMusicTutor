@@ -14,4 +14,8 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\GuitarSeries','categoryId','id');
     }
+    public function genres()
+    {
+        return $this->hasMany('App\Models\Genre','categoryId','id');
+    }
 }

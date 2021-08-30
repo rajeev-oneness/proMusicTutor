@@ -37,6 +37,26 @@
 		Route::post('/{id}/delete',[CrudController::class,'guitarCategoryDelete'])->name('admin.guitar.category.delete');
 	});
 
+	// Genre
+	Route::group(['prefix' => 'genre'],function(){
+		Route::get('/',[CrudController::class,'genre'])->name('admin.genre.view');
+		Route::get('/create',[CrudController::class,'genreCreate'])->name('admin.genre.create');
+		Route::post('/store',[CrudController::class,'genreStore'])->name('admin.genre.save');
+		Route::get('/{id}/edit',[CrudController::class,'genreEdit'])->name('admin.genre.edit');
+		Route::post('/{id}/update',[CrudController::class,'genreUpdate'])->name('admin.genre.update');
+		Route::post('/{id}/delete',[CrudController::class,'genreDelete'])->name('admin.genre.delete');
+	});
+
+
+	// diifficulty
+	Route::group(['prefix' => 'difficulty'],function(){
+		Route::get('/',[CrudController::class,'difficulty'])->name('admin.difficulty.view');
+		Route::get('/create',[CrudController::class,'difficultyCreate'])->name('admin.difficulty.create');
+		Route::post('/store',[CrudController::class,'difficultyStore'])->name('admin.difficulty.save');
+		Route::get('/{id}/edit',[CrudController::class,'difficultyEdit'])->name('admin.difficulty.edit');
+		Route::post('/{id}/update',[CrudController::class,'difficultyUpdate'])->name('admin.difficulty.update');
+		Route::post('/{id}/delete',[CrudController::class,'difficultyDelete'])->name('admin.difficulty.delete');
+	});
 	// Guitar Series and Their Lession
 	Route::group(['prefix' => 'guitar/series'],function(){
 		Route::get('/list',[AdminController::class,'guitarSeriesList'])->name('admin.guitar.series.view');
@@ -83,6 +103,10 @@
 		Route::get('how-It-Works',[CrudController::class,'howItWorksSetting'])->name('admin.setting.howitWorks');
 		Route::get('how-It-Works/{settingId}/edit',[CrudController::class,'howItWorksDataEdit'])->name('admin.setting.howitWorks.edit');
 		Route::post('how-It-Works/{settingId}/update',[CrudController::class,'howItWorksSettingUpdate'])->name('admin.setting.howitWorks.update');
+
+		Route::get('terms-And-Conditions',[CrudController::class,'termsAndConditionsSetting'])->name('admin.setting.termsandConditions');
+		Route::get('terms-And-Conditions/{settingId}/edit',[CrudController::class,'termsAndConditionsDataEdit'])->name('admin.setting.termsAndConditions.edit');
+		Route::post('terms-And-Conditions/{settingId}/update',[CrudController::class,'termsAndConditionsSettingUpdate'])->name('admin.setting.termsAndConditions.update');
 	});
 	
 ?>
