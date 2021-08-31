@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Genre;
 use App\Models\Difficulty;
+use App\Models\AskedQuestion;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request,Hash,DB;
@@ -727,4 +728,39 @@ class CrudController extends Controller
         }
         return errorResponse($validator->errors()->first());
     }
+
+    /**********************************Asked Questions ***************************************/
+    public function questionSetting(Request $req)
+    {
+        $question = AskedQuestion::get();
+        return view('admin.setting.question.index',compact('question'));
+    }
+
+    public function questionDataEdit(Request $req,$settingId)
+    {
+        $question = Setting::where('id',$settingId)->first();
+        return view('admin.setting.question.edit',compact('question'));
+    }
+
+    // public function questionSettingUpdate(Request $req,$settingId)
+    // {
+    //     $req->validate([
+    //         'settingId' => 'required|numeric|min:1|in:'.$settingId,
+    //         'heading' => 'required|string|max:200',
+    //         'description' => 'required|string',
+    //         'image' => '',
+    //     ]);
+    //     $setting = Setting::where('id',$req->settingId)->first();
+    //     if($setting){
+    //         $setting->heading = $req->heading;
+    //         $setting->description = $req->description;
+    //         if($req->hasFile('image')){
+    //             $image = $req->file('image');
+    //             $setting->image = imageUpload($image);
+    //         }
+    //         $setting->save();
+    //         return redirect(route('admin.setting.policy'))->with('Success','Policy: '.$req->heading.' Updated SuccessFully');
+    //     }
+    //     return errorResponse('Invalid Setting Detected');
+    // }
 }

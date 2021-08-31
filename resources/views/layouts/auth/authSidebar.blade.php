@@ -97,7 +97,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link {{request()->routeIs('admin.setting.termsandConditions')?'active':''}}" href="{{route('admin.setting.termsandConditions')}}"><i class="fa fa-fw fa-user-circle"></i>Terms & Conditions</a>
                                         </li>
-                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link {{request()->routeIs('admin.setting.question')?'active':''}}" href="{{route('admin.setting.question')}}"><i class="fa fa-fw fa-user-circle"></i>Frequently Asked Questions</a>
+                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link {{request()->routeIs('admin.setting.howitWorks')?'active':''}}" href="{{route('admin.setting.howitWorks')}}"><i class="fa fa-fw fa-user-circle"></i>How It Works</a>
                                         </li>

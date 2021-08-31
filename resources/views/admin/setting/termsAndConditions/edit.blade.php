@@ -42,7 +42,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="page_cleane_url" class="col-form-label">Page Cleane URL:</label>
+                            <label for="page_cleane_url" class="col-form-label">Media Link:</label>
                             <textarea class="form-control @error('page_cleane_url') is-invalid @enderror" id="page_cleane_url" name="page_cleane_url" placeholder="page_cleane_url">@if(old('page_cleane_url')){{old('page_cleane_url')}}@else{{$termsandCondition->page_cleane_url}}@endif</textarea>
                             @error('page_cleane_url')
                                 <span class="text-danger" role="alert">{{ $message }}</span>

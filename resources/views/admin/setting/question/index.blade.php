@@ -1,12 +1,12 @@
 @extends('layouts.auth.authMaster')
-@section('title','Terms & Conditions')
+@section('title','Frequently Asked Questions')
 @section('content')
 <div class="container-fluid dashboard-content">
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Terms & Conditions</h5>
+                    <h5 class="mb-0">Frequently Asked Questions</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -14,20 +14,20 @@
                             <thead>
                                 <tr>
                                 	{{-- <th>Image</th> --}}
-                                    <th>Heading</th>
+                                    <th>Title</th>
                                     <th>Description</th>
                                     <th>Media Link</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	@foreach($termsAndConditions as $key=>$term)
+                            	@foreach($question as $key=>$ques)
                             		<tr>
                             			{{-- <td><img src="{{asset($term->image)}}" height="200" width="200"></td> --}}
-                            			<td>{{$term->title}}</td>
-                            			<td>{!! $term->description !!}</td>
-                            			<td>{{ $term->page_cleane_url }}</td>
-                            			<td><a href="{{route('admin.setting.termsAndConditions.edit',$term->id)}}">Edit</a></td>
+                            			<td>{{ $ques->title }}</td>
+                            			<td>{!! $ques->description !!}</td>
+                            			<td>{{ $ques->video_url }}</td>
+                            			<td><a href="{{route('admin.setting.question.edit',$ques->id)}}">Edit</a></td>
                             		</tr>
                             	@endforeach
                             </tbody>

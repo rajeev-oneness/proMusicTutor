@@ -96,10 +96,13 @@
 		Route::get('policy',[CrudController::class,'policyData'])->name('admin.setting.policy');
 		Route::get('policy/{policyId}/edit',[CrudController::class,'policyDataEdit'])->name('admin.setting.policy.edit');
 		Route::post('policy/{policyId}/update',[CrudController::class,'policyDataUpdate'])->name('admin.setting.policy.update');
+
 		Route::get('contact-us',[CrudController::class,'contactUsSetting'])->name('admin.setting.contact');
 		Route::post('contact-us/{contactId}/update',[CrudController::class,'contactUsSettingUpdate'])->name('admin.setting.contact.update');
+
 		Route::get('about-us',[CrudController::class,'aboutUsSetting'])->name('admin.setting.aboutus');
 		Route::post('about-us/{settingId}/update',[CrudController::class,'aboutUsSettingUpdate'])->name('admin.setting.aboutus.update');
+
 		Route::get('how-It-Works',[CrudController::class,'howItWorksSetting'])->name('admin.setting.howitWorks');
 		Route::get('how-It-Works/{settingId}/edit',[CrudController::class,'howItWorksDataEdit'])->name('admin.setting.howitWorks.edit');
 		Route::post('how-It-Works/{settingId}/update',[CrudController::class,'howItWorksSettingUpdate'])->name('admin.setting.howitWorks.update');
@@ -107,6 +110,11 @@
 		Route::get('terms-And-Conditions',[CrudController::class,'termsAndConditionsSetting'])->name('admin.setting.termsandConditions');
 		Route::get('terms-And-Conditions/{settingId}/edit',[CrudController::class,'termsAndConditionsDataEdit'])->name('admin.setting.termsAndConditions.edit');
 		Route::post('terms-And-Conditions/{settingId}/update',[CrudController::class,'termsAndConditionsSettingUpdate'])->name('admin.setting.termsAndConditions.update');
+		
+
+		Route::get('frequently-asked-questions',[CrudController::class,'questionSetting'])->name('admin.setting.question');
+		Route::get('frequently-asked-questions/{settingId}/edit',[CrudController::class,'questionDataEdit'])->name('admin.setting.question.edit');
+		// Route::post('frequently-asked-questions/{settingId}/update',[CrudController::class,'questionSettingUpdate'])->name('admin.setting.question');
 	});
 	
 ?>
